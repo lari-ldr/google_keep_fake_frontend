@@ -1,26 +1,113 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import Item from './Item.js';
+import Form from './Form.js';
+
+class App extends React.Component{
+  constructor(){
+      super()
+      this.state ={
+          results: [],
+          isLoaded: false
+      }
+      this.removeComment = this.removeComment.bind(this)
+      // this.addItem = this.addItem.bind(this)
+      this.refreshAvisoAfterSendPostRequest = this.refreshAvisoAfterSendPostRequest.bind(this)
+  }
+
+  componentDidMount(){
+      const url = `http://localhost:9000/index`
+      axios.get(url)
+      .then(res =>{
+          this.setState({
+              results: res.data,
+              isLoaded: true
+          })
+          // console.log(res.data)
+      })
+  }
+
+//   addItem(teste){
+//       console.log(teste) // infos vindas do form em forma de object
+//       const abc = this.state.results //todos os resultados vindo da db do backend
+//       const final = abc.concat(teste) // concat coloca o teste dentro do state.results
+//       console.log(abc)
+//       console.log(final)
+//       // fazer o update do resultado com o final para mostrar na pagina
+//       this.setState({
+//         results: final
+//       })
+// // funciona, mas há o problema do ID que não aparece ainda
+//   }
+
+  refreshAvisoAfterSendPostRequest(refresh){
+    console.log(refresh)
+    const url = `http://localhost:9000/index`
+    axios.get(url)
+    .then(res =>{
+        this.setState({
+            results: res.data
+        })
+    })
+  }
+
+  removeComment(index){
+    console.log("removing comments: " + index)
+    const removedItem = this.state.results.filter(deletedItem => {return deletedItem.id !== index})
+
+    this.setState({
+        results: removedItem
+    })
+
+    console.log(removedItem)
+
+  }
+
+  render(){
+
+    // let load;
+    // if(this.state.isLoaded){
+    //   load = ""
+    // }else{
+    //   load = "Loading... wait a minute"
+    // }
+  
+    // console.log(this.state.isLoaded)
+      const results = this.state.results;
+      // console.log("green eyes")
+      // console.log(results) //array
+      const allResults = results.map((item)=>{
+
+          return(
+              <Item key={item.id} index={item.id} aviso={item} deleteFromApp={this.removeComment} />
+            // <Item key={item.id} aviso={item} />
+          )
+      })
+
+      return (
+        <div className="App">
+          <div className="Side-nav">
+              <h1>Avisos</h1>
+              {/* <h2>{load}</h2> */}
+              <h2 style={{display: this.state.isLoaded ? "none" : "block"}}>Loading... wait a minute</h2>
+             {allResults}
+          </div>
+        {/* <Form addNewItem={this.addItem} /> */}
+        <Form refreshAvisoAfterPostRequest={this.refreshAvisoAfterSendPostRequest} />
+      </div>
+      )
+  }
 }
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <SideBar />
+//       <Form />
+//     </div>
+//   );
+// }
 
 export default App;

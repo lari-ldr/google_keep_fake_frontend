@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-logo {
@@ -13,9 +17,10 @@
   }
 }
 
-.App-header {
+.App-main {
   background-color: #282c34;
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +31,103 @@
 
 .App-link {
   color: #61dafb;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+.Side-nav{
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: #252931;
+}
+
+.Side-card{
+  list-style: none;
+  text-align: left;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: #e1e1e1;
+  margin-top: 25px;
+}
+
+h1{
+  color: white;
+}
+
+li:nth-child(1){
+  font-weight: bold;
+  /* font-size: 30px; */
+}
+li:nth-child(even){
+  line-height: 30px;
+}
+
+li:nth-child(3){
+  line-height: 20px;
+  font-size: 15px;
+}
+
+li:nth-child(4){
+  font-size: 12px;
+  text-align: end;
+}
+  /* line-height: 20px; */
+
+.Side-container{
+  background-color: #383e4a;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding-bottom: 16px;
+}
+
+.collapse{
+  display: none;
+}
+
+.collapse.in{
+  display: block;
+}
+
+.More{
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  border: transparent;
+  background-color: transparent;
+  float: right;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.Edit{
+  cursor: pointer;
+  color: #30b025;
+  font-size: 15px;
+  border: transparent;
+  background-color: transparent;
+}
+
+.Delete{
+  cursor: pointer;
+  color: #c81515;
+  font-size: 15px;
+  border: transparent;
+  background-color: transparent;
+}
+
+.InputDelete{
+  display: none;
 }
 
 @keyframes App-logo-spin {
