@@ -1,13 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faPlus, faMinus, faSave } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import './App.css';
-
-// less more button
-// setState is true because the text is suprimido
-// when you clik inthe plu button -> state is false
-// because the text is not suprimido anymore
 
 class Item extends React.Component{
     constructor(props){
@@ -19,23 +14,29 @@ class Item extends React.Component{
             mensagem: props.aviso.mensagem,
             intervalo: props.aviso.intervalo,
             editing: false,
-            isLess: true
+            itemsToShow: 140,
+            expanded: false
         }
         this.handleChangeToDelete = this.handleChangeToDelete.bind(this)
         this.handleSubmitToDelete = this.handleSubmitToDelete.bind(this)
+        this.handleChangeEdit = this.handleChangeEdit.bind(this)
         this.editAviso = this.editAviso.bind(this)
-        this.saveAviso = this.saveAviso.bind(this)
+        this.handleSubmitEditMode = this.handleSubmitEditMode.bind(this)
         this.renderAvisoNormal = this.renderAvisoNormal.bind(this)
         this.renderAvisoEditingMode = this.renderAvisoEditingMode.bind(this)
-        this.moreText = this.moreText.bind(this)
+        this.showMore = this.showMore.bind(this)
     }
 
-    moreText(){
+    showMore(){
         console.log("You clickedn in the less more button")
-        this.setState({
-            isLess: false
-        })
+        this.state.itemsToShow === 140 ? (
+            this.setState({itemsToShow: this.state.mensagem.length, expanded: true})
+        ) : (
+            this.setState({itemsToShow: 140, expanded: false})
+        )
+
     }
+
     handleChangeToDelete(event){
         const {name, value} = event.target
         this.setState({
@@ -56,6 +57,14 @@ class Item extends React.Component{
         this.props.deleteFromApp(this.props.index)
     }
 
+    handleChangeEdit(event){
+        const {name, value} = event.target
+        this.setState({
+            [name]: value
+        })
+        console.log(value)
+    }
+
     editAviso(){
         console.log("OMG YOU CLICKED ON ME, HOW DARE YOU?! O.O ")
         this.setState({
@@ -63,23 +72,45 @@ class Item extends React.Component{
         })
     }
 
-    saveAviso(){
+    handleSubmitEditMode(event){
         this.setState({
             editing: false
+        })
+        const id = this.state.id
+        event.preventDefault()
+        axios.put(`http://localhost:9000/index/${id}`, {
+            nomedogrupo: this.state.nomedogrupo,
+            assunto: this.state.assunto,
+            mensagem: this.state.mensagem,
+            intervalo: this.state.intervalo
+        })
+        .then(response =>{
+            response.data={
+                nomedogrupo: this.state.nomedogrupo,
+                assunto: this.state.assunto,
+                mensagem: this.state.mensagem,
+                intervalo: this.state.intervalo
+            }
         })
     }
 
     renderAvisoNormal(){
-          console.log(this.state.isLess)
           const editar = <FontAwesomeIcon icon={faEdit} />;
           const excluir = <FontAwesomeIcon icon={faTrashAlt} />;
           const more = <FontAwesomeIcon icon={faPlus}/>;
+          const less = <FontAwesomeIcon icon={faMinus}/>
+
+          const showMessage = this.state.expanded ? less : more
+
+          const mensagem = this.state.mensagem.slice(0, this.state.itemsToShow)
+
           return(
               <div  key={this.state.id} className="Side-container">
               <ul className="Side-card">
               <li>Nome do Grupo: {this.state.nomedogrupo}</li>
               <li>Sobre: {this.state.assunto}</li>
-              <li>{this.state.mensagem}</li>
+              {/* <li>{this.state.mensagem}</li> */}
+              <li>{mensagem}<a className="ShowMessage" onClick={this.showMore}>{showMessage}</a></li>
               <li>Mandar mensagem a cada {this.state.intervalo} minuto</li>
               </ul>
   
@@ -93,38 +124,44 @@ class Item extends React.Component{
   
   {/* EDIT BUTTON */}
           <button className="Edit" onClick={this.editAviso}>{editar}</button>
+{/* EDIT BUTTON END */}
 
-          <button onClick={this.moreText}>{more}</button>
       </div>
           )
     }
 
+
     renderAvisoEditingMode(){
         // console.log(this.state.editing)
-                  const editar = <FontAwesomeIcon icon={faEdit} />;
-                  const excluir = <FontAwesomeIcon icon={faTrashAlt} />;
-                  const more = <FontAwesomeIcon icon={faPlus}/>;
+                  const save = <FontAwesomeIcon icon={faSave} />;
+
+                  const styles = {
+                      width: "225px", height: "200px"
+                  }
+                  
                   return(
-                    <form key={this.state.id}>
+                    <div className="Side-container">
+                    <form key={this.state.id} onSubmit={this.handleSubmitEditMode} className="Side-card">
                     <label>
-                    <input type="text" name="nomedogrupo" defaultValue={this.state.nomedogrupo}/>
+                    <input className="EditTextInput" type="text" name="nomedogrupo" defaultValue={this.state.nomedogrupo} onChange={this.handleChangeEdit}/>
                     </label>
     
                     <label>
-                    <input type="text" name="assunto" defaultValue={this.state.assunto} />
+                    <input className="EditTextInput" type="text" name="assunto" defaultValue={this.state.assunto} onChange={this.handleChangeEdit} />
                     </label>
     
                     <label>
-                    <textarea name="mensagem" defaultValue={this.state.mensagem} rows="10" cols="10"/>
+                    <textarea name="mensagem" defaultValue={this.state.mensagem} style={styles} rows="10" cols="10" onChange={this.handleChangeEdit}/>
                     </label>
     
                     <label>A mensagem deve ser enviada a cada:</label>
-                    <select name="intervalo" defaultValue={this.state.intervalo} >
+                    <select name="intervalo" defaultValue={this.state.intervalo} onChange={this.handleChangeEdit} >
                         <option value="0">Minutos</option>
                         <option value="60000">1 minuto</option>
                     </select>
-                    <button className="Salve" onClick={this.saveAviso}>Salvar</button>
+                  <button className="Save">{save}</button>
                 </form>
+                </div>
           
                   )
     }
@@ -132,10 +169,10 @@ class Item extends React.Component{
 
     render(){
 
-        const abacate = this.state.editing ? this.renderAvisoEditingMode() : this.renderAvisoNormal()
+        const switchNormalToEditMode = this.state.editing ? this.renderAvisoEditingMode() : this.renderAvisoNormal()
 
         return(
-            abacate
+            switchNormalToEditMode
         )
     //     if(this.state.editing){
     //         return this.renderAvisoEditingMode()

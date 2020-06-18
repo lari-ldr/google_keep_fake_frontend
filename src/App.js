@@ -67,14 +67,9 @@ class App extends React.Component{
 
   render(){
 
-    // let load;
-    // if(this.state.isLoaded){
-    //   load = ""
-    // }else{
-    //   load = "Loading... wait a minute"
-    // }
-  
-    // console.log(this.state.isLoaded)
+    const url = window.location.href.toString()
+console.log(url)
+
       const results = this.state.results;
       // console.log("green eyes")
       // console.log(results) //array
@@ -88,14 +83,17 @@ class App extends React.Component{
 
       return (
         <div className="App">
-          <div className="Side-nav">
+          <Form refreshAvisoAfterPostRequest={this.refreshAvisoAfterSendPostRequest} />
+          {/* <div className="Side-nav"> */}
+          <main className="App-main">
               <h1>Avisos</h1>
               {/* <h2>{load}</h2> */}
               <h2 style={{display: this.state.isLoaded ? "none" : "block"}}>Loading... wait a minute</h2>
              {allResults}
-          </div>
+             </main>
+          {/* </div> */}
         {/* <Form addNewItem={this.addItem} /> */}
-        <Form refreshAvisoAfterPostRequest={this.refreshAvisoAfterSendPostRequest} />
+        
       </div>
       )
   }
