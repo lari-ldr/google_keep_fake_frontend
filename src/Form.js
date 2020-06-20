@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 class Form extends React.Component{
@@ -11,22 +13,32 @@ class Form extends React.Component{
             assunto: '',
             mensagem: '',
             intervalo: Number(),
-            isEmpty: true
+            isEmpty: true,
+            isClicked: false,
         }
         // this.state.nomedogrupo sempre vai começar como true, pq esta vazio
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(event){
+        console.log(event)
+        this.setState({
+            isClicked: true
+        })
+        this.props.teste(event)
     }
 
     handleChange(event){
         const {name, value} = event.target
         this.setState({
             [name]: value,
-            isEmpty: false
+            isEmpty: false,
         })
     }
-// MUDAR O POST REQUEST PARA O APP FILE, PEGAR AS INFORMAÇÕES AQUI MANDAR PRA LA E
-// FAZER O POST REQUEST
+
+
 handleSubmit(event){
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source()
@@ -70,46 +82,49 @@ handleSubmit(event){
 
 
     render(){
-        // console.log(this.state.criadoem)
+        const send = <FontAwesomeIcon icon={faSave}/>
+        // console.log(this.state.isClicked)
         const emptyForm = this.state.isEmpty === false ? 'required' : ''
+        // const secretForm = this.state.isClicked === false ? display none : ''
+        // console.log(this.props.teste)
+        // console.log(this.state.isEmpty)
 
-        console.log(this.state.isEmpty)
-
-        const messageStyle = {width: "380px", height: "200px"}
 
         return(
             // <main className="App-main">
-            <div class="Form">
+            <div className={`Form ${this.state.isClicked === false ? 'HideForm' : ''}`} >
             <form onSubmit={this.handleSubmit}>
-                <label>
+                {/* <label> */}
                 <input 
                     type="text"
                     name="nomedogrupo"
                     value={this.state.nomedogrupo}
                     required={emptyForm}
                     title="colocar explicações"
-                    placeholder="Nome do Grupo"
+                    placeholder="Title"
                     onChange={this.handleChange}
-                    class="Title"
+                    className={`Title ${this.state.isClicked === false ? 'Collapse' : ''}`}
                 />
-                </label>
+                {/* </label> */}
 
                 {/* <label>Assunto:</label>
                 <input type="text" name="assunto" value={this.state.assunto} required={emptyForm} title="colocar explicações" placeholder="Assunto" onChange={this.handleChange} /> */}
 
-                <label>
+                {/* <label className="FormLabel"> */}
                 <textarea 
+                    className={`NoteItself ${this.state.isClicked === false ? 'HideForm' : ''}`}
                     name="mensagem"
                     value={this.state.mensagem}
                     required={emptyForm}
-                    style={messageStyle}
+                    // style={messageStyle}
                     rows="10"
                     cols="10"
                     title="colocar explicações"
-                    placeholder="Mensagem"
+                    placeholder="Take a note..."
                     onChange={this.handleChange}
+                    onClick={this.handleClick}
                 />
-                </label>
+                {/* </label> */}
 
                 {/* <div 
                     class="NoteItself"
@@ -129,7 +144,7 @@ handleSubmit(event){
                     <option value="0">Minutos</option>
                     <option value="60000">1 minuto</option>
                 </select> */}
-                <button type="submit">Send me</button>
+                <button className={`Send ${this.state.isClicked === false ? 'Collapse' : ''}`} type="submit">{send}</button>
             </form>
         {/* //   </main> */}
         </div>
@@ -139,15 +154,4 @@ handleSubmit(event){
 }
 
 export default Form;
-// FRONTEND
-// MANDAR AS INFOS PARA A DATABASE
-// ====================================================================================
-// sobre as horas:
-// eu preciso que a função corra conforme determinado pela pessoa. Ex, J quer q ele seja avisado a cada 1 horas
-// O q eu preciso pra fazer isso:
-// pegar a hora atual e acrescentar 1 hora e assim sucessivamente
-// Passos: (trocar para minutos pra ser mais facil de ver se funciona)
-// pegar a hora que o aviso foi feito
-// contar 1 hora
-// disparar o aviso
-// repetir o processo
+

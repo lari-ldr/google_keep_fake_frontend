@@ -10,11 +10,20 @@ class App extends React.Component{
       super()
       this.state ={
           results: [],
-          isLoaded: false
+          isLoaded: false,
+          isClicked: true
       }
       this.removeComment = this.removeComment.bind(this)
       // this.addItem = this.addItem.bind(this)
       this.refreshAvisoAfterSendPostRequest = this.refreshAvisoAfterSendPostRequest.bind(this)
+      this.teste = this.teste.bind(this)
+  }
+
+  teste(event){
+    // console.log(event.isClicked)
+    // this.setState({
+    //   isClicked: false
+    // })
   }
 
   componentDidMount(){
@@ -67,8 +76,9 @@ class App extends React.Component{
 
   render(){
 
+    // console.log(this.state.isClicked)
     const url = window.location.href.toString()
-console.log(url)
+// console.log(url)
 
       const results = this.state.results;
       // console.log("green eyes")
@@ -82,8 +92,8 @@ console.log(url)
       })
 
       return (
-        <div className="App">
-          <Form refreshAvisoAfterPostRequest={this.refreshAvisoAfterSendPostRequest} />
+        <div className="App" onClick={this.teste}>
+          <Form teste={this.teste} refreshAvisoAfterPostRequest={this.refreshAvisoAfterSendPostRequest} />
           {/* <div className="Side-nav"> */}
           <main className="App-main">
               <h1>Avisos</h1>
