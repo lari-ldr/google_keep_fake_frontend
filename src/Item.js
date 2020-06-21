@@ -49,11 +49,11 @@ class Item extends React.Component{
         event.preventDefault();
         axios.delete(`http://localhost:9000/index/${id}`)
         .then(res => {
-            console.log(res)
-            console.log(res.data)
+            // console.log(res)
+            // console.log(res.data)
         })
 
-        console.log("this is will remove the aviso: " + this.state.id)
+        // console.log("this is will remove the aviso: " + this.state.id)
         this.props.deleteFromApp(this.props.index)
     }
 

@@ -23,11 +23,14 @@ class Form extends React.Component{
     }
 
     handleClick(event){
-        console.log(event)
+        // console.log(this.state.isClicked)
         this.setState({
+            // isClicked: !this.state.isClicked
             isClicked: true
+        }, ()=>{
+            console.log(this.state.isClicked)
+            const isClickedState = this.state.isClicked
         })
-        this.props.teste(event)
     }
 
     handleChange(event){
@@ -42,7 +45,6 @@ class Form extends React.Component{
 handleSubmit(event){
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source()
-
     const id = this.state.id
     console.log(id)
     event.preventDefault();
@@ -67,7 +69,10 @@ handleSubmit(event){
             }
 
             const refresh = "I am just a trigger"
+            //const refresh = response.data
+            console.log(refresh)
             this.props.refreshAvisoAfterPostRequest(refresh)
+            // this.props.singer(refresh)
         })
         source.cancel("Operation canceled by the user")
         this.state.isEmpty ? console.log("Operation canceled by the user") : console.log("item succesfully added")
@@ -103,7 +108,7 @@ handleSubmit(event){
                     title="colocar explicações"
                     placeholder="Title"
                     onChange={this.handleChange}
-                    className={`Title ${this.state.isClicked === false ? 'Collapse' : ''}`}
+                    className={`Title ${this.state.isClicked === false ? 'None' : ''}`}
                 />
                 {/* </label> */}
 
@@ -144,7 +149,7 @@ handleSubmit(event){
                     <option value="0">Minutos</option>
                     <option value="60000">1 minuto</option>
                 </select> */}
-                <button className={`Send ${this.state.isClicked === false ? 'Collapse' : ''}`} type="submit">{send}</button>
+                <button className={`Send ${this.state.isClicked === false ? 'None' : ''}`} type="submit">{send}</button>
             </form>
         {/* //   </main> */}
         </div>
