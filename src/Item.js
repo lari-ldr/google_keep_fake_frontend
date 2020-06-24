@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faPlus, faMinus, faSave } from '@fortawesome/free-solid-svg-icons';
+import DeleteItemForm from './DeleteItemForm.js';
 import axios from 'axios';
 import './App.css';
 
@@ -25,6 +26,7 @@ class Item extends React.Component{
         this.renderAvisoNormal = this.renderAvisoNormal.bind(this)
         this.renderAvisoEditingMode = this.renderAvisoEditingMode.bind(this)
         this.showMore = this.showMore.bind(this)
+        // this.removeComment = this.removeComment.bind(this)
     }
 
     showMore(){
@@ -94,6 +96,33 @@ class Item extends React.Component{
         })
     }
 
+    // removeComment(index){
+    //     const lula = this.state.id
+    //     console.log(lula)
+    //     this.setState({
+    //         results: {
+    //             id: this.state.id,
+    //             nomedogrupo: this.state.nomedogrupo,
+    //             assunto: this.state.assunto,
+    //             mensagem: this.state.mensagem,
+    //             intervalo: this.state.intervalo
+    //         }
+    //     })
+    //     // console.log(index) //undefined
+    //     // console.log("removing comments: " + index)
+    //     console.log(this.state.results)
+    //     // console.log(this.props.results)
+    //     // const removedItem = this.props.results.filter(deletedItem => {return deletedItem.id !== index})
+    //     // // // const removedItem = this.state.results.filter(deletedItem => {return deletedItem.id !== index})
+    
+    //     this.setState({
+    //         results: removedItem
+    //     })
+    
+    //     console.log(removedItem)
+    
+    //   }
+
     renderAvisoNormal(){
           const editar = <FontAwesomeIcon icon={faEdit} />;
           const excluir = <FontAwesomeIcon icon={faTrashAlt} />;
@@ -115,13 +144,14 @@ class Item extends React.Component{
               </ul>
   
   {/* DELETE FORM */}
+  {/* <DeleteItemForm id={this.state.id} deleteFromApp={this.removeComment}/> */}
       <form onClick={this.handleSubmitToDelete}>
           <label className="Delete">{excluir}
               <input className="InputDelete" type="submit" name="id" value={this.state.id} onChange={this.handleChangeToDelete} />
           </label>
       </form>
   {/* END OF THE DELETE FORM */}
-  
+
   {/* EDIT BUTTON */}
           <button className="Edit" onClick={this.editAviso}>{editar}</button>
 {/* EDIT BUTTON END */}
