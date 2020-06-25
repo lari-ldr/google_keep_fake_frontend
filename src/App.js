@@ -210,6 +210,7 @@ class App extends React.Component{
       })
       return(
           <div className="App">
+            
               <FormInput onFormInput={this.onFormInput} />
               <main className="App-main" >
               <h2 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h2>
