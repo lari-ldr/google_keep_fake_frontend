@@ -96,33 +96,6 @@ class Item extends React.Component{
         })
     }
 
-    // removeComment(index){
-    //     const lula = this.state.id
-    //     console.log(lula)
-    //     this.setState({
-    //         results: {
-    //             id: this.state.id,
-    //             nomedogrupo: this.state.nomedogrupo,
-    //             assunto: this.state.assunto,
-    //             mensagem: this.state.mensagem,
-    //             intervalo: this.state.intervalo
-    //         }
-    //     })
-    //     // console.log(index) //undefined
-    //     // console.log("removing comments: " + index)
-    //     console.log(this.state.results)
-    //     // console.log(this.props.results)
-    //     // const removedItem = this.props.results.filter(deletedItem => {return deletedItem.id !== index})
-    //     // // // const removedItem = this.state.results.filter(deletedItem => {return deletedItem.id !== index})
-    
-    //     this.setState({
-    //         results: removedItem
-    //     })
-    
-    //     console.log(removedItem)
-    
-    //   }
-
     renderAvisoNormal(){
           const editar = <FontAwesomeIcon icon={faEdit} />;
           const excluir = <FontAwesomeIcon icon={faTrashAlt} />;

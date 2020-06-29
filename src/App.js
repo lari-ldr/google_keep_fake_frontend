@@ -8,56 +8,14 @@ import './App.css';
 // import Item from './Item.js';
 // import DeleteItemForm from './DeleteItemForm.js';
 
-class Modal extends React.Component{
-  constructor(props){
-    super(props)
-    this.teste = this.teste.bind(this)
-    this.abc = this.abc.bind(this)
-  }
 
-  abc(event){
-    const id = event.currentTarget.id
-    if(id !== "pastel"){
-      this.props.outside()
-    }
-    this.props.inside()
-  }
-
-  teste(event){
-    const id = event.currentTarget.id
-    console.log(id)
-    // this.props.handleClickTest()
-  }
-
-  // handleOutsideClick(event){
-  //   const eventID = event.target.id
-  //   const id = "modal"
-  //   if(eventID === id){
-  //     // this.props.onclose => chama a função para fechar
-  //     this.props.handleClickClose()
-  //     // console.log("you are clicking to close me!!!")
-  //   }
-  // }
-
-  render(){
-    return(
-      <div className={`Form`} id="pastel" onClick={this.abc}>
-        {/* <button id="pastel" onClick={this.teste}>OPEN</button> */}
-        {this.props.children}
-      </div>
-     
-    )
-  }
-}
 // FORM
 class FormInput extends React.Component{
   constructor(props){
       super(props)
       this.handleChangeInput = this.handleChangeInput.bind(this)
       this.handleChangeSubmitInput = this.handleChangeSubmitInput.bind(this)
-      // this.handleClick = this.handleClick.bind(this)
-      this.teste = this.teste.bind(this)
-      this.abc = this.abc.bind(this)
+      this.clickForm = this.clickForm.bind(this)
       this.state = {
         id: Number(),
         nomedogrupo: '',
@@ -65,35 +23,17 @@ class FormInput extends React.Component{
         mensagem: '',
         intervalo: Number(),
         isEmpty: true,
-        isClicked: false,
         componentShouldUpdate: false
       }
   }
 
-  abc(event){
+  clickForm(event){
     const id = event.currentTarget.id
-    if(id !== "pastel"){
-      this.props.outside()
+    if(id !== "NoteForm"){
+      this.props.clickOutside()
     }
-    this.props.inside()
+    this.props.clickInside()
   }
-
-  teste(event){
-    const id = event.currentTarget.id
-    // console.log(id)
-    this.setState({isClicked: true}, ()=>{
-      console.log(this.state.isClicked)
-    })
-    this.props.handleClickTest(id)
-  }
-
-  // handleClick(event){
-  //   this.setState({
-  //     // isClicked: !this.state.isClicked
-  //     isClicked: true
-  //   })
-  //   console.log("is clicked form")
-  // }
 
   handleChangeInput(event){
       const {name, value} = event.target
@@ -133,8 +73,6 @@ class FormInput extends React.Component{
           const updateComponent = this.state.componentShouldUpdate
           this.props.onFormInput(updateComponent)
         })
-        // const teste = this.props.nomedogrupo
-        // this.props.onFormInput(teste)
       })
       source.cancel('Operation canceled by the user')
       isEmpty ? console.log("Operation canceled") : console.log("Item added frontend")
@@ -147,10 +85,10 @@ class FormInput extends React.Component{
 
   render(){
     const send = <FontAwesomeIcon icon={faSave}/>
+    const isClicked = this.props.isClicked
 
       return(
-        // <div id="pastel" className="Form" onClick={this.abc}>
-        // {/* <div className={`Form ${this.state.isClicked === false ? 'HideForm' : ''}`} > */}
+        <div id="NoteForm" className={`Form ${isClicked === false ? 'HideForm' : ''}`} onClick={this.clickForm} >
         <form onSubmit={this.handleChangeSubmitInput}>
                 {/* <label> */}
                   <input 
@@ -160,15 +98,13 @@ class FormInput extends React.Component{
                     title="colocar explicações"
                     placeholder="Title"
                     onChange={this.handleChangeInput}
-                    // className={`Title ${this.state.isClicked === false ? 'None' : ''}`}
-                    className={`Title`}
+                    className={`Title ${isClicked === false ? 'None' : ''}`}
                 />
                 {/* </label> */}
 
                 {/* <label className="FormLabel"> */}
                 <textarea 
-                    // className={`NoteItself ${this.state.isClicked === false ? 'HideForm' : ''}`}
-                    className={`NoteItself`}
+                    className={`NoteItself ${isClicked === false ? 'HideForm' : ''}`}
                     name="mensagem"
                     value={this.state.mensagem}
                     rows="10"
@@ -176,17 +112,15 @@ class FormInput extends React.Component{
                     title="colocar explicações"
                     placeholder="Take a note..."
                     onChange={this.handleChangeInput}
-                    // onClick={this.handleClick}
                 />
                 {/* </label> */}
                 <button 
-                  // className={`Send ${this.state.isClicked === false ? 'None' : ''}`}
-                  className={`Send`}
+                  className={`Send ${isClicked === false ? 'None' : ''}`}
                   type="submit">
                     {send}
                   </button>
             </form>
-          // </div>
+          </div>
       )
   }
 }
@@ -194,20 +128,69 @@ class FormInput extends React.Component{
 class Item extends React.Component{
   constructor(props){
     super(props)
-    this.showMoreOrLess = this.showMoreOrLess.bind(this)
+    this.showMoreOrLessText = this.showMoreOrLessText.bind(this)
+    this.editingMode = this.editingMode.bind(this)
+    this.renderNote = this.renderNote.bind(this)
+    this.renderEditingNote = this.renderEditingNote.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleChangeEditSubmit = this.handleChangeEditSubmit.bind(this)
+    this.handleChangeDeleteSubmit = this.handleChangeDeleteSubmit.bind(this)
     this.state={
       id: props.note.id,
       nomedogrupo: props.note.nomedogrupo,
       assunto: props.note.assunto,
       mensagem: props.note.mensagem,
       intervalo: props.note.intervalo,
-      editing: false,
+      isEditing: false,
+      componentShouldUpdate: false,
       itemsToShow: 140,
       expanded: false
     }
   }
 
-  showMoreOrLess(){
+  handleChange(event){
+    const {name, value} = event.target
+    this.setState({
+        [name]: value,
+    })
+  }
+
+  handleChangeEditSubmit(event){
+    const id = this.state.id
+    event.preventDefault()
+    axios.put(`http://localhost:9000/index/${id}`, {
+      nomedogrupo: this.state.nomedogrupo,
+      assunto: this.state.assunto,
+      mensagem: this.state.mensagem,
+      intervalo: this.state.intervalo
+    })
+    .then(response =>{
+      response.data={
+        nomedogrupo: this.state.nomedogrupo,
+        assunto: this.state.assunto,
+        mensagem: this.state.mensagem,
+        intervalo: this.state.intervalo
+      }
+    })
+    this.setState({ isEditing: false })
+  }
+
+  handleChangeDeleteSubmit(event){
+    const id = this.state.id
+    event.preventDefault();
+    axios.delete(`http://localhost:9000/index/${id}`)
+    .then( response => {
+      console.log(response)
+    }, this.setState({
+      componentShouldUpdate: true
+    }, ()=>{
+      const updateComponent = this.state.componentShouldUpdate
+      this.props.onDelete(updateComponent)
+    }))
+  }
+
+
+  showMoreOrLessText(){
     const itemsToShow = this.state.itemsToShow
     const mensagem = this.state.mensagem
     itemsToShow === 140 ? (
@@ -216,7 +199,14 @@ class Item extends React.Component{
       this.setState({itemsToShow: 140, expanded: false})
     )
   }
-  render(){
+
+  editingMode(){
+    this.setState({
+      isEditing: true
+    })
+  }
+
+  renderNote(){
     const editar = <FontAwesomeIcon icon={faEdit} />;
     const excluir = <FontAwesomeIcon icon={faTrashAlt} />;
     const more = <FontAwesomeIcon icon={faPlus}/>;
@@ -230,59 +220,101 @@ class Item extends React.Component{
       <li>Nome do Grupo: {this.state.nomedogrupo}</li>
       <li>Sobre: {this.state.assunto}</li>
       {/* <li>{this.state.mensagem}</li> */}
-      <li>{mensagemToShow}<a className="ShowMessage" onClick={this.showMoreOrLess}>{showMessage}</a></li>
+      <li>{mensagemToShow}<a className="ShowMessage" onClick={this.showMoreOrLessText}>{showMessage}</a></li>
       <li>Mandar mensagem a cada {this.state.intervalo} minuto</li>
       </ul>
+<div>
 
-{/* DELETE FORM */}
-{/* <form onClick={this.handleSubmitToDelete}>
+<form onClick={this.handleChangeDeleteSubmit}>
   <label className="Delete">{excluir}
-      <input className="InputDelete" type="submit" name="id" value={this.state.id} onChange={this.handleChangeToDelete} />
+      <input
+        className="InputDelete"
+        type="submit"
+        name="id"
+        value={this.state.id}
+        onChange={this.handleChange}
+      />
   </label>
-</form> */}
-{/* END OF THE DELETE FORM */}
-{/* EDIT BUTTON */}
-  {/* <button className="Edit" onClick={this.editAviso}>{editar}</button> */}
-{/* EDIT BUTTON END */}
+</form>
+
+  <button className="Edit" onClick={this.editingMode}>{editar}</button>
+</div>
 </div>
     )
   }
+
+  renderEditingNote(){
+    const save = <FontAwesomeIcon icon={faSave} />;
+   
+return(
+<div className="Side-container">
+<form key={this.state.id} onSubmit={this.handleChangeEditSubmit} className="Side-card">
+<label>
+<input
+  className="EditTextInput"
+  type="text"
+  name="nomedogrupo"
+  defaultValue={this.state.nomedogrupo}
+  onChange={this.handleChange}
+/>
+</label>
+    
+<label>
+<textarea
+  name="mensagem"
+  defaultValue={this.state.mensagem}
+  rows="10"
+  cols="10"
+  onChange={this.handleChange}
+  />
+</label>
+
+<button className="Save">{save}</button>
+</form>
+</div>
+)
+  }
+
+  render(){
+    const isEditing = this.state.isEditing
+    const switchBetweenModes = isEditing ? this.renderEditingNote() : this.renderNote()
+    return(
+      switchBetweenModes
+    )
+  }
 }
+
 // APP IS THE PARENT
 class App extends React.Component{
   constructor(props){
       super(props)
       this.onFormInput = this.onFormInput.bind(this)
-      this.outside = this.outside.bind(this)
-      this.inside = this.inside.bind(this)
-      this.handleClickTest = this.handleClickTest.bind(this)
+      this.clickOutside = this.clickOutside.bind(this)
+      this.clickInside = this.clickInside.bind(this)
+      this.editingForm = this.editingForm.bind(this)
+      this.onDelete = this.onDelete.bind(this)
       this.state = ({
           results: [],
           isLoaded: false,
           isClicked: false,
+          isEditing: false,
           componentShouldUpdate: false,
       });
   }
 
-  
-  outside(){
-    console.log("clicked outside")
+  editingForm(isEditing){
+    console.log('hello from the other sideeee')
+    console.log(isEditing)
   }
 
-  inside(){
-    console.log("clcicked inside")
+  clickOutside(){
+    this.setState({isClicked: false})
+    this.setState({isEditing: false})
   }
 
-  handleClickTest(id){
-    // se o id onde eu cliquei pe diferente tem q chamar outra função para fechar o form
-    if( id === !id){
-      console.log("salada")
-      this.outside()
-    }
-    console.log(id)
-    this.inside()
+  clickInside(){
+    this.setState({isClicked: true})
   }
-  
 
   componentDidMount(){
       axios.get(`http://localhost:9000/index`)
@@ -306,6 +338,18 @@ onFormInput(updateComponent){
     })
   }
 
+  onDelete(updateComponent){
+    if( updateComponent === false){
+      console.warn("COMPONENT SHOULD UPDATE IS FALSE")
+    }
+    axios.get(`http://localhost:9000/index`)
+    .then(response => {
+        this.setState({
+            results: response.data,
+        })
+    })
+  }
+
   componentDidUpdate(){
     console.warn("Method Called")
   }
@@ -315,16 +359,16 @@ onFormInput(updateComponent){
       const results = this.state.results
       const allResults = results.map((item)=>{
         return(
-          <Item key={item.id} indexID={item.id} note={item}/>
+          <Item onDelete={this.onDelete} key={item.id} indexID={item.id} note={item} />
         )
       })
       return(
-          <div className="App" onClick={this.outside}>
+          <div className="App">
             <h1 className="TestBranch">YOU'RE IN THE TESTE BRANCH OF GITHUB</h1>
-            <Modal inside={this.inside} outside={this.outside} handleClickTest={this.handleClickTest}>
-              <FormInput handleClickTest={this.handleClickTest} onFormInput={this.onFormInput} />
-            </Modal>
-              <main className="App-main" >
+            {/* <Modal inside={this.inside} outside={this.outside} handleClickTest={this.handleClickTest}> */}
+              <FormInput isClicked={this.state.isClicked} clickInside={this.clickInside} clickOutside={this.clickOutside} onFormInput={this.onFormInput} />
+            {/* </Modal> */}
+              <main className="App-main" onClick={this.clickOutside} >
               <h2 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h2>
               {allResults}
               </main>
@@ -332,5 +376,14 @@ onFormInput(updateComponent){
       )
   }
 }
+
+// function Child(){
+//   const editar = <FontAwesomeIcon icon={faEdit} />;
+//   return(
+//     <div>
+//       <button className="Edit">{editar}</button>
+//     </div>
+//   )
+// }
 
 export default App;
