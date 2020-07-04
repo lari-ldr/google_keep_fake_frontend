@@ -135,6 +135,8 @@ class Item extends React.Component{
     this.handleChange = this.handleChange.bind(this)
     this.handleChangeEditSubmit = this.handleChangeEditSubmit.bind(this)
     this.handleChangeDeleteSubmit = this.handleChangeDeleteSubmit.bind(this)
+    this.mouseDown = this.mouseDown.bind(this)
+    this.mouseUp = this.mouseUp.bind(this)
     this.state={
       id: props.note.id,
       nomedogrupo: props.note.nomedogrupo,
@@ -186,7 +188,6 @@ class Item extends React.Component{
     this.props.onDelete(indexID)
   }
 
-
   showMoreOrLessText(){
     const wordsToShow = this.state.wordsToShow
     const mensagem = this.state.mensagem
@@ -195,6 +196,15 @@ class Item extends React.Component{
     ) : (
       this.setState({wordsToShow: 140, expanded: false})
     )
+  }
+
+  mouseDown(){
+    const Note = this.state.id
+    document.getElementById(this.state.id).style.color = "red";
+  }
+  mouseUp(){
+    const Note = this.state.id
+    document.getElementById(this.state.id).style.color = "green";
   }
 
   editingMode(){
@@ -216,7 +226,7 @@ class Item extends React.Component{
     //  wordsToShow < 140 ? '' : showMessage
 
     return(
-      <div key={this.state.id} className="Item">
+      <div id={this.state.id} key={this.state.id} className="Item" onMouseDown={this.mouseDown} onMouseUp={this.mouseUp}>
       <ul className="ItemContent">
       <li className="ItemTitle Both">{this.state.nomedogrupo}</li>
       <li className="ItemMessage Both">{this.state.mensagem}</li>
@@ -296,6 +306,8 @@ class App extends React.Component{
       this.clickInside = this.clickInside.bind(this)
       this.editingForm = this.editingForm.bind(this)
       this.onDelete = this.onDelete.bind(this)
+      this.mouseDown = this.mouseDown.bind(this)
+      this.mouseUp = this.mouseUp.bind(this)
       this.state = ({
           results: [],
           isLoaded: false,
@@ -360,6 +372,13 @@ console.log(removedItem)
 
   componentDidUpdate(){
     console.warn("Method Called")
+  }
+
+  mouseDown(){
+    document.getElementById("Note").style.color = "red";
+  }
+  mouseUp(){
+    document.getElementById("Note").style.color = "green";
   }
 
   render(){
