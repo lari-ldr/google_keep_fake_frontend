@@ -1,9 +1,9 @@
+
 .TestBranch{
   color: red;
 }
 
 .App {
-  text-align: center;
   background-color: #282c34;
   display: flex;
   flex-direction: column;
@@ -16,30 +16,74 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-main {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: #282c34;
+  min-height: 100vh; */
   /* width: 100%; */
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white; */
   padding-top: 40vh;
 }
+
+.ContainerItems{
+  column-count: 4;
+	column-gap: 1em;
+	width: 70%;
+}
+
+.Item{
+  background-color: #eee;
+  display: inline-block;
+  /*display: flex;*/
+  margin: 0 0 1em;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.ItemContent{
+  padding: 0;
+  margin: 0;
+}
+
+.ItemTitle{
+  letter-spacing: .00625em;
+	font-family: 'Google Sans', Roboto, Arial, sans-serif;
+	font-size: 1rem;
+	/*font-weight: 500; */
+	font-weight: bold;
+	line-height: 1.5rem;
+	padding: 16px 16px 0 16px;
+}
+
+.ItemMessage{
+  letter-spacing: .01428571em;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: .875rem;
+	font-weight: 400;
+	line-height: 1.25rem;
+	padding: 4px 16px 12px 16px;
+}
+
+.Both{
+  font-variant-ligatures: none;
+	outline: none;
+	/* white-space: pre-wrap; */
+	word-wrap: break-word;
+}
+
+/* .NoteBtn{
+  display: flex;
+} */
 
 .App-link {
   color: #61dafb;
 }
 
-.Form{
+.FormInput{
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -52,7 +96,7 @@
   top: 10vh;
 }
 
-form{
+.NewNote{
   display: flex;
   flex-direction: column;
 }
@@ -60,7 +104,6 @@ form{
 .FormLabel{
   background-color: lightcoral;
 }
-
 
 .Title{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -113,46 +156,8 @@ form{
   background-color: #252931;
 }
 
-.Side-card{
-  list-style: none;
-  text-align: left;
-  padding-right: 5px;
-  padding-left: 5px;
-  color: #e1e1e1;
-  margin-top: 25px;
-}
-
 h1{
   color: white;
-}
-
-li:nth-child(1){
-  font-weight: bold;
-  /* font-size: 30px; */
-}
-li:nth-child(even){
-  line-height: 30px;
-}
-
-li:nth-child(3){
-  line-height: 20px;
-  font-size: 15px;
-}
-
-li:nth-child(4){
-  font-size: 12px;
-  text-align: end;
-}
-  /* line-height: 20px; */
-
-.Side-container{
-  background-color: #383e4a;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
 }
 
 .None{
@@ -176,15 +181,20 @@ li:nth-child(4){
 
 .Edit{
   cursor: pointer;
-  color: #30b025;
+  color: gray;
   font-size: 15px;
   border: transparent;
   background-color: transparent;
+  padding: 0;
+  display: inline;
 }
 
+.DeleteForm{
+  display: inline;
+}
 .Delete{
   cursor: pointer;
-  color: #c81515;
+  color: gray;
   font-size: 15px;
   border: transparent;
   background-color: transparent;
@@ -195,11 +205,16 @@ li:nth-child(4){
 }
 
 .Save{
+  display: inline;
   cursor: pointer;
   border: transparent;
   background-color: transparent;
-  font-size: 20px;
-  color: palegreen;
+  font-size: 15px;
+  color: gray;
+}
+
+.Close{
+  display: inline;
 }
 
 .ShowMessage{
@@ -210,8 +225,37 @@ textarea{
   resize: none;
 }
 
-.EditTextInput{
-  width: 225px;
+.EditTextLabelTitle{
+  padding: 0 16px 0 16px;
+}
+
+.EditTextInputTitle{
+  letter-spacing: .00625em;
+	font-family: 'Google Sans', Roboto, Arial, sans-serif;
+	font-size: 1rem;
+	/*font-weight: 500; */
+	font-weight: bold;
+	line-height: 1.5rem;
+  background-color: lightcoral;
+  border: none;
+  padding-top: 16px;
+  width: 85%;
+}
+
+.EditTextLabelMessage{
+  padding: 0 16px 12px 16px;
+}
+
+.EditTextInputMessage{
+  letter-spacing: .01428571em;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: .875rem;
+	font-weight: 400;
+	line-height: 1.25rem;
+  background-color: lightgreen;
+  border: none;
+  padding-top: 4px;
+  width: 85%;
 }
 
 @keyframes App-logo-spin {

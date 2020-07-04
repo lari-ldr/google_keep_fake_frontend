@@ -88,8 +88,8 @@ class FormInput extends React.Component{
     const isClicked = this.props.isClicked
 
       return(
-        <div id="NoteForm" className={`Form ${isClicked === false ? 'HideForm' : ''}`} onClick={this.clickForm} >
-        <form onSubmit={this.handleChangeSubmitInput}>
+        <div id="NoteForm" className={`FormInput ${isClicked === false ? 'HideForm' : ''}`} onClick={this.clickForm} >
+        <form class="NewNote" onSubmit={this.handleChangeSubmitInput}>
                 {/* <label> */}
                   <input 
                     type="text"
@@ -142,8 +142,8 @@ class Item extends React.Component{
       mensagem: props.note.mensagem,
       intervalo: props.note.intervalo,
       isEditing: false,
-      componentShouldUpdate: false,
-      itemsToShow: 140,
+      wordsToShow: 140,
+      lessThan: 139,
       expanded: false
     }
   }
@@ -181,65 +181,64 @@ class Item extends React.Component{
     axios.delete(`http://localhost:9000/index/${id}`)
     .then( response => {
       console.log(response)
-    }, this.setState({
-      componentShouldUpdate: true
-    }, ()=>{
-      const updateComponent = this.state.componentShouldUpdate
-      this.props.onDelete(updateComponent)
-    }))
+    })
+    const indexID = this.props.indexID
+    this.props.onDelete(indexID)
   }
 
 
   showMoreOrLessText(){
-    const itemsToShow = this.state.itemsToShow
+    const wordsToShow = this.state.wordsToShow
     const mensagem = this.state.mensagem
-    itemsToShow === 140 ? (
-      this.setState({itemsToShow: mensagem.length, expanded: true})
+    wordsToShow === 140 ? (
+      this.setState({wordsToShow: mensagem.length, expanded: true})
     ) : (
-      this.setState({itemsToShow: 140, expanded: false})
+      this.setState({wordsToShow: 140, expanded: false})
     )
   }
 
   editingMode(){
     this.setState({
-      isEditing: true
+      isEditing: !this.state.isEditing
     })
   }
 
   renderNote(){
     const editar = <FontAwesomeIcon icon={faEdit} />;
     const excluir = <FontAwesomeIcon icon={faTrashAlt} />;
+    const lessThan = this.state.lessThan
     const more = <FontAwesomeIcon icon={faPlus}/>;
     const less = <FontAwesomeIcon icon={faMinus}/>;
     const showMessage = this.state.expanded ? less : more
-    const mensagemToShow = this.state.mensagem.slice(0, this.state.itemsToShow)
+    const mensagemToShow = this.state.mensagem.slice(0, this.state.wordsToShow)
+
+    // if wordsToShow is less then 140, don't show 'showMessage' otherwise show it
+    //  wordsToShow < 140 ? '' : showMessage
 
     return(
-      <div  key={this.state.id} className="Side-container">
-      <ul className="Side-card">
-      <li>Nome do Grupo: {this.state.nomedogrupo}</li>
-      <li>Sobre: {this.state.assunto}</li>
-      {/* <li>{this.state.mensagem}</li> */}
-      <li>{mensagemToShow}<a className="ShowMessage" onClick={this.showMoreOrLessText}>{showMessage}</a></li>
-      <li>Mandar mensagem a cada {this.state.intervalo} minuto</li>
+      <div key={this.state.id} className="Item">
+      <ul className="ItemContent">
+      <li className="ItemTitle Both">{this.state.nomedogrupo}</li>
+      <li className="ItemMessage Both">{this.state.mensagem}</li>
+      {/* <li>{mensagemToShow}<a className="ShowMessage" onClick={this.showMoreOrLessText}>{showMessage}</a></li> */}
       </ul>
-<div>
+      <div className="NoteBtn">
 
-<form onClick={this.handleChangeDeleteSubmit}>
-  <label className="Delete">{excluir}
-      <input
-        className="InputDelete"
-        type="submit"
-        name="id"
-        value={this.state.id}
-        onChange={this.handleChange}
-      />
-  </label>
-</form>
+      <form className="DeleteForm" onClick={this.handleChangeDeleteSubmit}>
+        <label className="Delete">{excluir}
+            <input
+              className="InputDelete"
+              type="submit"
+              name="id"
+              value={this.state.id}
+              onChange={this.handleChange}
+            />
+        </label>
+      </form>
 
-  <button className="Edit" onClick={this.editingMode}>{editar}</button>
-</div>
-</div>
+      <button className="Edit" onClick={this.editingMode}>{editar}</button>
+      </div>
+      </div>
     )
   }
 
@@ -247,11 +246,12 @@ class Item extends React.Component{
     const save = <FontAwesomeIcon icon={faSave} />;
    
 return(
-<div className="Side-container">
-<form key={this.state.id} onSubmit={this.handleChangeEditSubmit} className="Side-card">
-<label>
+<div key={this.state.id} className="Item">
+<form onSubmit={this.handleChangeEditSubmit}>
+
+<label className="EditTextLabelTitle">
 <input
-  className="EditTextInput"
+  className="EditTextInputTitle Both"
   type="text"
   name="nomedogrupo"
   defaultValue={this.state.nomedogrupo}
@@ -259,8 +259,9 @@ return(
 />
 </label>
     
-<label>
+<label className="EditTextLabelMessage">
 <textarea
+className="EditTextInputMessage Both"
   name="mensagem"
   defaultValue={this.state.mensagem}
   rows="10"
@@ -268,8 +269,10 @@ return(
   onChange={this.handleChange}
   />
 </label>
-
+<div>
 <button className="Save">{save}</button>
+<button className="Close" onClick={this.editingMode}>close</button>
+</div>
 </form>
 </div>
 )
@@ -297,7 +300,6 @@ class App extends React.Component{
           results: [],
           isLoaded: false,
           isClicked: false,
-          isEditing: false,
           componentShouldUpdate: false,
       });
   }
@@ -309,7 +311,6 @@ class App extends React.Component{
 
   clickOutside(){
     this.setState({isClicked: false})
-    this.setState({isEditing: false})
   }
 
   clickInside(){
@@ -338,17 +339,24 @@ onFormInput(updateComponent){
     })
   }
 
-  onDelete(updateComponent){
-    if( updateComponent === false){
-      console.warn("COMPONENT SHOULD UPDATE IS FALSE")
-    }
-    axios.get(`http://localhost:9000/index`)
-    .then(response => {
-        this.setState({
-            results: response.data,
-        })
-    })
+  onDelete(indexID){
+    this.setState({
+      results: {
+          id: this.state.id,
+          nomedogrupo: this.state.nomedogrupo,
+          assunto: this.state.assunto,
+          mensagem: this.state.mensagem,
+          intervalo: this.state.intervalo
+      }
+  })
+  const removedItem = this.state.results.filter(deletedItem => {return deletedItem.id !== indexID})
+  this.setState({
+    results: removedItem
+})
+
+console.log(removedItem)
   }
+
 
   componentDidUpdate(){
     console.warn("Method Called")
@@ -370,7 +378,9 @@ onFormInput(updateComponent){
             {/* </Modal> */}
               <main className="App-main" onClick={this.clickOutside} >
               <h2 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h2>
+              <div className="ContainerItems">
               {allResults}
+              </div>
               </main>
           </div>
       )
