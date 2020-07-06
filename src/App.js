@@ -89,7 +89,7 @@ class FormInput extends React.Component{
 
       return(
         <div id="NoteForm" className={`FormInput ${isClicked === false ? 'HideForm' : ''}`} onClick={this.clickForm} >
-        <form class="NewNote" onSubmit={this.handleChangeSubmitInput}>
+        <form className="NewNote" onSubmit={this.handleChangeSubmitInput}>
                 {/* <label> */}
                   <input 
                     type="text"
@@ -199,11 +199,9 @@ class Item extends React.Component{
   }
 
   mouseDown(){
-    const Note = this.state.id
     document.getElementById(this.state.id).style.color = "red";
   }
   mouseUp(){
-    const Note = this.state.id
     document.getElementById(this.state.id).style.color = "green";
   }
 
@@ -306,8 +304,6 @@ class App extends React.Component{
       this.clickInside = this.clickInside.bind(this)
       this.editingForm = this.editingForm.bind(this)
       this.onDelete = this.onDelete.bind(this)
-      this.mouseDown = this.mouseDown.bind(this)
-      this.mouseUp = this.mouseUp.bind(this)
       this.state = ({
           results: [],
           isLoaded: false,
@@ -374,12 +370,6 @@ console.log(removedItem)
     console.warn("Method Called")
   }
 
-  mouseDown(){
-    document.getElementById("Note").style.color = "red";
-  }
-  mouseUp(){
-    document.getElementById("Note").style.color = "green";
-  }
 
   render(){
       const isLoaded = this.state.isLoaded
