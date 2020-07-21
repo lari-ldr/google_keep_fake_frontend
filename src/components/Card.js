@@ -1,15 +1,14 @@
-import React, { Fragment } from 'react';
+import React, {useContext} from 'react';
 import Note from './Note.js'
+import { NotaContext } from '../contexts/NotaContext';
 
-import NoteEdit from './NoteEdit.js'
-
-const Card = (props) =>{
+const Card = () =>{
+    const context = useContext(NotaContext);
     // const [isEditing, setStateIsEditing] = useState();
-    const allNotes = props.results.map((item) =>{
+    const allNotes = context.data.map((note) =>{
         return(
             <>
-            <Note key={item.id} indexID={item.id} note={item}/>
-            <NoteEdit key={item.id} indexID={item.id} note={item} />
+            <Note key={note.id} indexID={note.id} note={note}/>
             </>
         )
     })

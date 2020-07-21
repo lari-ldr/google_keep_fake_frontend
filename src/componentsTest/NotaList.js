@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import NotaListItem from './NotaListItem';
 import { NotaContext } from '../contextTest/NotaContext';
-
+ 
 // tanto o btnEdit quando o Notalist usam o state e o true e o false, se colocar no context, da pra ambos ter acesso
 const NotaList = ()=>{
     // vamos pegar uma referencia do context
