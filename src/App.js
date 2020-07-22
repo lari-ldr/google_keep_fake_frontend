@@ -114,10 +114,10 @@ const App = ()=>{
       <SideBar></SideBar>
     <div className="App">
     <h1 className="TestBranch">YOU'RE IN THE TESTE BRANCH OF GITHUB</h1>
-      <NewNote></NewNote>
+      {/* <NewNote></NewNote> */}
       <main className="App-main">
       {/* <h2 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h2> */}
-      <Card></Card>
+      {/* <Card></Card> */}
   </main>
   </div>
     </NotaProvider>

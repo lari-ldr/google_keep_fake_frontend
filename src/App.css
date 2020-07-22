@@ -61,6 +61,134 @@
   color: red;
 }
 
+.Flex{
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center; 
+}
+.Header{
+  background-color: rgba(255,255,255,1);
+  box-shadow: inset 0 -1px 0 0 #dadce0;
+  display: block;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 10%;
+}
+.Nav{
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: min-content;
+  padding: 8px;
+  height: 100%;
+}
+.ColorNav{
+  color: #5f6368;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.Fake{
+  padding-left: 4px;
+  display: inline-block;
+  font-family: 'Product Sans',Arial,sans-serif;
+  font-size: 22px;
+  line-height: 24px;
+  position: relative;
+  top: -1.5px;
+  vertical-align: middle;
+  text-rendering: optimizeLegibility;
+}
+.Icons{
+  font-size: 24px;
+  width: 48px;
+}
+
+.Menu{
+  /* padding-top: 10px; */
+  margin: 0 4px;
+  padding: 12px;
+  height: 24px;
+  width: 24px;
+  flex: 0 0 auto;
+}
+
+.Logo{
+  width:40px;
+  height:40px;
+  padding-right: 4px;
+  border: 0;
+  vertical-align: middle;
+
+}
+
+.Profile{
+  padding: 4px;
+  cursor: pointer;
+  color: #000;
+}
+
+.ProfileImg{
+  background-size: 32px 32px;
+  border: 0;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
+.Search{
+  background-color: #f1f3f4;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  position: relative;
+  max-width: 720px;
+  width: 100%;
+  height: 100%;
+}
+
+.SearchInput{
+  box-sizing: border-box;
+  background-color: transparent;
+  border-radius: 8px;
+  border: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-style: normal;
+  font-size: 14px;
+  font-family: Google Sans,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  padding: 11px 0;
+  color: #828282;
+}
+
+.BtnSearch{
+  background-color: none;
+  border: none;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.teste{
+  padding: 8px;
+  margin: 3px;
+}
+
+.SideBar{
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+  position: fixed;
+  top: 64px;
+  width: 280px;
+}
+
 .App {
   /* background-color: #282c34; */
   display: flex;
