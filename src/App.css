@@ -74,6 +74,7 @@
   top: 0;
   width: 100%;
   height: 10%;
+  z-index: 2;
 }
 .Nav{
   box-sizing: border-box;
@@ -105,17 +106,37 @@
 }
 .Icons{
   font-size: 24px;
-  width: 48px;
+  margin: 0 4px;
+  padding: 12px;
+  height: 24px;
+  width: 24px;
 }
 
-.Menu{
-  /* padding-top: 10px; */
+.Circle{
+  background-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 4px;
+  padding: 12px;
+  overflow: hidden;
+  flex: 0 o auto;
+  height: 24px;
+  width: 24px;
+}
+
+.Circle:hover{
+  color: #202124;
+  opacity: .87;
+  background-color: rgba(95,99,104,0.157);
+  outline: none;
+}
+/* .Menu{
   margin: 0 4px;
   padding: 12px;
   height: 24px;
   width: 24px;
   flex: 0 0 auto;
-}
+} */
 
 .Logo{
   width:40px;
@@ -127,17 +148,26 @@
 }
 
 .Profile{
-  padding: 4px;
+  display: inline-block;
+  margin: 0 4px;
+  overflow: hidden;
+  flex: 0 o auto;
   cursor: pointer;
   color: #000;
+  border-radius: 50%;
 }
 
 .ProfileImg{
   background-size: 32px 32px;
-  border: 0;
+  border: 3px solid transparent;
   border-radius: 50%;
-  height: 32px;
   width: 32px;
+}
+
+.ProfileImg:hover{
+  opacity: .87;
+  border: 3px solid rgba(95,99,104,0.157);
+  outline: none;
 }
 
 .Search{
@@ -155,7 +185,8 @@
   background-color: transparent;
   border-radius: 8px;
   border: none;
-  position: relative;
+  position: absolute;
+  left: 50px;
   width: 100%;
   height: 100%;
   font-style: normal;
@@ -166,16 +197,29 @@
 }
 
 .BtnSearch{
-  background-color: none;
+  background-color: transparent;
   border: none;
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  position: absolute;
+  line-height: 0;
+  padding: 0 5px;
+  font-size: 24px;
+  width: 62px;
+  height: 52px;
 }
 
-.teste{
-  padding: 8px;
-  margin: 3px;
+.Board{
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 64px);
+}
+
+.BoardMain{
+  background-color: lightgreen;
+  width: 100%;
+  padding-top: 8px;
+  /* position: absolute;
+  left: 280px;
+  top: 64px; */
 }
 
 .SideBar{
@@ -186,49 +230,89 @@
   padding-top: 8px;
   position: fixed;
   top: 64px;
+  height: calc(100% - 64px);
   width: 280px;
 }
 
-.App {
-  /* background-color: #282c34; */
+.OptionsContainer{
+  padding-left: 12px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 0 25px 25px 0;
+  /* color: #202124; */
+  color: #5f6368;
+  opacity: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* letter-spacing: 0.1785714rem; */
+  letter-spacing: 0.02em;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  height: 48px;
+  min-width: 48px;
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* .OptionsContainer{
+  background-color: #feefc3;
+} */
+
+.OptionsIcon{
+  /* width: 24px;
+  height: 24px; */
+  font-size: 24px;
+  padding: 0 12px;
+  flex-shrink: 0;
 }
 
-.App-main {
-  /* background-color: #282c34;
-  min-height: 100vh; */
-  /* width: 100%; */
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white; */
-  padding-top: 40vh;
+.OptionsText{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 20px;
 }
 
 .ContainerItems{
+  background-color: lightcoral;
+  /* margin-top: 10vh; */
+  padding-top: 25vh;
+  position: absolute;
+  left: 280px;
+  top: 64px;
+}
+
+.ContainerNotes{
   column-count: 4;
 	column-gap: 1em;
-	width: 70%;
+  /* width: 70%; */
+}
+
+.NotesAreaTitle{
+  color: #5f6368;
+  letter-spacing: .07272727em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: .6875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  text-transform: uppercase;
+  /* position: absolute; */
+  margin: 32px 32px 8px;
+  width: max-content;
 }
 
 .Item{
   background-color: #eee;
   display: inline-block;
   /*display: flex;*/
-  margin: 0 0 1em;
+  margin: 16px 16px 0px 16px;
   border-radius: 8px;
   width: 100%;
 }
+
 
 .ItemContent{
   padding: 0;
@@ -236,16 +320,18 @@
 }
 
 .ItemTitle{
+  color: #202124;
   letter-spacing: .00625em;
 	font-family: 'Google Sans', Roboto, Arial, sans-serif;
 	font-size: 1rem;
-	/*font-weight: 500; */
-	font-weight: bold;
+	font-weight: 500;
 	line-height: 1.5rem;
-	padding: 16px 16px 0 16px;
+  /* padding: 16px 16px 0 16px; */
+  padding: 0px 16px 0 16px;
 }
 
 .ItemMessage{
+  color: #202124;
   letter-spacing: .01428571em;
 	font-family: Roboto, Arial, sans-serif;
 	font-size: .875rem;
@@ -254,6 +340,14 @@
 	padding: 4px 16px 12px 16px;
 }
 
+/* .ItemMessage{
+  letter-spacing: 0;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 1.125rem;
+	font-weight: 400;
+	line-height: 1.5rem;
+} */ /* pra quando for pouca coisa escrita até a lenght que eu determinar???*/
+
 .Both{
   font-variant-ligatures: none;
 	outline: none;
@@ -261,25 +355,107 @@
 	word-wrap: break-word;
 }
 
-/* .NoteBtn{
-  display: flex;
-} */
+.NotesIconsHead{
+  margin: 0;
+  padding: 0;
+  display: inline;
+  position: relative;
+  /* display: none; */
+}
+
+.NoteIconHeadCheck{
+  background-color: black;
+  color: white;
+  font-weight: 500;
+  width: max-content;
+  position: relative;
+  left: -10px;
+  top: -8px;
+  padding: 3px;
+  border-radius: 50%;
+  height: 16px;
+  font-size: 16px;
+}
+
+.NoteIconHeadPin{
+  float: right;
+  position: relative;
+  top: -20px;
+  /* right: 15px; */
+  height: 20px;
+  font-size: 20px;
+  color: #5f6368;
+  padding: 10px;
+}
+
+.NoteIconHeadPin:hover{
+  color: #202124;
+  background-color: rgba(95,99,104,0.157);
+  border-radius: 50%;
+}
 
 .App-link {
   color: #61dafb;
 }
 
 .FormInput{
+  background-color: #fff;
+  border: #e0e0e0;
+  border-radius: 8px;
+  /* padding: 5px; */
+  position: relative;
+  top: 50px;
+  left: 150px;
+  width: 598px;
+  height: 134px;
+  margin: 32px auto 16px auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149);
+  z-index: 1;
+}
+
+.FormIcons{
   display: flex;
-  flex-direction: column;
-  background-color: white;
-  border: white;
-  border-radius: 9px;
+  justify-content: space-between;
+  /* line-height: 26px; */
+  margin: 10px 0 6px 0;
+  padding: 0 16px;
+}
+
+.FormIconsItself{
+  /* color:#202124; */
+  color: #5f6368;
+  opacity: 1;
+  font-size: 18px;
+  height: 18px;
+  /* flex-grow: 1; */
+  /* align-self: center; */
+  cursor: pointer;
   padding: 5px;
-  /* margin: 32px; */
-  width: 40%;
-  position: absolute;
-  top: 10vh;
+}
+
+.FormIconsItself:hover{
+  color: #202124;
+  background-color: rgba(95,99,104,0.157);
+  border-radius: 50%;
+}
+
+.PinBtn{
+  color: #5f6368;
+  opacity: 1;
+  font-size: 20px;
+  height: 20px;
+  position: relative;
+  top: -90px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.PinBtn:hover{
+  color: #202124;
+  background-color: rgba(95,99,104,0.157);
+  border-radius: 50%;
 }
 
 .NewNote{
@@ -292,29 +468,58 @@
 }
 
 .Title{
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   background-color: transparent;
+  color: #202124;
+  /* color: #80868b; */
   border: transparent;
-  /* width: 99%; */
-  height: 30px;
-  padding-left: 20px;
-  padding-top: 5px;
-  color: gray;
-  font-size: 20px;
-  font-weight: bold;
+  padding: 10px 15px 10px 15px;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  letter-spacing: .00625em;
 }
 
 .NoteItself{
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  background-color: transparent;
-  border: transparent;
-  margin-top: 10px;
-  /* width: 99%; */
-  height: 100px;
-  padding-left: 20px;
-  padding-top: 10px;
-  color: gray;
+  /* background-color: transparent; */
+  border: none;
+  height: 22px;
+  padding: 12px 16px 12px 16px;
+  margin: 0;
+  color: #202124;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: .01428571em;
 }
+
+.CloseBtn{
+  /* color: rgba(0,0,0,0.87); */
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  border-radius: 4px;
+  /* padding-left: 90px; */
+  /* text-align: end; */
+}
+
+.CloseBtn:hover{
+  color: #202124;
+  background-color: rgba(95,99,104,0.157);
+  border-radius: 4px;
+}
+/* [contenteditable=true]{
+  color: #202124;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: .01428571em;
+}
+[contenteditable=true]:empty::before{
+  content: attr(placeholder);
+} */
 
 .HideForm{
   height: 50px;

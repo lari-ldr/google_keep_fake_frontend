@@ -4,7 +4,7 @@ import { NotaContext } from '../contexts/NotaContext';
 
 const Card = () =>{
     const context = useContext(NotaContext);
-    // const [isEditing, setStateIsEditing] = useState();
+    const {handleFormVisibilityOutside} = useContext(NotaContext);
     const allNotes = context.data.map((note) =>{
         return(
             <>
@@ -13,13 +13,13 @@ const Card = () =>{
         )
     })
 
-// const switchBetweenModes = isEditing ? <NoteEdit/> : {allNotes}
 return(
-    <div className="ContainerItems">
+    <div className="ContainerItems" onClick={()=>{handleFormVisibilityOutside()}}>
+    <h4 className="NotesAreaTitle">Pinned / Others</h4>
+    <div className="ContainerNotes">
     {allNotes}
-    {/* <p>testing</p> */}
     </div>
-    
+    </div>
 );
 }
 

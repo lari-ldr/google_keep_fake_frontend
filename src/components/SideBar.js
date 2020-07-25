@@ -1,8 +1,10 @@
-import React from 'react';
-import { MdHighlight, MdNotifications, MdLabelOutline, MdEdit, MdArchive, MdDelete } from 'react-icons/md'
+import React, {useContext} from 'react';
+import { MdHighlight, MdNotifications, MdLabelOutline, MdEdit, MdArchive, MdDelete } from 'react-icons/md';
+import {NotaContext} from '../contexts/NotaContext';
 
 
 const SideBar = ()=>{
+    const {handleFormVisibilityOutside} = useContext(NotaContext);
     const idea = <MdHighlight/>;
     const reminder = <MdNotifications/>;
     const label = <MdLabelOutline/>;
@@ -10,15 +12,32 @@ const SideBar = ()=>{
     const archive = <MdArchive/>;
     const del = <MdDelete/>;
     return(
-        <div className="SideBar">
-            <ul className="OptionsContainer">
-    <li className="Options">{idea}<span>Notes</span></li>
-    <li className="Options">{reminder}<span>Reminders</span></li>
-    <li className="Options">{label}<span>Some Label</span></li>
-    <li className="Options">{editLabel}<span>Edit Label</span></li>
-    <li className="Options">{archive}<span>Archive</span></li>
-    <li className="Options">{del}<span>Trash</span></li>
-            </ul>
+    <div className="SideBar" onClick={()=>{handleFormVisibilityOutside()}}>
+        <div className="OptionsContainer">
+            <p className="OptionsIcon">{idea}</p>
+            <span className="OptionsText">Notes</span>
+        </div>
+        <div className="OptionsContainer">
+            <p className="OptionsIcon">{reminder}</p>
+            <span className="OptionsText">Reminders</span>
+        </div>
+        <div className="OptionsContainer">
+            <p className="OptionsIcon">{label}</p>
+            <span className="OptionsText">Some Label</span>
+        </div>
+        <div className="OptionsContainer">
+            <p className="OptionsIcon">{editLabel}</p>
+            <span className="OptionsText">Edit Label</span>
+        </div>
+        <div className="OptionsContainer">
+            <p className="OptionsIcon">{archive}</p>
+            <span className="OptionsText">Archive</span>
+        </div>
+        <div className="OptionsContainer">
+            <p className="OptionsIcon">{del}</p>
+            <span className="OptionsText">Trash</span>
+        </div>
+        
             {/* <ul>
                 <li>Privacy</li>
                 <li>Terms</li>

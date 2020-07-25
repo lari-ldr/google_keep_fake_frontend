@@ -1,4 +1,4 @@
-import React, {useState, createContext} from 'react';
+import React, {useState, createContext} from 'react'; 
 
 export const NotaContext = createContext(); //ele é exportado e sera utilizado nos outros componentes da aaplicação
 // com ele a gente consegue acessar a função NotaProvider

@@ -5,6 +5,7 @@ import { faEdit, faTrashAlt, faPlus, faMinus, faSave } from '@fortawesome/free-s
 import './App.css';
 
 import NotaProvider from './contexts/NotaContext.js';
+import Board from './components/Board.js';
 import NewNote from './components/NewNote.js';
 import Card from './components/Card.js';
 import Nav from './components/Nav.js';
@@ -112,14 +113,7 @@ const App = ()=>{
     <NotaProvider>
       <Nav></Nav>
       <SideBar></SideBar>
-    <div className="App">
-    <h1 className="TestBranch">YOU'RE IN THE TESTE BRANCH OF GITHUB</h1>
-      {/* <NewNote></NewNote> */}
-      <main className="App-main">
-      {/* <h2 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h2> */}
-      {/* <Card></Card> */}
-  </main>
-  </div>
+      <Board></Board>
     </NotaProvider>
   );
 }
