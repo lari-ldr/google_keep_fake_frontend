@@ -311,6 +311,7 @@
   margin: 16px 16px 0px 16px;
   border-radius: 8px;
   width: 100%;
+  position: relative;
 }
 
 
@@ -441,6 +442,11 @@
   border-radius: 50%;
 }
 
+.NotShare{
+  opacity: .25;
+  cursor: not-allowed;
+}
+
 .PinBtn{
   color: #5f6368;
   opacity: 1;
@@ -456,6 +462,125 @@
   color: #202124;
   background-color: rgba(95,99,104,0.157);
   border-radius: 50%;
+}
+.Hide{
+  display: none;
+}
+.MoreOptions{
+  padding: 10px 10px 5px 10px;
+  margin: 0;
+  max-width: max-content;
+  position: absolute;
+  bottom: 40px;
+  right: -110px;
+  z-index: 5;
+  background-color: #fff;
+  border-width: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149);
+}
+
+.MoreOptions > li{
+  padding-bottom: 5px;
+  color: #333;
+  cursor: pointer;
+  letter-spacing: .01428571em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}
+
+.MoreColors{
+  padding: 10px 10px 5px 10px;
+  margin: 0;
+  max-width: max-content;
+  position: absolute;
+  bottom: 40px;
+  left: 90px;
+  z-index: 5;
+  background-color: #fff;
+  border-width: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.HideColors{
+  display: none;
+}
+
+.GroupColors{
+  padding: 0 0 5px 0;
+  margin: 0;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  cursor: pointer;
+}
+
+.GroupColors > li{
+  border-radius: 50%;
+  height: 26px;
+  width: 26px;
+  font-size: 26px;
+  margin: 0 5px 0 0;
+}
+
+.GroupColors > li:hover{
+  border: 2px solid #202124;
+}
+
+.DefaultWhite{
+  background-color: #fff;
+  border: 2px solid #e0e0e0;
+}
+.Red{
+  background-color: #f28b82;
+  border: 2px solid #f28b82;
+}
+.Orange{
+  background-color: #fbbc04;
+  border: 2px solid #fbbc04;
+}
+.Yellow{
+  background-color: #fff475;
+  border: 2px solid #fff475;
+}
+
+.Green{
+  background-color: #ccff90;
+  border: 2px solid #ccff90;
+}
+.Teal{
+  background-color: #a7ffeb;
+  border: 2px solid #a7ffeb;
+}
+.Blue{
+  background-color: #cbf0f8;
+  border: 2px solid #cbf0f8;
+}
+.DarkBlue{
+  background-color: #aecbfa;
+  border: 2px solid #aecbfa;
+}
+.Purple{
+  background-color: #d7aefb;
+  border: 2px solid #d7aefb;
+}
+.Pink{
+  background-color: #fdcfe8;
+  border: 2px solid #fdcfe8;
+}
+.Brown{
+  background-color: #e6c9a8;
+  border: 2px solid #e6c9a8;
+}
+.Gray{
+  background-color: #e8eaed;
+  border: 2px solid #e8eaed;
 }
 
 .NewNote{
@@ -521,19 +646,23 @@
   content: attr(placeholder);
 } */
 
-.HideForm{
+.ChangeFormHeight{
   height: 50px;
 }
 
 .Send{
+  border: none;
   background-color: transparent;
-  border: transparent;
-  width: 6%;
-  align-self: end;
-  font-size: 20px;
+  color: #5f6368;
+  opacity: 1;
+  font-size: 18px;
+  height: 18px;
   cursor: pointer;
-  padding-left: 1px;
-  color: gray;
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  border-radius: 4px;
 }
 
 .Side-nav{
@@ -616,36 +745,89 @@ textarea{
   resize: none;
 }
 
-.EditTextLabelTitle{
-  padding: 0 16px 0 16px;
-}
-
 .EditTextInputTitle{
-  letter-spacing: .00625em;
+  color: #202124;
+  letter-spacing: 0;
 	font-family: 'Google Sans', Roboto, Arial, sans-serif;
-	font-size: 1rem;
-	/*font-weight: 500; */
-	font-weight: bold;
-	line-height: 1.5rem;
-  background-color: lightcoral;
+	font-size: 1.375rem;
+	font-weight: 400;
+	/* font-weight: bold; */
+	line-height: 1.75rem;
+  /* background-color: lightcoral; */
   border: none;
   padding-top: 16px;
-  width: 85%;
+  padding-bottom: 12px;
+  padding-right: 15px;
+  padding-left: 15px;
+  min-height: 43px;
+  /* width: 85%; */
+  /* width: 100%; */
 }
 
-.EditTextLabelMessage{
-  padding: 0 16px 12px 16px;
-}
 
 .EditTextInputMessage{
-  letter-spacing: .01428571em;
+  color: #202124;
+  letter-spacing: .00625em;
 	font-family: Roboto, Arial, sans-serif;
-	font-size: .875rem;
+	font-size: 1rem;
 	font-weight: 400;
-	line-height: 1.25rem;
-  background-color: lightgreen;
+	line-height: 1.5rem;
+  /* background-color: lightgreen; */
   border: none;
-  padding-top: 4px;
-  width: 85%;
+  /* padding-top: 4px; */
+  /* width: 85%; */
+  /* width: 100%; */
+  /* height: 100%; */
+  min-height: 46px;
+  padding: 4px 16px 12px 16px;
 }
 
+.NoteModal{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.8); /*mudar para um esbranquiçado depois*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.NoteContainerModal{
+  width: 40%;
+  height: 60%;
+  border: none;
+  padding: 16px;
+  position: fixed;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+} /* mexer mais aqui, ver flex-shrink etc*/
+
+.NoteContentModal{
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  max-height: 500px;
+  min-height: 60px;
+  overflow-y: auto;
+  overflow: hidden;
+}
+
+.Teste{
+  background-color: #fff;
+  /* box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149); */
+  /* border-color: #e0e0e0; */
+  /* border: 1px solid transparent; */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}

@@ -109,6 +109,20 @@ import SideBar from './components/SideBar.js';
 // }
 
 const App = ()=>{
+  // const [teste, setTeste] = useState('')
+  // const merda ={
+  //   margin: '50px',
+  //   border: '5px solid black',
+  //   width: '100px',
+  //   height: '100px'
+  // }
+
+  // const porcaria = (event)=>{
+  //   // const e = event.target.value;
+  //   const e = event.currentTarget.textContent;
+  // }
+
+  // <div style={merda} contentEditable="true" type="text" name="text" value={teste} onInput={porcaria}></div>
   return(
     <NotaProvider>
       <Nav></Nav>

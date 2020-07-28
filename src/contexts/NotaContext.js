@@ -7,7 +7,6 @@ const NotaProvider = ({children})=>{
     const [data, setData] = useState([]); // esse estado agora esta disponivel de uma forma global
     const [isClicked, setIsClicked] = useState(false)
     const [isEmpty, setIsEmpty] = useState(true)
-    console.log(isClicked)
 // loads all the information to display
     useEffect(()=>{
         const fetchData = async () =>{
@@ -18,13 +17,12 @@ const NotaProvider = ({children})=>{
         };
         fetchData();
     }, []);
-// save a new note (post request) & update the state
+// save a new note (post request) & update the state | impedir de enviar notas sem nada escrito
 const saveNote = (newNote)=>{
     console.log(newNote) // retorna um obj
     const id = newNote.id
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
-    const isEmpty = isEmpty;
     const isEmptyCancel = isEmpty ? source.token : '';
     axios.post(`http://localhost:9000/index/${id}`, {
       id: newNote.length + 1,

@@ -13,8 +13,6 @@ const NewNote = ()=>{
     content: ''
   });
 
-  const [isTheFormClicked, setIsTheFormClicked] = useState(true)
-
   const clickForm =(event)=>{
     const id = event.currentTarget.id
     if(id !== "NoteForm"){
@@ -48,8 +46,7 @@ const NewNote = ()=>{
   const redo =<MdRedo/>;
   const pin =<FaThumbtack/>
         return(
-          <div id="NoteForm" className={`FormInput ${isClicked === false ? 'HideForm' : ''}`} onClick={clickForm} >
-          {/* <div id="NoteForm" className={`FormInput`} onClick={clickForm}> */}
+          <div id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
           <form className="NewNote" onSubmit={handleChangeSubmitInput}>
                     <input 
                       aria-label="title of the note"
@@ -60,12 +57,10 @@ const NewNote = ()=>{
                       placeholder="Title"
                       onChange={handleChangeInput}
                       className={`Title ${isClicked === false ? 'None' : ''}`}
-                      // className={`Title`}
                   />
 
                   <textarea 
                       className={`NoteItself ${isClicked === false ? 'HideForm' : ''}`}
-                      // className={`NoteItself`}
                       name="content"
                       value={newNote.content}
                       rows="10"
@@ -76,9 +71,8 @@ const NewNote = ()=>{
                   />
                   <button 
                     className={`Send ${isClicked === false ? 'None' : ''}`}
-                    // className={`Send`}
                     type="submit">
-                      submit
+                      Submit
                     </button>
               </form>
               <ul className={`FormIcons ${isClicked === false ? 'None' : ''}`}>
@@ -96,6 +90,47 @@ const NewNote = ()=>{
             </div>
         )
 }
+
+// new note with divs
+{/* <div id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
+<div className="NewNote" >
+<div
+aria-label="title of the note"
+className={`Title ${isClicked === false ? 'None' : ''}`}
+id="title"
+contentEditable="true"
+type="text"
+name="text"
+onInput={handleChangeInput}>Title</div>
+<div
+className={`NoteItself ${isClicked === false ? 'HideForm' : ''}`}
+id="content"
+contentEditable="true"
+type="text"
+name="text"
+onInput={handleChangeInput}>Take a note...</div>
+  <form  onSubmit={handleChangeSubmitInput}>
+      <button
+        className={`Send ${isClicked === false ? 'None' : ''}`}
+        type="submit"
+      >Submit</button>
+  </form>
+  <ul className={`FormIcons ${isClicked === false ? 'None' : ''}`}>
+    <li className="FormIconsItself">{alert}</li>
+    <li className="FormIconsItself">{person}</li>
+    <li className="FormIconsItself">{palette}</li>
+    <li className="FormIconsItself">{insertPhoto}</li>
+    <li className="FormIconsItself">{archive}</li>
+    <li className="FormIconsItself">{more}</li>
+    <li className="FormIconsItself">{undo}</li>
+    <li className="FormIconsItself">{redo}</li>
+    <li className="FormIconsItself CloseBtn">Close</li>
+    <li className="PinBtn">{pin}</li>
+  </ul>
+</div>
+
+</div> */}
+
 // class NewNot extends React.Component{
 //     constructor(props){
 //         super(props)
