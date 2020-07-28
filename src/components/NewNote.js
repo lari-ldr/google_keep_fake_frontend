@@ -12,6 +12,8 @@ const NewNote = ()=>{
     title: '',
     content: ''
   });
+  const [isMoreSettings, setIsMoreSettings] = useState(false)
+  const [hover, setHover] = useState(false) //colocar um set timeout no function hover
 
   const clickForm =(event)=>{
     const id = event.currentTarget.id
@@ -78,15 +80,39 @@ const NewNote = ()=>{
               <ul className={`FormIcons ${isClicked === false ? 'None' : ''}`}>
                 <li className="FormIconsItself">{alert}</li>
                 <li className="FormIconsItself">{person}</li>
-                <li className="FormIconsItself">{palette}</li>
+                <li className="FormIconsItself" onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>{palette}</li>
                 <li className="FormIconsItself">{insertPhoto}</li>
                 <li className="FormIconsItself">{archive}</li>
-                <li className="FormIconsItself">{more}</li>
+                <li className="FormIconsItself" onClick={()=>{setIsMoreSettings(!isMoreSettings)}}>{more}</li>
                 <li className="FormIconsItself">{undo}</li>
                 <li className="FormIconsItself">{redo}</li>
                 <li className="FormIconsItself CloseBtn">Close</li>
                 <li className="PinBtn">{pin}</li>
               </ul>
+              <div className={`MoreColors ColorsEditMode ${hover === false ? 'HideColors' : '' }`} onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
+            <ul className="GroupColors">
+            <li className="DefaultWhite"></li>
+            <li className="Red"></li>
+            <li className="Orange"></li>
+            <li className="Yellow"></li>
+            </ul>
+            <ul className="GroupColors">
+            <li className="Green"></li>
+            <li className="Teal"></li>
+            <li className="Blue"></li>
+            <li className="DarkBlue"></li>
+            </ul>
+            <ul className="GroupColors">
+            <li className="Purple"></li>
+            <li className="Pink"></li>
+            <li className="Brown"></li>
+            <li className="Gray"></li>
+            </ul>
+        </div>
+        <ul className={`MoreOptions OptionsEditMode ${isMoreSettings === false ? 'Hide' : ''}`}>
+            <li>Add label</li>
+            <li>Show checkboxes</li>
+        </ul>
             </div>
         )
 }

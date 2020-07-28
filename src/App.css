@@ -327,8 +327,8 @@
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: 1.5rem;
-  /* padding: 16px 16px 0 16px; */
-  padding: 0px 16px 0 16px;
+  padding: 16px 16px 0 16px;
+  /* padding: 0px 16px 0 16px; */
 }
 
 .ItemMessage{
@@ -359,7 +359,7 @@
 .NotesIconsHead{
   margin: 0;
   padding: 0;
-  display: inline;
+  /* display: inline; */
   position: relative;
   /* display: none; */
 }
@@ -369,7 +369,7 @@
   color: white;
   font-weight: 500;
   width: max-content;
-  position: relative;
+  position: absolute;
   left: -10px;
   top: -8px;
   padding: 3px;
@@ -379,10 +379,9 @@
 }
 
 .NoteIconHeadPin{
-  float: right;
-  position: relative;
-  top: -20px;
-  /* right: 15px; */
+  position: absolute;
+  top: 0;
+  right: 0;
   height: 20px;
   font-size: 20px;
   color: #5f6368;
@@ -416,12 +415,19 @@
   z-index: 1;
 }
 
-.FormIcons{
+.IconsNote{
   display: flex;
   justify-content: space-between;
   /* line-height: 26px; */
   margin: 10px 0 6px 0;
   padding: 0 16px;
+}
+.FormIcons{
+  display: flex;
+  justify-content: space-between;
+  /* line-height: 26px; */
+  margin: 10px 0 6px 0;
+  padding: 0 90px 0 16px;
 }
 
 .FormIconsItself{
@@ -452,17 +458,38 @@
   opacity: 1;
   font-size: 20px;
   height: 20px;
-  position: relative;
-  top: -90px;
+  position: absolute;
+  bottom: 100px;
+  right: 10px;
   cursor: pointer;
   padding: 8px;
 }
+
 
 .PinBtn:hover{
   color: #202124;
   background-color: rgba(95,99,104,0.157);
   border-radius: 50%;
 }
+
+.PinBtnEdit{
+  color: #5f6368;
+  opacity: 1;
+  font-size: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.PinBtnEdit:hover{
+  color: #202124;
+  background-color: rgba(95,99,104,0.157);
+  border-radius: 50%;
+}
+
 .Hide{
   display: none;
 }
@@ -491,12 +518,16 @@
   line-height: 1.25rem;
 }
 
+.MoreOptions > li:hover{
+  background-color: rgba(95,99,104,0.157);
+}
+
 .MoreColors{
   padding: 10px 10px 5px 10px;
   margin: 0;
   max-width: max-content;
   position: absolute;
-  bottom: 40px;
+  bottom: 35px;
   left: 90px;
   z-index: 5;
   background-color: #fff;
@@ -506,6 +537,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.OptionsEditMode{
+  bottom: 20px;
+  left: 270px;
+}
+.ColorsEditMode{
+  bottom: 20px;
+  left: 120px;
 }
 
 .HideColors{
@@ -655,6 +695,7 @@
   background-color: transparent;
   color: #5f6368;
   opacity: 1;
+  font-family: Roboto,Arial,sans-serif;
   font-size: 18px;
   height: 18px;
   cursor: pointer;
@@ -663,6 +704,28 @@
   font-weight: 500;
   line-height: 1.25rem;
   border-radius: 4px;
+  position: absolute;
+  top: 100px;
+  right: 10px;
+}
+
+.SendEdit{
+  border: none;
+  background-color: transparent;
+  color: #5f6368;
+  opacity: 1;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 18px;
+  height: 18px;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 4px;
+  right: 30px;
 }
 
 .Side-nav{
@@ -733,9 +796,6 @@ h1{
   color: gray;
 }
 
-.Close{
-  display: inline;
-}
 
 .ShowMessage{
   margin-left: 5px;
@@ -801,10 +861,10 @@ textarea{
   border: none;
   padding: 16px;
   position: fixed;
-  background-color: #fff;
-  box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
+  /* background-color: #fff; */
+  /* box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 8px; */
 } /* mexer mais aqui, ver flex-shrink etc*/
 
 .NoteContentModal{

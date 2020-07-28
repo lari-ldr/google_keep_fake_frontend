@@ -33,7 +33,7 @@ const Note = ({note}) =>{
         <li className="ItemMessage Both">{note.content}</li>
         </ul>
         </div>
-        <ul className="FormIcons">
+        <ul className="IconsNote">
         <li className="FormIconsItself">{alert}</li>
         <li className="FormIconsItself NotShare" aria-disabled="true">{person}</li>
         <li className="FormIconsItself" onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>{palette}</li>
@@ -75,13 +75,10 @@ const Note = ({note}) =>{
 
     const itemEdit = ()=>{
     return(
-        <div
-            id={note.id}
-            className="NoteModal"
-        >
+    <div id={note.id} className="NoteModal">
     <div className="NoteContainerModal">
-        <div className="Teste">
-        <form className="NoteContentModal">      
+    <div className="Teste">
+    <form className="NoteContentModal">      
 
 <input
   className="EditTextInputTitle Both"
@@ -99,21 +96,49 @@ const Note = ({note}) =>{
   rows="10"
   cols="10"
   />
+<button className={`SendEdit`} type="submit">Submit</button>
+</form>
 <div>
 </div>
-</form>
 <ul className="FormIcons">
     <li className="FormIconsItself">{alert}</li>
     <li className="FormIconsItself">{person}</li>
-    <li className="FormIconsItself">{palette}</li>
+    <li className="FormIconsItself" onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>{palette}</li>
     <li className="FormIconsItself">{insertPhoto}</li>
     <li className="FormIconsItself">{archive}</li>
-    <li className="FormIconsItself">{more}</li>
+    <li className="FormIconsItself" onClick={()=>{setIsMoreSettings(!isMoreSettings)}}>{more}</li>
     <li className="FormIconsItself">{undo}</li>
     <li className="FormIconsItself">{redo}</li>
     <li className="FormIconsItself CloseBtn" onClick={handleEditingMode}>Close</li>
-    <li className="PinBtn">{pin}</li>
+    <li className="PinBtnEdit">{pin}</li>
 </ul>
+<div className={`MoreColors ColorsEditMode ${hover === false ? 'HideColors' : '' }`} onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
+            <ul className="GroupColors">
+            <li className="DefaultWhite"></li>
+            <li className="Red"></li>
+            <li className="Orange"></li>
+            <li className="Yellow"></li>
+            </ul>
+            <ul className="GroupColors">
+            <li className="Green"></li>
+            <li className="Teal"></li>
+            <li className="Blue"></li>
+            <li className="DarkBlue"></li>
+            </ul>
+            <ul className="GroupColors">
+            <li className="Purple"></li>
+            <li className="Pink"></li>
+            <li className="Brown"></li>
+            <li className="Gray"></li>
+            </ul>
+        </div>
+        <ul className={`MoreOptions OptionsEditMode ${isMoreSettings === false ? 'Hide' : ''}`}>
+            <li>Delete note</li>
+            <li>Add label</li>
+            <li>Make a copy</li>
+            <li>Show checkboxes</li>
+            <li>Copy to Google Docs</li>
+        </ul>
         </div>
         </div>
         </div>
