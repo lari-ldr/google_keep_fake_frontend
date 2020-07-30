@@ -6,7 +6,9 @@ import {NotaContext} from '../contexts/NotaContext';
 
 
 const NewNote = ()=>{
-  const {saveNote, handleFormVisibilityInside, handleFormVisibilityOutside, isClicked} = useContext(NotaContext);
+  const context = useContext(NotaContext);
+  const isClicked = context.state.isClicked
+  const {saveNote, handleFormVisibilityInside, handleFormVisibilityOutside} = useContext(NotaContext);
   const [newNote, setNewNote] = useState({
     id: 1,
     title: '',
@@ -18,9 +20,9 @@ const NewNote = ()=>{
   const clickForm =(event)=>{
     const id = event.currentTarget.id
     if(id !== "NoteForm"){
-      handleFormVisibilityOutside();
+      context.handleFormVisibilityOutside();
     }
-    handleFormVisibilityInside()
+    context.handleFormVisibilityInside()
   }
 
   const handleChangeInput = event =>{
@@ -30,13 +32,14 @@ const NewNote = ()=>{
 
   const handleChangeSubmitInput = event=>{
     event.preventDefault();
-    saveNote(newNote);
+    context.saveNote(newNote);
     setNewNote({
-      id: '',
+      // id: '',
       title: '',
       content: ''
     })
   }
+
 
   const alert =<MdAddAlert/>;
   const person =<MdPersonAdd/>;

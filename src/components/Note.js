@@ -1,13 +1,37 @@
 import React, {useState, useContext} from 'react';
 import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdCheck} from 'react-icons/md'
 import { FaThumbtack } from 'react-icons/fa';
-// import {NotaContext} from '../contexts/NotaContext';
+import {NotaContext} from '../contexts/NotaContext';
 
 const Note = ({note}) =>{
+    // const {editNote, deleteNote} = useContext(NotaContext);
+    const context = useContext(NotaContext);
+
     const [isEditing, setIsEditing] = useState(false)
     const [isMoreSettings, setIsMoreSettings] = useState(false)
-    const [hover, setHover] = useState(false) //colocar um set timeout no function hover
+    const [hover, setHover] = useState(false)
+    const [onNoteChanges, setOnNoteChanges] = useState({
+        id: note.id,
+        title: note.title,
+        content: note.content
+    })
+    
     const handleEditingMode = ()=> setIsEditing(!isEditing)
+
+    const handleChangeEdit = event =>{
+        const {name, value} = event.target
+        setOnNoteChanges({...onNoteChanges, [name]: value})
+    }
+
+    const handleSubmitEdit = event =>{
+        event.preventDefault();
+        context.editNote(onNoteChanges);
+        // setOnNoteChanges([
+        //     ...context.state.data,
+        //     onNoteChanges
+        // ])
+    }
+    
     const alert =<MdAddAlert/>;
     const person =<MdPersonAdd/>;
     const palette =<MdPalette/>;
@@ -22,7 +46,8 @@ const Note = ({note}) =>{
     const item = ()=>{
         return(
         <>
-        <div id={note.id} className="Item" >
+        {/* <div id={note.id} className={`Item ${isEditing === true ? 'Nothing' : '' }`} > */}
+        <div id={note.id} className={`Item`} >
         <div onClick={()=> setIsEditing(true) }>
         <ul className="NotesIconsHead">
         <li className="NoteIconHeadCheck">{check}</li>
@@ -75,10 +100,11 @@ const Note = ({note}) =>{
 
     const itemEdit = ()=>{
     return(
-    <div id={note.id} className="NoteModal">
+    // <div id={note.id} className={`NoteModal ${isEditing === false ? 'Nothing' : '' }`}>
+    <div id={note.id} className={`NoteModal`}>
     <div className="NoteContainerModal">
     <div className="Teste">
-    <form className="NoteContentModal">      
+<form className="NoteContentModal" onSubmit={handleSubmitEdit}>      
 
 <input
   className="EditTextInputTitle Both"
@@ -86,6 +112,7 @@ const Note = ({note}) =>{
   type="text"
   name="title"
   defaultValue={note.title}
+  onChange={handleChangeEdit}
 />
 
 <textarea
@@ -93,11 +120,13 @@ const Note = ({note}) =>{
   aria-label="Note Text"
   name="content"
   defaultValue={note.content}
+  onChange={handleChangeEdit}
   rows="10"
   cols="10"
   />
 <button className={`SendEdit`} type="submit">Submit</button>
 </form>
+
 <div>
 </div>
 <ul className="FormIcons">
@@ -148,6 +177,8 @@ const Note = ({note}) =>{
     return(
         <>
             {isEditing ? (itemEdit()) : (item())}
+            {/* {item()} */}
+            {/* {itemEdit()} */}
         </>
     );
 }

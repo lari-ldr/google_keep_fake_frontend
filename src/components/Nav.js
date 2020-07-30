@@ -3,6 +3,7 @@ import { MdMenu, MdSearch, MdRefresh, MdSettings, MdApps, MdViewAgenda } from 'r
 import {NotaContext} from '../contexts/NotaContext';
 
 const Nav = ()=>{
+    const context = useContext(NotaContext);
     const {handleFormVisibilityOutside} = useContext(NotaContext);
 
     const menu = <MdMenu/>;
@@ -12,7 +13,7 @@ const Nav = ()=>{
     const settings = <MdSettings/>;
     const apps = <MdApps/>;
     return(
-        <header className="Header" onClick={()=>{handleFormVisibilityOutside()}}>
+        <header className="Header" onClick={()=>{context.handleFormVisibilityOutside()}}>
         <nav className="Nav">
         
         <div className="Flex">

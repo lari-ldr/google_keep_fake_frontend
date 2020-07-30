@@ -4,18 +4,20 @@ import { NotaContext } from '../contexts/NotaContext';
 
 const Card = () =>{
     const context = useContext(NotaContext);
-    const {handleFormVisibilityOutside} = useContext(NotaContext);
-    const allNotes = context.data.map((note) =>{
+    const isLoaded = context.state.isLoaded
+
+    const allNotes = context.state.data.map((note)=>{
         return(
             <>
             <Note key={note.id} indexID={note.id} note={note}/>
             </>
         )
     })
-
 return(
-    <div className="ContainerItems" onClick={()=>{handleFormVisibilityOutside()}}>
+    // <></>
+    <div className="ContainerItems" onClick={()=>{context.handleFormVisibilityOutside()}}>
     <h4 className="NotesAreaTitle">Pinned / Others</h4>
+    <h5 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h5>
     <div className="ContainerNotes">
     {allNotes}
     </div>

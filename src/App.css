@@ -286,9 +286,10 @@
 }
 
 .ContainerNotes{
-  column-count: 4;
-	column-gap: 1em;
+  /* column-count: 4; */
+	/* column-gap: 1em; */
   /* width: 70%; */
+  display: flex;
 }
 
 .NotesAreaTitle{
@@ -853,6 +854,10 @@ textarea{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.Nothing{
+  display: none;
 }
 
 .NoteContainerModal{

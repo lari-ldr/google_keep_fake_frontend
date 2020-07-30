@@ -4,7 +4,8 @@ import {NotaContext} from '../contexts/NotaContext';
 
 
 const SideBar = ()=>{
-    const {handleFormVisibilityOutside} = useContext(NotaContext);
+    const context = useContext(NotaContext);
+    
     const idea = <MdHighlight/>;
     const reminder = <MdNotifications/>;
     const label = <MdLabelOutline/>;
@@ -12,7 +13,7 @@ const SideBar = ()=>{
     const archive = <MdArchive/>;
     const del = <MdDelete/>;
     return(
-    <div className="SideBar" onClick={()=>{handleFormVisibilityOutside()}}>
+    <div className="SideBar" onClick={()=>{context.handleFormVisibilityOutside()}}>
         <div className="OptionsContainer">
             <p className="OptionsIcon">{idea}</p>
             <span className="OptionsText">Notes</span>
