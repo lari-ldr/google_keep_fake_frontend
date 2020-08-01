@@ -4,7 +4,7 @@ import {NotaContext} from '../contexts/NotaContext';
 
 const Nav = ()=>{
     const context = useContext(NotaContext);
-    const {handleFormVisibilityOutside} = useContext(NotaContext);
+    // const {handleFormVisibilityOutside} = useContext(NotaContext);
 
     const menu = <MdMenu/>;
     const search = <MdSearch/>;

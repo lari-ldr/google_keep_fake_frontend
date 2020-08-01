@@ -1,116 +1,14 @@
 import React, {useState} from 'react';
-import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faPlus, faMinus, faSave } from '@fortawesome/free-solid-svg-icons';
+// import axios from 'axios';
+
 import './App.css';
 
 import NotaProvider from './contexts/NotaContext.js';
 import Board from './components/Board.js';
-import NewNote from './components/NewNote.js';
-import Card from './components/Card.js';
+// import NewNote from './components/NewNote.js';
+// import Card from './components/Card.js';
 import Nav from './components/Nav.js';
 import SideBar from './components/SideBar.js';
-
-// import Modal from './componentsTest/Modal.js';
-// import NotaProvider from './contextTest/NotaContext.js';
-// import NotaList from './componentsTest/NotaList.js';
-// import AddNota from './componentsTest/AddNota.js';
-
-// import Infos from './componentsTest/Infos.js';
-// import RepoList from './componentsTest/RepoList.js';
-// import StarredList from './componentsTest/StarredList.js';
-
-// const Ap = () =>{
-//   const [isModalVisible, setIsModalVisible] = useState(false)
-// // esse estado vai pro NotaProvider
-//   // const [notas, setNotas] = useState([
-//   //   {id: 1, title: "ir ao supermercado", done: false},
-//   //   {id: 2, title: "ir a academia", done: true},
-//   //   {id: 3, title: "passear com o dog", done: false}
-//   // ]);
-
-//   // pegar novas notas do form / esse metodo é igual e esta no provider na  função saveNota
-//   // const [nota, setNota] = useState();
-
-//   // const handleFormSubmit = (e)=>{
-//   //   e.preventDefault();
-//   //   // aqui ele NÃO É um objeto só, ele é uma array de objetos
-//   //   setNotas([
-//   //     ...notas,
-//   //     nota,
-//   //   ]);
-//   // }
-//   // const handleInputChange = (e)=>{
-//   //   // ele é um objeto só e não uma array de objetos
-//   //   setNota({
-//   //     ...nota, //descontroe
-//   //     id: notas.length + 1,
-//   //     title: e.target.value,
-//   //     done: false
-//   //   })
-//   // }
-
-//   return(
-//     <>
-//     <h1 className="TestBranch">THIS IS THE BRANCH FOR TESTING NEW CONCEPTS OF REACTJS</h1>
-//     <h3>Let's try:</h3>
-//     <ul>
-//       <li>Modal - DONE!!!</li>
-//       <li>Context - DONE!!!</li>
-//       <li>Hooks</li>
-//       <li>High order components</li>
-//     </ul>
-//     <br></br>
-//     <hr></hr>
-//     <br></br>
-//     <h3>Modal</h3>
-//     <button onClick={()=> setIsModalVisible(true)}>Open</button>
-//     {isModalVisible ? (
-//       <Modal onClose={()=> setIsModalVisible(false)}>
-//         <h2>Modal do APP</h2>
-//       </Modal>
-//       ) : null}
-//     <br></br>
-//     <hr></hr>
-//     <br></br>
-//     <h3>Context</h3>
-
-//     <NotaProvider>
-//       <NotaList></NotaList>
-//       <AddNota></AddNota>
-//     </NotaProvider>
-
-//     {/* tudo isso sai e vai para os outros componentes ali em cima */}
-//     {/* { notas.map(i=>(
-//       <div key={i.id}> {i.id}) {i.title} - {i.done}</div>
-//     )) }
-
-//     <form onSubmit={handleFormSubmit}>
-//       <input
-//         type="text"
-//         name="nota"
-//         id="title"
-//         placeholder="add nova nota"
-//         onChange={handleInputChange}
-//       />
-//       <button> add </button>
-//     </form> */}
-//         <br></br>
-//         <hr></hr>
-//         <br></br>
-//         <h3>Hooks - useEffect Once for all</h3>
-//         {/* <br></br>
-//         <hr></hr>
-//         <br></br>
-//         <h3>High order components</h3>
-//         <div> */}
-//         {/* <Infos />
-//         <RepoList />
-//         <StarredList /> */}
-//         {/* </div> */}
-//     </>
-//   );
-// }
 
 const App = ()=>{
   // const [teste, setTeste] = useState('')
