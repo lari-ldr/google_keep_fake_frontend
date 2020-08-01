@@ -98,12 +98,16 @@ import SideBar from './components/SideBar.js';
 //         <br></br>
 //         <hr></hr>
 //         <br></br>
+//         <h3>Hooks - useEffect Once for all</h3>
+//         {/* <br></br>
+//         <hr></hr>
+//         <br></br>
 //         <h3>High order components</h3>
-//         <div>
+//         <div> */}
 //         {/* <Infos />
 //         <RepoList />
 //         <StarredList /> */}
-//         </div>
+//         {/* </div> */}
 //     </>
 //   );
 // }
@@ -132,105 +136,105 @@ const App = ()=>{
   );
 }
 // APP IS THE PARENT
-class Ap extends React.Component{
-  constructor(props){
-      super(props)
-      this.onFormInput = this.onFormInput.bind(this)
-      this.clickOutside = this.clickOutside.bind(this)
-      this.clickInside = this.clickInside.bind(this)
-      this.editingForm = this.editingForm.bind(this)
-      this.onDelete = this.onDelete.bind(this)
-      this.state = ({
-          results: [],
-          isLoaded: false,
-          isClicked: false,
-          componentShouldUpdate: false,
-      });
-  }
+// class Ap extends React.Component{
+//   constructor(props){
+//       super(props)
+//       this.onFormInput = this.onFormInput.bind(this)
+//       this.clickOutside = this.clickOutside.bind(this)
+//       this.clickInside = this.clickInside.bind(this)
+//       this.editingForm = this.editingForm.bind(this)
+//       this.onDelete = this.onDelete.bind(this)
+//       this.state = ({
+//           results: [],
+//           isLoaded: false,
+//           isClicked: false,
+//           componentShouldUpdate: false,
+//       });
+//   }
 
-  editingForm(isEditing){
-    console.log('hello from the other sideeee')
-    console.log(isEditing)
-  }
+//   editingForm(isEditing){
+//     console.log('hello from the other sideeee')
+//     console.log(isEditing)
+//   }
 
-  clickOutside(){
-    this.setState({isClicked: false})
-  }
+//   clickOutside(){
+//     this.setState({isClicked: false})
+//   }
 
-  clickInside(){
-    this.setState({isClicked: true})
-  }
+//   clickInside(){
+//     this.setState({isClicked: true})
+//   }
 
-  componentDidMount(){
-      axios.get(`http://localhost:9000/index`)
-      .then(response => {
-          this.setState({
-              results: response.data,
-              isLoaded: true,
-          })
-      })
-  }
+//   componentDidMount(){
+//       axios.get(`http://localhost:9000/index`)
+//       .then(response => {
+//           this.setState({
+//               results: response.data,
+//               isLoaded: true,
+//           })
+//       })
+//   }
 
-onFormInput(updateComponent){
-    if( updateComponent === false){
-      console.warn("COMPONENT SHOULD UPDATE IS FALSE")
-    }
-    axios.get(`http://localhost:9000/index`)
-    .then(response => {
-        this.setState({
-            results: response.data,
-        })
-    })
-  }
+// onFormInput(updateComponent){
+//     if( updateComponent === false){
+//       console.warn("COMPONENT SHOULD UPDATE IS FALSE")
+//     }
+//     axios.get(`http://localhost:9000/index`)
+//     .then(response => {
+//         this.setState({
+//             results: response.data,
+//         })
+//     })
+//   }
 
-  onDelete(indexID){
-    this.setState({
-      results: {
-          id: this.state.id,
-          title: this.state.title,
-          content: this.state.content
-      }
-  })
-  const removedItem = this.state.results.filter(deletedItem => {return deletedItem.id !== indexID})
-  this.setState({
-    results: removedItem
-})
+//   onDelete(indexID){
+//     this.setState({
+//       results: {
+//           id: this.state.id,
+//           title: this.state.title,
+//           content: this.state.content
+//       }
+//   })
+//   const removedItem = this.state.results.filter(deletedItem => {return deletedItem.id !== indexID})
+//   this.setState({
+//     results: removedItem
+// })
 
-console.log(removedItem)
-  }
-
-
-  componentDidUpdate(){
-    console.warn("Method Called")
-  }
+// console.log(removedItem)
+//   }
 
 
-  render(){
-      const send = <FontAwesomeIcon icon={faSave}/>
-      const edit = <FontAwesomeIcon icon={faEdit} />;
-      const del = <FontAwesomeIcon icon={faTrashAlt} />;
-      const isLoaded = this.state.isLoaded
-      const results = this.state.results
-      return(
-          <div className="App">
-            <h1 className="TestBranch">YOU'RE IN THE TESTE BRANCH OF GITHUB</h1>
-              <NewNote
-                isClicked={this.state.isClicked}
-                clickInside={this.clickInside}
-                clickOutside={this.clickOutside}
-                onFormInput={this.onFormInput}
-                send={send}
-              />
-              <main className="App-main" onClick={this.clickOutside} >
-              <h2 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h2>
+//   componentDidUpdate(){
+//     console.warn("Method Called")
+//   }
+
+
+//   render(){
+//       const send = <FontAwesomeIcon icon={faSave}/>
+//       const edit = <FontAwesomeIcon icon={faEdit} />;
+//       const del = <FontAwesomeIcon icon={faTrashAlt} />;
+//       const isLoaded = this.state.isLoaded
+//       const results = this.state.results
+//       return(
+//           <div className="App">
+//             <h1 className="TestBranch">YOU'RE IN THE TESTE BRANCH OF GITHUB</h1>
+//               <NewNote
+//                 isClicked={this.state.isClicked}
+//                 clickInside={this.clickInside}
+//                 clickOutside={this.clickOutside}
+//                 onFormInput={this.onFormInput}
+//                 send={send}
+//               />
+//               <main className="App-main" onClick={this.clickOutside} >
+//               <h2 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h2>
               
-              <Card results={results} del={del} edit={edit} />
+//               <Card results={results} del={del} edit={edit} />
             
-              </main>
-          </div>
-      )
-  }
-}
+//               </main>
+//           </div>
+//       )
+//   }
+// }
 
 // FORM
 // class FormInput extends React.Component{
