@@ -1,7 +1,8 @@
 import React, {useState, useEffect, createContext} from 'react';
 import axios from 'axios';
 
-export const NotaContext = createContext(); //ele é exportado e sera utilizado nos outros componentes da aaplicação
+// export const NotaContext = createContext(); //ele é exportado e sera utilizado nos outros componentes da aaplicação
+export const NotaContext = React.createContext()
 
 class NotaProvider extends React.Component{
     constructor(props){
@@ -54,36 +55,40 @@ class NotaProvider extends React.Component{
         // this.state.isEmpty ? console.log("Operation canceled") : console.log("item added frontend")
     }
 
-    editNote = (onNoteChanges)=>{
-        const id = onNoteChanges.id
+    editNote = (noteEdited)=>{
+        const id = noteEdited.id
+        console.log(noteEdited)
         axios.put(`http://localhost:9000/index/${id}`, {
-            id: onNoteChanges.id,
-            title: onNoteChanges.title,
-            content: onNoteChanges.content
+            id: noteEdited.id,
+            title: noteEdited.title,
+            content: noteEdited.content
         })
         .then( response=>{
             response.data={
-                id: onNoteChanges.id,
-                title: onNoteChanges.title,
-                content: onNoteChanges.content
+                id: noteEdited.id,
+                title: noteEdited.title,
+                content: noteEdited.content
             }
         })
-        this.setState({ data: [ ...this.state.data, onNoteChanges ] })
+        // this.setState({ data: [ ...this.state.data, noteEdited ] })
+        // this.setState({ data: noteEdited })
     }
     // delete a note
-    deleteNote = ()=>{
-        console.log("eu serei um delete request")
+    deleteNote = (noteDeleted)=>{
+        const id = noteDeleted.id
+        this.setState({data: [...this.state.data]})
+
+        const removedItem = this.state.data.filter(delItem => {return delItem.id !== id})
+        this.setState({data: removedItem})
+        console.log(this.state.data)
     }
 
     handleFormVisibilityOutside =()=>{
         this.setState({isClicked: false})
-        // setIsClicked(false)
       }
     
     handleFormVisibilityInside =()=>{
-        this.setState({isClicked: true})
-        // setIsClicked(true)
-    
+        this.setState({isClicked: true})    
     }
 
     componentDidUpdate(){
