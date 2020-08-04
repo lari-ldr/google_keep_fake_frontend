@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
-import IconsHead from './IconsHead.js';
-import IconsBottom from './IconsBottom.js'
+import IconsHead from './ButtonsAndIcons/IconsHead.js';
+import IconsBottom from './ButtonsAndIcons/IconsBottom.js';
+import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
 import axios from 'axios';
 import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdCheck} from 'react-icons/md'
 import { FaThumbtack } from 'react-icons/fa';
@@ -27,7 +28,9 @@ class Note extends React.Component{
     static contextType = NotaContext
     
     componentDidMount(){
-      const abc = this.context
+      const context = this.context
+      // const state = this.context.state.isEditing
+      // console.log(context.state.isEditing)
     }
     
     handleChange(event){
@@ -64,54 +67,32 @@ class Note extends React.Component{
     renderNote(){
 
       return(
-              <>
+      <>
       {/* <div id={this.state.id} className={`Item ${isEditing === true ? 'Nothing' : '' }`} > */}
       <div id={this.state.id} key={this.state.id} className={`Item`} >
-      {/* <div onClick={editingMode}> */}
-      <div>
-        <IconsHead></IconsHead>
-     
+      <IconsHead></IconsHead>
+      <div onClick={this.editingMode}>
+      
       <ul className="ItemContent">
       <li className="ItemTitle Both">{this.state.title}</li>
       <li className="ItemMessage Both">{this.state.content}</li>
       </ul>
-
-      {/* <form onClick={this.handleSubmitDelete}>
-      <label>Delete
-          <input
-            type="submit"
-            name="id"
-            value={this.state.id}
-            onChange={this.handleChange}
-          />
-      </label>
-    </form> */}
-      <button onClick={this.editingMode}>open me</button>
       </div>
-      <IconsBottom></IconsBottom>
+    
+      <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.state.id}></IconsBottom>
       </div>
       </>
       )
     }
   
     renderEditingNote(){
-      const alert =<MdAddAlert/>;
-      const person =<MdPersonAdd/>;
-      const palette =<MdPalette/>;
-      const insertPhoto =<MdInsertPhoto/>;
-      const archive  =<MdArchive/>;
-      const more =<MdMoreVert/>;
-      const check =<MdCheck/>;
-      const pin =<FaThumbtack/>;
-      const undo = <MdUndo/>;
-      const redo = <MdRedo/>;
     return(
       <>
     {/* <div id={note.id} className={`NoteModal ${isEditing === false ? 'Nothing' : '' }`}> */}
     <div className={`NoteModal`}>
     <div className="NoteContainerModal">
     <div className="Teste">
-<form className="NoteContentModal" onSubmit={this.handleSubmitEdit}>      
+<form className="NoteContentModal" onSubmit={this.handleChangeEditSubmit}>      
 
 <input
   className="EditTextInputTitle Both"
@@ -132,14 +113,16 @@ class Note extends React.Component{
   cols="10"
   />
 <button className={`SendEdit`} type="submit">Submit</button>
-<button className="FormIconsItself CloseBtn" onClick={this.editingMode}>Close</button>
+
+{/* <button className="FormIconsItself CloseBtn" onClick={this.editingMode}>Close</button> */}
 </form>
 
 <div>
 </div>
-{/* <ul className="FormIcons">
+<IconsEditAndNewForms editingMode={this.editingMode} onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.state.id} isEditing={this.state.isEditing}></IconsEditAndNewForms>
+{/* <ul className="IconsNote FormIconsPadding">
     <li className="FormIconsItself">{alert}</li>
-    <li className="FormIconsItself">{person}</li>
+    <li className="FormIconsItself NotShare">{person}</li>
     <li className="FormIconsItself" onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>{palette}</li>
     <li className="FormIconsItself">{insertPhoto}</li>
     <li className="FormIconsItself">{archive}</li>
@@ -149,6 +132,7 @@ class Note extends React.Component{
     <li className="FormIconsItself CloseBtn" onClick={this.editingMode}>Close</li>
     <li className="PinBtnEdit">{pin}</li>
 </ul> */}
+
 {/* <div className={`MoreColors ColorsEditMode ${hover === false ? 'HideColors' : '' }`} onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
             <ul className="GroupColors">
             <li className="DefaultWhite"></li>
@@ -185,6 +169,7 @@ class Note extends React.Component{
   
     render(){
       const isEditing = this.state.isEditing
+      
       const switchBetweenModes = isEditing ? this.renderEditingNote() : this.renderNote()
       return(
         switchBetweenModes

@@ -424,11 +424,11 @@
   margin: 10px 0 6px 0;
   padding: 0 16px;
 }
-.FormIcons{
-  display: flex;
-  justify-content: space-between;
+.FormIconsPadding{
+  /* display: flex; */
+  /* justify-content: space-between; */
   /* line-height: 26px; */
-  margin: 10px 0 6px 0;
+  /* margin: 10px 0 6px 0; */
   padding: 0 90px 0 16px;
 }
 
@@ -521,6 +521,20 @@
 }
 
 .MoreOptions > li:hover{
+  background-color: rgba(95,99,104,0.157);
+}
+
+.DeleteBtn{
+  padding-bottom: 5px;
+  color: #333;
+  cursor: pointer;
+  letter-spacing: .01428571em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}
+.DeleteBtn:hover{
   background-color: rgba(95,99,104,0.157);
 }
 
@@ -772,21 +786,6 @@ h1{
   background-color: transparent;
   padding: 0;
   display: inline;
-}
-
-.DeleteForm{
-  display: inline;
-}
-.Delete{
-  cursor: pointer;
-  color: gray;
-  font-size: 15px;
-  border: transparent;
-  background-color: transparent;
-}
-
-.InputDelete{
-  display: none;
 }
 
 .Save{

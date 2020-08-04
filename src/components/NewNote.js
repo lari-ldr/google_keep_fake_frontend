@@ -1,5 +1,7 @@
 import React, {useState, useContext} from 'react';
 // import axios from 'axios';
+import IconsColors from './ButtonsAndIcons/IconsColors.js';
+import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
 import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdPinDrop} from 'react-icons/md'
 import { FaThumbtack } from 'react-icons/fa';
 import {NotaContext} from '../contexts/NotaContext';
@@ -79,42 +81,10 @@ const NewNote = ()=>{
                       Submit
                     </button>
               </form>
-              <ul className={`FormIcons ${isClicked === false ? 'None' : ''}`}>
-                <li className="FormIconsItself">{alert}</li>
-                <li className="FormIconsItself">{person}</li>
-                <li className="FormIconsItself" onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>{palette}</li>
-                <li className="FormIconsItself">{insertPhoto}</li>
-                <li className="FormIconsItself">{archive}</li>
-                <li className="FormIconsItself" onClick={()=>{setIsMoreSettings(!isMoreSettings)}}>{more}</li>
-                <li className="FormIconsItself">{undo}</li>
-                <li className="FormIconsItself">{redo}</li>
-                <li className="FormIconsItself CloseBtn">Close</li>
-                <li className="PinBtn">{pin}</li>
-              </ul>
-              <div className={`MoreColors ColorsEditMode ${hover === false ? 'HideColors' : '' }`} onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
-            <ul className="GroupColors">
-            <li className="DefaultWhite"></li>
-            <li className="Red"></li>
-            <li className="Orange"></li>
-            <li className="Yellow"></li>
-            </ul>
-            <ul className="GroupColors">
-            <li className="Green"></li>
-            <li className="Teal"></li>
-            <li className="Blue"></li>
-            <li className="DarkBlue"></li>
-            </ul>
-            <ul className="GroupColors">
-            <li className="Purple"></li>
-            <li className="Pink"></li>
-            <li className="Brown"></li>
-            <li className="Gray"></li>
-            </ul>
-        </div>
-        <ul className={`MoreOptions OptionsEditMode ${isMoreSettings === false ? 'Hide' : ''}`}>
-            <li>Add label</li>
-            <li>Show checkboxes</li>
-        </ul>
+              
+              <div className={`${isClicked === false ? 'None' : ''}`}>
+              <IconsEditAndNewForms></IconsEditAndNewForms>
+              </div>
             </div>
         )
 }

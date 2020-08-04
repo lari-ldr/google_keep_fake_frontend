@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import DeleteBtn from './DeleteBtn.js';
+import IconsColors from './IconsColors.js';
 import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdCheck} from 'react-icons/md'
 import { FaThumbtack } from 'react-icons/fa';
 
-const IconsBottom = ()=>{
+const IconsBottom = ({children, onClick, onChange, value})=>{
     const [isMoreSettings, setIsMoreSettings] = useState(false)
     const [hover, setHover] = useState(false)
     const alert =<MdAddAlert/>;
@@ -15,9 +17,10 @@ const IconsBottom = ()=>{
     const pin =<FaThumbtack/>;
     const undo = <MdUndo/>;
     const redo = <MdRedo/>;
+
     return(
         <>
-    <ul className="IconsNote">
+    <ul className={`IconsNote`}>
       <li className="FormIconsItself">{alert}</li>
       <li className="FormIconsItself NotShare" aria-disabled="true">{person}</li>
       <li className="FormIconsItself" onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>{palette}</li>
@@ -26,27 +29,10 @@ const IconsBottom = ()=>{
       <li className="FormIconsItself" onClick={()=>{setIsMoreSettings(!isMoreSettings)}}>{more}</li>
       </ul>
       <div className={`MoreColors ${hover === false ? 'HideColors' : '' }`} onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
-          <ul className="GroupColors">
-          <li className="DefaultWhite"></li>
-          <li className="Red"></li>
-          <li className="Orange"></li>
-          <li className="Yellow"></li>
-          </ul>
-          <ul className="GroupColors">
-          <li className="Green"></li>
-          <li className="Teal"></li>
-          <li className="Blue"></li>
-          <li className="DarkBlue"></li>
-          </ul>
-          <ul className="GroupColors">
-          <li className="Purple"></li>
-          <li className="Pink"></li>
-          <li className="Brown"></li>
-          <li className="Gray"></li>
-          </ul>
+        <IconsColors></IconsColors>
       </div>
       <ul className={`MoreOptions ${isMoreSettings === false ? 'Hide' : ''}`}>
-          <li>Delete note</li>
+          <DeleteBtn onClick={onClick} onChange={onChange} value={value}></DeleteBtn>
           <li>Add label</li>
           <li>Make a copy</li>
           <li>Show checkboxes</li>

@@ -11,7 +11,8 @@ class NotaProvider extends React.Component{
             data: [],
             isLoaded: false,
             isClicked: false,
-            isEmpty: true
+            isEmpty: true,
+            // isEditing: false
         });
     }
 
@@ -76,6 +77,11 @@ class NotaProvider extends React.Component{
     // delete a note
     deleteNote = (noteDeleted)=>{
         const id = noteDeleted.id
+        axios.delete(`http://localhost:9000/index/${id}`)
+        .then(response =>{
+            console.log(response)
+        })
+
         this.setState({data: [...this.state.data]})
 
         const removedItem = this.state.data.filter(delItem => {return delItem.id !== id})
