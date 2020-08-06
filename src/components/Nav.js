@@ -5,6 +5,7 @@ import {NotaContext} from '../contexts/NotaContext';
 const Nav = ()=>{
     const context = useContext(NotaContext);
     // const {handleFormVisibilityOutside} = useContext(NotaContext);
+    const isLoaded = context.state.isLoaded
 
     const menu = <MdMenu/>;
     const search = <MdSearch/>;
@@ -33,7 +34,8 @@ const Nav = ()=>{
                 <input className="SearchInput" type="search" placeholder="Search"></input>
             </form>
             <div className="Flex">
-            <p className="Icons Circle ColorNav">{refresh}</p>
+            
+            {isLoaded ? <p className={`Icons Circle ColorNav`}>{refresh}</p> : <div className={`SpinnerLoading`}></div> }
             <p className="Icons Circle ColorNav">{agenda}</p>
             <p className="Icons Circle ColorNav">{settings}</p>
             </div>

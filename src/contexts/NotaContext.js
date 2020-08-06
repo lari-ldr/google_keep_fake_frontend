@@ -12,7 +12,7 @@ class NotaProvider extends React.Component{
             isLoaded: false,
             isClicked: false,
             isEmpty: true,
-            // isEditing: false
+            isEditing: false
         });
     }
 
@@ -97,11 +97,17 @@ class NotaProvider extends React.Component{
         this.setState({isClicked: true})    
     }
 
-    componentDidUpdate(){
-        console.log("rendering")
+    // componentDidUpdate(){
+    //     console.log("rendering")
+    // }
+
+
+    handleEditMode =()=>{
+        this.setState({isEditing: false})
     }
 
     render(){
+       
         return(
             // <></>
         <NotaContext.Provider value={{
@@ -110,7 +116,9 @@ class NotaProvider extends React.Component{
             handleFormVisibilityInside: this.handleFormVisibilityInside,
             saveNote: this.saveNote,
             editNote: this.editNote,
-            deleteNote: this.deleteNote
+            deleteNote: this.deleteNote,
+            editingModeTeste: this.editingModeTeste,
+            handleEditMode: this.handleEditMode
         }} >
             {this.props.children}
         </NotaContext.Provider>

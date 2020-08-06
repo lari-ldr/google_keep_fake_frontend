@@ -2,19 +2,19 @@ import React, {useState, useEffect, useContext} from 'react';
 import IconsHead from './ButtonsAndIcons/IconsHead.js';
 import IconsBottom from './ButtonsAndIcons/IconsBottom.js';
 import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
-import axios from 'axios';
-import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdCheck} from 'react-icons/md'
-import { FaThumbtack } from 'react-icons/fa';
+// import axios from 'axios';
+// import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdCheck} from 'react-icons/md'
+// import { FaThumbtack } from 'react-icons/fa';
 import {NotaContext} from '../contexts/NotaContext';
+
+
 
 class Note extends React.Component{
     constructor(props){
       super(props)
       this.editingMode = this.editingMode.bind(this)
-      this.renderNote = this.renderNote.bind(this)
-      this.renderEditingNote = this.renderEditingNote.bind(this)
       this.handleChange = this.handleChange.bind(this)
-      this.handleChangeEditSubmit = this.handleChangeEditSubmit.bind(this)
+      // this.handleChangeEditSubmit = this.handleChangeEditSubmit.bind(this)
       this.handleChangeDeleteSubmit = this.handleChangeDeleteSubmit.bind(this)
       this.state={
         id: props.note.id,
@@ -26,7 +26,7 @@ class Note extends React.Component{
       }
     }
     static contextType = NotaContext
-    
+
     componentDidMount(){
       const context = this.context
       // const state = this.context.state.isEditing
@@ -40,14 +40,14 @@ class Note extends React.Component{
       })
     }
   
-    handleChangeEditSubmit(event){
-      const id = this.state.id
-      event.preventDefault()
-      const noteEdited = this.state
-      const putRequest = this.context.editNote;
-      putRequest(noteEdited)
-      this.setState({ isEditing: false })
-    }
+    // handleChangeEditSubmit(event){
+    //   const id = this.state.id
+    //   event.preventDefault()
+    //   const noteEdited = this.state
+    //   const putRequest = this.context.editNote;
+    //   putRequest(noteEdited)
+    //   this.setState({ isEditing: false })
+    // }
   
     handleChangeDeleteSubmit(event){
       const id = this.state.id
@@ -59,121 +59,36 @@ class Note extends React.Component{
     }
 
     editingMode(){
-      this.setState({
-        isEditing: !this.state.isEditing
-      })
+      const id = this.state.id
+      this.props.componentEditMode(id)
     }
 
-    renderNote(){
+    componentDidUpdate(){
+      console.log("i should render on put request")
+  }
 
-      return(
-      <>
-      {/* <div id={this.state.id} className={`Item ${isEditing === true ? 'Nothing' : '' }`} > */}
-      <div id={this.state.id} key={this.state.id} className={`Item`} >
-      <IconsHead></IconsHead>
-      <div onClick={this.editingMode}>
-      
-      <ul className="ItemContent">
-      <li className="ItemTitle Both">{this.state.title}</li>
-      <li className="ItemMessage Both">{this.state.content}</li>
-      </ul>
-      </div>
-    
-      <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.state.id}></IconsBottom>
-      </div>
-      </>
-      )
-    }
-  
-    renderEditingNote(){
-    return(
-      <>
-    {/* <div id={note.id} className={`NoteModal ${isEditing === false ? 'Nothing' : '' }`}> */}
-    <div className={`NoteModal`}>
-    <div className="NoteContainerModal">
-    <div className="Teste">
-<form className="NoteContentModal" onSubmit={this.handleChangeEditSubmit}>      
-
-<input
-  className="EditTextInputTitle Both"
-  aria-label="Note Title"
-  type="text"
-  name="title"
-  defaultValue={this.state.title}
-  onChange={this.handleChange}
-/>
-
-<textarea
-  className="EditTextInputMessage Both"
-  aria-label="Note Text"
-  name="content"
-  defaultValue={this.state.content}
-  onChange={this.handleChange}
-  rows="10"
-  cols="10"
-  />
-<button className={`SendEdit`} type="submit">Submit</button>
-
-{/* <button className="FormIconsItself CloseBtn" onClick={this.editingMode}>Close</button> */}
-</form>
-
-<div>
-</div>
-<IconsEditAndNewForms editingMode={this.editingMode} onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.state.id} isEditing={this.state.isEditing}></IconsEditAndNewForms>
-{/* <ul className="IconsNote FormIconsPadding">
-    <li className="FormIconsItself">{alert}</li>
-    <li className="FormIconsItself NotShare">{person}</li>
-    <li className="FormIconsItself" onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>{palette}</li>
-    <li className="FormIconsItself">{insertPhoto}</li>
-    <li className="FormIconsItself">{archive}</li>
-    <li className="FormIconsItself" onClick={()=>{setIsMoreSettings(!isMoreSettings)}}>{more}</li>
-    <li className="FormIconsItself">{undo}</li>
-    <li className="FormIconsItself">{redo}</li>
-    <li className="FormIconsItself CloseBtn" onClick={this.editingMode}>Close</li>
-    <li className="PinBtnEdit">{pin}</li>
-</ul> */}
-
-{/* <div className={`MoreColors ColorsEditMode ${hover === false ? 'HideColors' : '' }`} onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
-            <ul className="GroupColors">
-            <li className="DefaultWhite"></li>
-            <li className="Red"></li>
-            <li className="Orange"></li>
-            <li className="Yellow"></li>
-            </ul>
-            <ul className="GroupColors">
-            <li className="Green"></li>
-            <li className="Teal"></li>
-            <li className="Blue"></li>
-            <li className="DarkBlue"></li>
-            </ul>
-            <ul className="GroupColors">
-            <li className="Purple"></li>
-            <li className="Pink"></li>
-            <li className="Brown"></li>
-            <li className="Gray"></li>
-            </ul>
-        </div> */}
-        {/* <ul className={`MoreOptions OptionsEditMode ${isMoreSettings === false ? 'Hide' : ''}`}>
-            <li>Delete note</li>
-            <li>Add label</li>
-            <li>Make a copy</li>
-            <li>Show checkboxes</li>
-            <li>Copy to Google Docs</li>
-        </ul> */}
-        </div>
-        </div>
-        </div>
-    </>
-  )
-    }
-  
     render(){
-      const isEditing = this.state.isEditing
-      
-      const switchBetweenModes = isEditing ? this.renderEditingNote() : this.renderNote()
       return(
-        switchBetweenModes
-      )
+        <>
+        {/* <div id={this.state.id} className={`Item ${isEditing === true ? 'Nothing' : '' }`} > */}
+        <div
+          id={this.state.id}
+          key={this.state.id}
+          className={`Item`}
+        >
+        <IconsHead></IconsHead>
+        <div onClick={this.editingMode}>
+        
+        <ul className="ItemContent">
+        <li className="ItemTitle Both">{this.state.title}</li>
+        <li className="ItemMessage Both">{this.state.content}</li>
+        </ul>
+        </div>
+      
+        <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.state.id}></IconsBottom>
+        </div>
+        </>
+        )
     }
   }
 

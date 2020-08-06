@@ -104,6 +104,29 @@
   vertical-align: middle;
   text-rendering: optimizeLegibility;
 }
+
+.SpinnerLoading{
+  border-radius: 50%;
+  border: 2px solid #5f6368;
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  position: relative;
+  /* left: 40px; */
+  /* border-left-color: #202124; */
+  border-top-color: transparent;
+  animation: sipinnerLoader 1s linear infinite;
+}
+
+@keyframes sipinnerLoader{
+  from{
+    transform: rotate(0);
+  }
+  to{
+    transform: rotate(360deg);    
+  }
+}
+
 .Icons{
   font-size: 24px;
   margin: 0 4px;
@@ -281,18 +304,58 @@
   background-color: lightcoral;
   /* margin-top: 10vh; */
   padding-top: 25vh;
+  height: 100vh;
   position: absolute;
   left: 280px;
   top: 64px;
 }
 
+/* ======================= MASORY LAYOYT TEST ========================= */
 .ContainerNotes{
-  /* column-count: 4; */
-	/* column-gap: 1em; */
-  /* width: 70%; */
+  /* orignal */
   display: flex;
+  flex-wrap: wrap;
+  /* original ends */
+  /* width: 1200px; */
+  /* width: 1070px; */
+  /* margin: 20px auto; */
+  /* columns: 4; */
+  /* column-gap: 40px; */
 }
 
+/* .ContainerNotes .Item{
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 10px;
+  overflow: hidden;
+  break-inside: avoid;
+} */
+
+.Item{
+  /* orignal */
+  background-color: #eee;
+  /* display: inline-block; */
+  margin: 16px 16px 0px 16px;
+  border-radius: 8px;
+  /* width: 100%; */
+  /* position: relative; */
+  /* flex: 1; */
+  /* max-width: 235.25px; */
+  /* original ends */
+  width: 206px;
+}
+
+.grid-item {
+  float: left;
+  width: 80px;
+  height: 60px;
+  border: 2px solid hsla(0, 0%, 0%, 0.5);
+}
+
+.grid-item--width2 { width: 160px; }
+.grid-item--height2 { height: 140px; }
+
+/* ======================= MASORY LAYOYT TEST ========================= */
 .NotesAreaTitle{
   color: #5f6368;
   letter-spacing: .07272727em;
@@ -305,17 +368,6 @@
   margin: 32px 32px 8px;
   width: max-content;
 }
-
-.Item{
-  background-color: #eee;
-  display: inline-block;
-  /*display: flex;*/
-  margin: 16px 16px 0px 16px;
-  border-radius: 8px;
-  width: 100%;
-  position: relative;
-}
-
 
 .ItemContent{
   padding: 0;
@@ -881,7 +933,7 @@ textarea{
   display: flex;
   flex-direction: column;
   border: 1px solid transparent;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   max-height: 500px;
   min-height: 60px;
   overflow-y: auto;
@@ -894,5 +946,5 @@ textarea{
   /* border-color: #e0e0e0; */
   /* border: 1px solid transparent; */
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
