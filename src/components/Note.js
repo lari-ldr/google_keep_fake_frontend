@@ -17,9 +17,9 @@ class Note extends React.Component{
       // this.handleChangeEditSubmit = this.handleChangeEditSubmit.bind(this)
       this.handleChangeDeleteSubmit = this.handleChangeDeleteSubmit.bind(this)
       this.state={
-        id: props.note.id,
-        title: props.note.title,
-        content: props.note.content,
+        // id: props.note.id,
+        // title: props.note.title,
+        // content: props.note.content,
         isEditing: false,
         isMoreSettings: false,
         hover: false
@@ -50,42 +50,52 @@ class Note extends React.Component{
     // }
   
     handleChangeDeleteSubmit(event){
-      const id = this.state.id
+      // const id = this.state.id
+      const id = this.props.note.id
       event.preventDefault();
-      const noteDeleted = this.state
+      // const noteDeleted = this.state
+      const noteDeleted = this.props.note
       const deleteRequest = this.context.deleteNote;
       deleteRequest(noteDeleted)
       this.setState({ isEditing: false })
     }
 
     editingMode(){
-      const id = this.state.id
+      // const id = this.state.id
+      const id = this.props.note.id
       this.props.componentEditMode(id)
     }
 
-    componentDidUpdate(){
-      console.log("i should render on put request")
-  }
+  //   componentDidUpdate(prevProps, prevState){
+  //     // if(prevState !== this.state){
+  //     //   console.log("state has changed")
+  //     // }
+  //     console.log(prevProps)
+  //     console.log(prevState)
+  //     // console.log("i should render on put request")
+  // }
 
     render(){
+      // console.log(this.state)
+      console.log(this.props.note)
       return(
         <>
         {/* <div id={this.state.id} className={`Item ${isEditing === true ? 'Nothing' : '' }`} > */}
         <div
-          id={this.state.id}
-          key={this.state.id}
+          id={this.props.note.id}
+          // key={this.state.id}
           className={`Item`}
         >
         <IconsHead></IconsHead>
         <div onClick={this.editingMode}>
         
         <ul className="ItemContent">
-        <li className="ItemTitle Both">{this.state.title}</li>
-        <li className="ItemMessage Both">{this.state.content}</li>
+        <li className="ItemTitle Both">{this.props.note.title}</li>
+        <li className="ItemMessage Both">{this.props.note.content}</li>
         </ul>
         </div>
       
-        <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.state.id}></IconsBottom>
+        <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.props.note.id}></IconsBottom>
         </div>
         </>
         )

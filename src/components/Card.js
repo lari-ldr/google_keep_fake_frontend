@@ -10,7 +10,7 @@ class Card extends React.Component{
         this.componentEditMode = this.componentEditMode.bind(this)
         this.componentEditModeClose = this.componentEditModeClose.bind(this)
         this.state={
-            editComponent: ''
+            editComponent: '',
         }
       }
       static contextType = NotaContext
@@ -29,8 +29,10 @@ class Card extends React.Component{
             this.setState({editComponent: isEditing})
         )
     }
+
  
       render(){
+          console.log(this.context.state.data)
        const allNotes = this.context.state.data.map((note)=>{
             return(
                 <>
@@ -39,14 +41,7 @@ class Card extends React.Component{
                     key={note.id}
                     indexID={note.id}
                     note={note}
-                    // options={masonryOptionsChild}
-                />
-                {/* <EditNote
-                    key={note.id}
-                    indexID={note.id}
-                    note={note}
-                ></EditNote> */}
-    
+                />    
                 </>
             )
     
@@ -80,7 +75,7 @@ class Card extends React.Component{
             <Masonry
                 // className={'ContainerNotes'}
                 // options={masonryOptions}
-                style={style}
+                // style={style}
             >
             {allNotes}
             </Masonry>
@@ -93,9 +88,9 @@ class Card extends React.Component{
       }
     }
     
-const style = {
-    backgroundColor: 'tomato'
-};
+// const style = {
+//     backgroundColor: 'tomato'
+// };
 
 // const Card = () =>{
 //     const [editComponent, setEditComponent] = useState()

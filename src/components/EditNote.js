@@ -40,8 +40,7 @@ class EditNote extends React.Component{
         putRequest(noteEdited)
         this.setState({isEditing: null}, ()=>{
             const isEditing = this.state.isEditing;
-            const reRenderNote = "I'm a band-aid"
-          this.props.componentEditModeClose(isEditing, reRenderNote)
+          this.props.componentEditModeClose(isEditing)
         })
       }
     
@@ -70,13 +69,14 @@ class EditNote extends React.Component{
             <>
           {/* <div id={note.id} className={`NoteModal ${isEditing === false ? 'Nothing' : '' }`}> */}
           <div
+          id={this.state.id}
             className={`NoteModal`}
           >
           <div
             className="NoteContainerModal"
           >
           <div
-            className="Teste"
+            className="NoteDesign"
           >
       <form
         className="NoteContentModal"

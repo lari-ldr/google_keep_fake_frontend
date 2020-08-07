@@ -27,7 +27,7 @@ class NotaProvider extends React.Component{
     }
 
     saveNote = (newNote)=>{
-        console.log(newNote) // retorna um obj
+        // console.log(newNote) // retorna um obj
         const id = newNote.id
         // const CancelToken = axios.CancelToken;
         // const source = CancelToken.source();
@@ -58,7 +58,6 @@ class NotaProvider extends React.Component{
 
     editNote = (noteEdited)=>{
         const id = noteEdited.id
-        console.log(noteEdited)
         axios.put(`http://localhost:9000/index/${id}`, {
             id: noteEdited.id,
             title: noteEdited.title,
@@ -71,9 +70,17 @@ class NotaProvider extends React.Component{
                 content: noteEdited.content
             }
         })
-        // this.setState({ data: [ ...this.state.data, noteEdited ] })
-        // this.setState({ data: noteEdited })
+        this.setState({data: [...this.state.data]})
+        const teste = this.state.data.map(el => (el.id === id ? Object.assign({}, el, noteEdited) : el))
+        console.log(teste)
+        this.setState({
+            data: teste
+          }, ()=>{
+              console.log(this.state.data)
+          });
+
     }
+
     // delete a note
     deleteNote = (noteDeleted)=>{
         const id = noteDeleted.id
@@ -87,6 +94,7 @@ class NotaProvider extends React.Component{
         const removedItem = this.state.data.filter(delItem => {return delItem.id !== id})
         this.setState({data: removedItem})
         console.log(this.state.data)
+        console.log(removedItem)
     }
 
     handleFormVisibilityOutside =()=>{
@@ -96,11 +104,6 @@ class NotaProvider extends React.Component{
     handleFormVisibilityInside =()=>{
         this.setState({isClicked: true})    
     }
-
-    // componentDidUpdate(){
-    //     console.log("rendering")
-    // }
-
 
     handleEditMode =()=>{
         this.setState({isEditing: false})
