@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
 import IconsHead from './ButtonsAndIcons/IconsHead.js';
 import IconsBottom from './ButtonsAndIcons/IconsBottom.js';
-import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
+// import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
 // import axios from 'axios';
 // import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdCheck} from 'react-icons/md'
 // import { FaThumbtack } from 'react-icons/fa';
@@ -50,10 +50,7 @@ class Note extends React.Component{
     // }
   
     handleChangeDeleteSubmit(event){
-      // const id = this.state.id
-      const id = this.props.note.id
       event.preventDefault();
-      // const noteDeleted = this.state
       const noteDeleted = this.props.note
       const deleteRequest = this.context.deleteNote;
       deleteRequest(noteDeleted)
@@ -61,23 +58,11 @@ class Note extends React.Component{
     }
 
     editingMode(){
-      // const id = this.state.id
       const id = this.props.note.id
       this.props.componentEditMode(id)
     }
 
-  //   componentDidUpdate(prevProps, prevState){
-  //     // if(prevState !== this.state){
-  //     //   console.log("state has changed")
-  //     // }
-  //     console.log(prevProps)
-  //     console.log(prevState)
-  //     // console.log("i should render on put request")
-  // }
-
     render(){
-      // console.log(this.state)
-      console.log(this.props.note)
       return(
         <>
         {/* <div id={this.state.id} className={`Item ${isEditing === true ? 'Nothing' : '' }`} > */}

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React from 'react';
 import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
 import {NotaContext} from '../contexts/NotaContext';
 
@@ -22,9 +22,8 @@ class EditNote extends React.Component{
 
       componentDidMount(){
         const context = this.context
-        // const state = this.context.state.isEditing
-        // console.log(context.state.isEditing)
       }
+
       handleChange(event){
         const {name, value} = event.target
         this.setState({
@@ -33,7 +32,6 @@ class EditNote extends React.Component{
       }
     
       handleChangeEditSubmit(event){
-        const id = this.state.id
         event.preventDefault()
         const noteEdited = this.state
         const putRequest = this.context.editNote;
@@ -45,7 +43,6 @@ class EditNote extends React.Component{
       }
     
       handleChangeDeleteSubmit(event){
-        const id = this.state.id
         event.preventDefault();
         const noteDeleted = this.state
         const deleteRequest = this.context.deleteNote;

@@ -1,23 +1,17 @@
 import React, {useState, useContext} from 'react';
-// import axios from 'axios';
-import IconsColors from './ButtonsAndIcons/IconsColors.js';
 import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
-import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdPinDrop} from 'react-icons/md'
-import { FaThumbtack } from 'react-icons/fa';
 import {NotaContext} from '../contexts/NotaContext';
 
 
 const NewNote = ()=>{
   const context = useContext(NotaContext);
+  const idChange = context.state.data.length;
   const isClicked = context.state.isClicked
-  // const {saveNote, handleFormVisibilityInside, handleFormVisibilityOutside, isClicked} = useContext(NotaContext);
   const [newNote, setNewNote] = useState({
-    id: 1,
+    id: Number(),
     title: '',
     content: ''
   });
-  const [isMoreSettings, setIsMoreSettings] = useState(false)
-  const [hover, setHover] = useState(false) //colocar um set timeout no function hover
 
   const clickForm =(event)=>{
     const id = event.currentTarget.id
@@ -30,30 +24,24 @@ const NewNote = ()=>{
   const handleChangeInput = event =>{
     const {name, value} = event.target
     setNewNote({...newNote, [name]: value})
+  
+    console.log({...newNote})
   }
 
   const handleChangeSubmitInput = event=>{
     event.preventDefault();
-    context.saveNote(newNote);
+    // context.saveNote(newNote);
     setNewNote({
-      // id: '',
+      id: Number(),
       title: '',
       content: ''
     })
   }
 
-  const alert =<MdAddAlert/>;
-  const person =<MdPersonAdd/>;
-  const palette =<MdPalette/>;
-  const insertPhoto =<MdInsertPhoto/>;
-  const archive  =<MdArchive/>;
-  const more =<MdMoreVert/>;
-  const undo =<MdUndo/>;
-  const redo =<MdRedo/>;
-  const pin =<FaThumbtack/>
         return(
           <div id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
           <form className="NewNote" onSubmit={handleChangeSubmitInput}>
+                    {/* <input name="id" value={context.state.data.length + 1} onChange={handleChangeInput} /> */}
                     <input 
                       aria-label="title of the note"
                       type="text"
@@ -88,46 +76,6 @@ const NewNote = ()=>{
             </div>
         )
 }
-
-// new note with divs
-{/* <div id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
-<div className="NewNote" >
-<div
-aria-label="title of the note"
-className={`Title ${isClicked === false ? 'None' : ''}`}
-id="title"
-contentEditable="true"
-type="text"
-name="text"
-onInput={handleChangeInput}>Title</div>
-<div
-className={`NoteItself ${isClicked === false ? 'HideForm' : ''}`}
-id="content"
-contentEditable="true"
-type="text"
-name="text"
-onInput={handleChangeInput}>Take a note...</div>
-  <form  onSubmit={handleChangeSubmitInput}>
-      <button
-        className={`Send ${isClicked === false ? 'None' : ''}`}
-        type="submit"
-      >Submit</button>
-  </form>
-  <ul className={`FormIcons ${isClicked === false ? 'None' : ''}`}>
-    <li className="FormIconsItself">{alert}</li>
-    <li className="FormIconsItself">{person}</li>
-    <li className="FormIconsItself">{palette}</li>
-    <li className="FormIconsItself">{insertPhoto}</li>
-    <li className="FormIconsItself">{archive}</li>
-    <li className="FormIconsItself">{more}</li>
-    <li className="FormIconsItself">{undo}</li>
-    <li className="FormIconsItself">{redo}</li>
-    <li className="FormIconsItself CloseBtn">Close</li>
-    <li className="PinBtn">{pin}</li>
-  </ul>
-</div>
-
-</div> */}
 
 // class NewNot extends React.Component{
 //     constructor(props){

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, createContext} from 'react';
+import React from 'react';
 import axios from 'axios';
 
 // export const NotaContext = createContext(); //ele é exportado e sera utilizado nos outros componentes da aaplicação

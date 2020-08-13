@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React from 'react';
 import Masonry from 'react-masonry-component';
 import Note from './Note.js';
 import EditNote from './EditNote.js';
@@ -32,7 +32,6 @@ class Card extends React.Component{
 
  
       render(){
-          console.log(this.context.state.data)
        const allNotes = this.context.state.data.map((note)=>{
             return(
                 <>
