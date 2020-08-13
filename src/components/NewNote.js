@@ -5,7 +5,6 @@ import {NotaContext} from '../contexts/NotaContext';
 
 const NewNote = ()=>{
   const context = useContext(NotaContext);
-  const idChange = context.state.data.length;
   const isClicked = context.state.isClicked
   const [newNote, setNewNote] = useState({
     id: Number(),
@@ -30,7 +29,7 @@ const NewNote = ()=>{
 
   const handleChangeSubmitInput = event=>{
     event.preventDefault();
-    // context.saveNote(newNote);
+    context.saveNote(newNote);
     setNewNote({
       id: Number(),
       title: '',
