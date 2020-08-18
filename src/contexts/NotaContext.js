@@ -9,6 +9,7 @@ class NotaProvider extends React.Component{
         super(props)
         this.state = ({
             data: [],
+            noteSettings: [],
             isLoaded: false,
             isClicked: false,
             isEmpty: true,
@@ -24,34 +25,74 @@ class NotaProvider extends React.Component{
                 isLoaded: true
             })
         })
+        axios.get(`http://localhost:9000/settings`)
+        .then(response => {
+            this.setState({
+                noteSettings: response.data,
+                isLoaded: true
+            })
+        })
     }
 
-    saveNote = (newNote)=>{
-        // console.log(newNote) // retorna um obj
-        const id = newNote.id
+    saveNote = (newNote, isPinned, isArchived, newNoteColors)=>{
+        // saveNote = (newNote)=>{
+
+        const id = this.state.data.length + 1
         // const CancelToken = axios.CancelToken;
         // const source = CancelToken.source();
         // const isEmptyCancel = this.state.isEmpty ? source.token : '';
-        axios.post(`http://localhost:9000/index/${id}`, {
-          id: newNote.length + 1,
-          title: newNote.title,
-          content: newNote.content
-        } 
-        // {CancelToken: isEmptyCancel}
-        )
-        .then( response=>{
-          response.data = {
-            id: newNote.length + 1,
-            title: newNote.title,
-            content: newNote.content
-          }
-        })
-        this.setState({
-            data: [
-                ...this.state.data,
-                newNote
-            ]
-    })
+
+        // axios.post(`http://localhost:9000/index/${id}`, {
+        //   id: this.state.data.length + 1,
+        //   title: newNote.title,
+        //   content: newNote.content
+        // } 
+        // // {CancelToken: isEmptyCancel}
+        // )
+        // .then( response=>{
+        //   response.data = {
+        //     id: this.state.data.length + 1,
+        //     title: newNote.title,
+        //     content: newNote.content
+        //   }
+        // })
+    //     this.setState({
+    //         data: [
+    //             ...this.state.data,
+    //             newNote
+    //         ]
+    // })
+
+    // axios.post(`http://localhost:9000/settings/${id}`, {
+    //     note_id: this.state.data.length + 1,
+    //     background_color: newNoteColors,
+    //     is_archived: isArchived,
+    //     is_pinned: isPinned
+    // })
+    // .then( response => {
+    //     response.data ={
+    //         note_id: this.state.data.length + 1,
+    //         background_color: newNoteColors,
+    //         is_archived: isArchived,
+    //         is_pinned: isPinned
+    //     }
+    // })
+    const objSettings = {
+    // note_id: this.state.data.length + 1,
+    background_color: newNoteColors,
+    is_archived: isArchived,
+    is_pinned: isPinned
+}
+    this.setState({ data: [ ...this.state.data, newNote]})
+// this.setState({data: [ ...this.state.data, newNote]}, {noteSettings: [...this.state.noteSettings, objSettings]})
+// this.setState({ data: [ ...this.state.data, newNote, objSettings]})
+// this.setState({noteSettings: [...this.state.noteSettings, objSettings]})
+// console.log(newNoteColors)
+
+// isPinned,  
+// isArchived,
+// newNoteColors
+
         // source.cancel('Operation canceled by the user')
         // this.state.isEmpty ? console.log("Operation canceled") : console.log("item added frontend")
     }
@@ -110,7 +151,7 @@ class NotaProvider extends React.Component{
     }
 
     render(){
-       
+        console.log(this.state.data)
         return(
             // <></>
         <NotaContext.Provider value={{

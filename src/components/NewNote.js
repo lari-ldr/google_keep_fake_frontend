@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react';
 import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
+import Pin from './ButtonsAndIcons/Pin';
 import {NotaContext} from '../contexts/NotaContext';
 
 
@@ -7,10 +8,39 @@ const NewNote = ()=>{
   const context = useContext(NotaContext);
   const isClicked = context.state.isClicked
   const [newNote, setNewNote] = useState({
-    id: Number(),
+    // id: Number(),
     title: '',
-    content: ''
+    content: '',
+    is_pinned: false,
+    is_archived: false,
+    background_color: '#fff'
   });
+
+
+  // const [isPinned, setIsPinned] = useState(false)
+  // const [isArchived, setIsArchived] = useState(false)
+  // const [newNoteColors, setNewNoteColors] = useState('#fff') //rgb(255, 255, 255)
+
+  const bgColorChange = {
+    backgroundColor: newNote.background_color,
+    // backgroundColor: newNoteColors,
+  }
+
+  const handleColor = (theColor)=>{
+  
+    // setNewNoteColors(theColor)
+    setNewNote({background_color: theColor})
+  }
+
+  const handlePin = ()=>{
+    setNewNote({is_pinned: !newNote.is_pinned})
+    // setIsPinned(!isPinned)
+  }
+
+  const handleArchived = () =>{
+    // setIsArchived(!isArchived)
+    setNewNote({is_archived: !newNote.is_archived})
+  }
 
   const clickForm =(event)=>{
     const id = event.currentTarget.id
@@ -23,22 +53,33 @@ const NewNote = ()=>{
   const handleChangeInput = event =>{
     const {name, value} = event.target
     setNewNote({...newNote, [name]: value})
-  
-    console.log({...newNote})
   }
 
   const handleChangeSubmitInput = event=>{
     event.preventDefault();
+    // context.saveNote(newNote, isPinned, isArchived, newNoteColors);
     context.saveNote(newNote);
     setNewNote({
-      id: Number(),
+      // id: Number(),
       title: '',
-      content: ''
-    })
+      content: '',
+      is_pinned: false,
+      is_archived: false,
+      background_color: '#fff'
+    }) 
+    // setIsPinned(false)
+    // setIsArchived(false)
   }
-
+console.log(newNote.is_pinned)
         return(
-          <div id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
+          <>
+          <div style={bgColorChange} id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
+          <div className={`${isClicked === false ? 'None' : ''}`}>
+          <Pin
+            isPinned={newNote.is_pinned}
+            // isPinned={isPinned}
+            handlePin={handlePin}></Pin>
+          </div>
           <form className="NewNote" onSubmit={handleChangeSubmitInput}>
                     {/* <input name="id" value={context.state.data.length + 1} onChange={handleChangeInput} /> */}
                     <input 
@@ -70,9 +111,10 @@ const NewNote = ()=>{
               </form>
               
               <div className={`${isClicked === false ? 'None' : ''}`}>
-              <IconsEditAndNewForms></IconsEditAndNewForms>
+              <IconsEditAndNewForms handleColor={handleColor} handlePin={handlePin} handleArchived={handleArchived}></IconsEditAndNewForms>
               </div>
             </div>
+          </>
         )
 }
 

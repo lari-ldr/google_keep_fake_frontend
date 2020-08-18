@@ -1,5 +1,6 @@
 import React from 'react';
 import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
+import IconsHead from './ButtonsAndIcons/IconsHead.js';
 import {NotaContext} from '../contexts/NotaContext';
 
 class EditNote extends React.Component{
@@ -74,7 +75,9 @@ class EditNote extends React.Component{
           >
           <div
             className="NoteDesign"
+            style={{borderColor: this.props.note.background_color}, {backgroundColor: this.props.note.background_color}}
           >
+            <IconsHead pin={this.props.note.is_pinned}></IconsHead>
       <form
         className="NoteContentModal"
         onSubmit={this.handleChangeEditSubmit}

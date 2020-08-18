@@ -63,15 +63,58 @@ class Note extends React.Component{
     }
 
     render(){
+      
       return(
         <>
-        {/* <div id={this.state.id} className={`Item ${isEditing === true ? 'Nothing' : '' }`} > */}
+      
+        {/* {this.props.note.is_pinned ?
+        <div>
+        <h4 className="NotesAreaTitle">Pinned</h4>
+        <div
+        id={this.props.note.id}
+        // key={this.state.id}
+        className={`Item`}
+        style={{backgroundColor: this.props.note.background_color}}
+      >
+      <IconsHead pin={this.props.note.is_pinned}></IconsHead>
+      <div onClick={this.editingMode}>
+      
+      <ul className="ItemContent">
+      <li className="ItemTitle Both">{this.props.note.title}</li>
+      <li className="ItemMessage Both">{this.props.note.content}</li>
+      </ul>
+      </div>
+    
+      <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.props.note.id}></IconsBottom>
+      </div>
+        </div> : <div>
+      <h4 className="NotesAreaTitle">Others</h4>
         <div
           id={this.props.note.id}
           // key={this.state.id}
           className={`Item`}
+          style={{backgroundColor: this.props.note.background_color}}
         >
-        <IconsHead></IconsHead>
+        <IconsHead pin={this.props.note.is_pinned}></IconsHead>
+        <div onClick={this.editingMode}>
+        
+        <ul className="ItemContent">
+        <li className="ItemTitle Both">{this.props.note.title}</li>
+        <li className="ItemMessage Both">{this.props.note.content}</li>
+        </ul>
+        </div>
+      
+        <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.props.note.id}></IconsBottom>
+        </div> 
+        </div>} */}
+
+        <div
+          id={this.props.note.id}
+          // key={this.state.id}
+          className={`Item`}
+          style={{backgroundColor: this.props.note.background_color}}
+        >
+        <IconsHead pin={this.props.note.is_pinned}></IconsHead>
         <div onClick={this.editingMode}>
         
         <ul className="ItemContent">
@@ -82,6 +125,7 @@ class Note extends React.Component{
       
         <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.props.note.id}></IconsBottom>
         </div>
+
         </>
         )
     }

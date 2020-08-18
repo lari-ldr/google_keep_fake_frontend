@@ -2,6 +2,8 @@ import React from 'react';
 import Masonry from 'react-masonry-component';
 import Note from './Note.js';
 import EditNote from './EditNote.js';
+import Pinned from './Pinned.js';
+import NotPinned from './NotPinned.js';
 import { NotaContext } from '../contexts/NotaContext';
 
 class Card extends React.Component{
@@ -29,7 +31,6 @@ class Card extends React.Component{
             this.setState({editComponent: isEditing})
         )
     }
-
  
       render(){
        const allNotes = this.context.state.data.map((note)=>{
@@ -39,6 +40,7 @@ class Card extends React.Component{
                     componentEditMode={this.componentEditMode}
                     key={note.id}
                     indexID={note.id}
+                    isPinned={note.is_pinned}
                     note={note}
                 />    
                 </>
@@ -61,27 +63,13 @@ class Card extends React.Component{
     })
         return(
             // <></>
-            <div
-                style={{paddingLeft: '300px'}}
-                // className="ContainerItems"
-                // onClick={()=>{context.handleFormVisibilityOutside()}}
-            >
-            <h4 className="NotesAreaTitle">Pinned / Others</h4>
-            {/* <h5 className={`${isLoaded ? 'None' : 'Block'}`} >Loading... wait a minute</h5> */}
-           
-            {/* <div className="ContainerNotes"> */}
-            
-            <Masonry
-                // className={'ContainerNotes'}
-                // options={masonryOptions}
-                // style={style}
-            >
-            {allNotes}
+            <div style={{paddingLeft: '300px'}}>
+            {/* <h4 className="NotesAreaTitle">Pinned / Others</h4> */}
+            <Masonry>
+               
+                {allNotes}
             </Masonry>
-        
-            
-            {allNotesEdit}
-            {/* </div> */}
+                {allNotesEdit}
             </div>
         );
       }
