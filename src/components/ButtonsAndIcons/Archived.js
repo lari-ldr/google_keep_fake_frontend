@@ -1,14 +1,21 @@
 import React, {useState} from 'react';
 
-const Archived = ({ handleArchived, archive }) =>{
-    // const [archivedNote, setArchivedNote] = useState(false)
-    const handleArchivedSetting = ()=>{
-        // setArchivedNote(!archivedNote)
-        handleArchived()
-    }
+const Archived = ({ checked, onChangeArchived}) =>{
+
     return(
         <>
-        <li className="FormIconsItself" onClick={handleArchivedSetting}>{archive}</li>
+        <label 
+              className="material-icons"
+              // className="FormIconsItself"
+            >            
+            <input
+            // aria-label="true"  
+            type="checkbox"
+            name="is_archived"
+            checked={checked}
+            onChange={onChangeArchived}
+            />archive
+          </label> 
         </>
     )
 }

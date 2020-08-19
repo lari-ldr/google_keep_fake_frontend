@@ -4,64 +4,66 @@ import DeleteBtn from './DeleteBtn.js';
 import AddLabel from './AddLabel';
 import CheckBoxes from './CheckBoxes';
 import Pin from './Pin';
+import Alert from './Alert';
+import Share from './Share';
+import InsertPhoto from './InsertPhoto';
 import Archived from './Archived';
+import Undo from './Undo';
+import Redo from './Redo';
+import More from './More';
+import MakeACopy from './MakeACopy';
+import CopyToGoogleDocs from './CopyToGoogleDocs';
 import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdPinDrop} from 'react-icons/md'
 import { FaThumbtack } from 'react-icons/fa';
 import {NotaContext} from '../../contexts/NotaContext';
 
-const IconsEditAndNewForms=({children, onClick, onChange, value, isEditing, editingMode, handleColor, handlePin, handleArchived})=>{
+const alert =<MdAddAlert/>;
+const person =<MdPersonAdd/>;
+const palette =<MdPalette/>;
+const insertPhoto =<MdInsertPhoto/>;
+const archiveIcon  =<MdArchive/>;
+const more =<MdMoreVert/>;
+const undo =<MdUndo/>;
+const redo =<MdRedo/>;
+const pin =<FaThumbtack/>
+
+const IconsEditAndNewForms=({onClick, onChange, value, isEditing, editingMode, handleColor, onChangeArchived, checked})=>{
     const context = useContext(NotaContext);
     const isClicked = context.state.isClicked;
     const [isMoreSettings, setIsMoreSettings] = useState(false)
     const [hover, setHover] = useState(false)
-    // const [pinNote, setPinNote] = useState(false)
-    // const [archivedNote, setArchivedNote] = useState(false)
-
-    const alert =<MdAddAlert/>;
-    const person =<MdPersonAdd/>;
-    const palette =<MdPalette/>;
-    const insertPhoto =<MdInsertPhoto/>;
-    const archive  =<MdArchive/>;
-    const more =<MdMoreVert/>;
-    const undo =<MdUndo/>;
-    const redo =<MdRedo/>;
-    const pin =<FaThumbtack/>
 
     const hoverIn = ()=>{setHover(true)}
     const hoverOut = ()=>{setHover(false)}
     const handleMoreSettings = ()=>{setIsMoreSettings(!isMoreSettings)}
-    // const handlePinSetting = ()=>{
-    //     setPinNote(!pinNote)
-    //     handlePin(pinNote)
-    // }
-    // const handleArchivedSetting = ()=>{
-    //     setArchivedNote(!archivedNote)
-    //     handleArchived(archivedNote)
-    // }
-    // console.log(pinNote)
+
     return(
     <>
-        <ul className={`IconsNote FormIconsPadding`}>
-            <li className="FormIconsItself">{alert}</li>
-            <li className="FormIconsItself NotShare">{person}</li>
+        <div className={`IconsNote FormIconsPadding`}>
+            <Alert alert={alert}></Alert>
+            
+            <Share person={person}></Share>
+            
             <li className="FormIconsItself" onMouseEnter={hoverIn} onMouseLeave={hoverOut}>{palette}</li>
-            <li className="FormIconsItself">{insertPhoto}</li>
-            <Archived handleArchived={handleArchived} archive={archive}></Archived>
-            {/* <li className="FormIconsItself" onClick={handleArchivedSetting}>{archive}</li> */}
+            <InsertPhoto insertPhoto={insertPhoto}></InsertPhoto>
+            
+            <Archived checked={checked} onChangeArchived={onChangeArchived}></Archived>
+            {/* <More more={more}></More> */}
             <li className="FormIconsItself" onClick={handleMoreSettings}>{more}</li>
-            <li className="FormIconsItself">{undo}</li>
-            <li className="FormIconsItself">{redo}</li>
+
+            <Undo undo={undo}></Undo>
+            <Redo redo={redo}></Redo>
             {/* mudar conforme se for nota editada ou nova nota? */}
             <li className="FormIconsItself CloseBtn" onClick={editingMode}>Close</li>
             {/* <li className="PinBtn" onClick={handlePinSetting}>{pin}</li> */}
             {/* <Pin handlePin={handlePin} pin={pin}></Pin> */}
-        </ul>
+        </div>
 
         <div className={`MoreColors ColorsEditMode ${hover === false ? 'HideColors' : '' }`} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
             <IconsColors handleColor={handleColor}>{palette}</IconsColors>
         </div>
 
-        <ul className={`MoreOptions OptionsEditMode ${isMoreSettings === false ? 'Hide' : ''}`}>
+        <div className={`MoreOptions OptionsEditMode ${isMoreSettings === false ? 'Hide' : ''}`}>
             {/* options for new note only */}
             {isClicked ?
                 <>
@@ -75,12 +77,12 @@ const IconsEditAndNewForms=({children, onClick, onChange, value, isEditing, edit
                 <>
             <DeleteBtn onClick={onClick} onChange={onChange} value={value}></DeleteBtn>
             <AddLabel></AddLabel>
-            <li>Make a copy</li>
+            <MakeACopy></MakeACopy>
             <CheckBoxes></CheckBoxes>
-            <li>Copy to Google Docs</li>
+            <CopyToGoogleDocs></CopyToGoogleDocs>
                 </> : ''
             }
-        </ul>
+        </div>
         </>
     );
 }

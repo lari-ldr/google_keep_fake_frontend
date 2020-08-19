@@ -1,8 +1,13 @@
 import React, {useState, useContext} from 'react';
 import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
 import Pin from './ButtonsAndIcons/Pin';
+
+// import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdPinDrop} from 'react-icons/md'
 import {NotaContext} from '../contexts/NotaContext';
 
+// import TitleInput from './formInputs/TitleInput.js';
+
+import Archived from './ButtonsAndIcons/Archived.js';
 
 const NewNote = ()=>{
   const context = useContext(NotaContext);
@@ -16,32 +21,6 @@ const NewNote = ()=>{
     background_color: '#fff'
   });
 
-
-  // const [isPinned, setIsPinned] = useState(false)
-  // const [isArchived, setIsArchived] = useState(false)
-  // const [newNoteColors, setNewNoteColors] = useState('#fff') //rgb(255, 255, 255)
-
-  const bgColorChange = {
-    backgroundColor: newNote.background_color,
-    // backgroundColor: newNoteColors,
-  }
-
-  const handleColor = (theColor)=>{
-  
-    // setNewNoteColors(theColor)
-    setNewNote({background_color: theColor})
-  }
-
-  const handlePin = ()=>{
-    setNewNote({is_pinned: !newNote.is_pinned})
-    // setIsPinned(!isPinned)
-  }
-
-  const handleArchived = () =>{
-    // setIsArchived(!isArchived)
-    setNewNote({is_archived: !newNote.is_archived})
-  }
-
   const clickForm =(event)=>{
     const id = event.currentTarget.id
     if(id !== "NoteForm"){
@@ -51,13 +30,14 @@ const NewNote = ()=>{
   }
 
   const handleChangeInput = event =>{
-    const {name, value} = event.target
-    setNewNote({...newNote, [name]: value})
+    const {name, value, type, checked} = event.target
+    // console.log(event.target)
+    type === 'checkbox' ? setNewNote({...newNote, [name]: checked}) : setNewNote({...newNote, [name]: value})
+
   }
 
   const handleChangeSubmitInput = event=>{
     event.preventDefault();
-    // context.saveNote(newNote, isPinned, isArchived, newNoteColors);
     context.saveNote(newNote);
     setNewNote({
       // id: Number(),
@@ -67,21 +47,18 @@ const NewNote = ()=>{
       is_archived: false,
       background_color: '#fff'
     }) 
-    // setIsPinned(false)
-    // setIsArchived(false)
+
   }
-console.log(newNote.is_pinned)
+
         return(
           <>
-          <div style={bgColorChange} id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
+          <div 
+            // style={bgColorChange} 
+            id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
           <div className={`${isClicked === false ? 'None' : ''}`}>
-          <Pin
-            isPinned={newNote.is_pinned}
-            // isPinned={isPinned}
-            handlePin={handlePin}></Pin>
           </div>
           <form className="NewNote" onSubmit={handleChangeSubmitInput}>
-                    {/* <input name="id" value={context.state.data.length + 1} onChange={handleChangeInput} /> */}
+            <Pin checkedPin={newNote.is_pinned} onChangePinned={handleChangeInput}></Pin>
                     <input 
                       aria-label="title of the note"
                       type="text"
@@ -103,6 +80,9 @@ console.log(newNote.is_pinned)
                       placeholder="Take a note..."
                       onChange={handleChangeInput}
                   />
+
+           {/* <Archived checked={newNote.is_archived} onChangeArchived={handleChangeInput}></Archived> */}
+           <IconsEditAndNewForms checked={newNote.is_archived} onChangeArchived={handleChangeInput}></IconsEditAndNewForms>
                   <button 
                     className={`Send ${isClicked === false ? 'None' : ''}`}
                     type="submit">
@@ -111,12 +91,155 @@ console.log(newNote.is_pinned)
               </form>
               
               <div className={`${isClicked === false ? 'None' : ''}`}>
-              <IconsEditAndNewForms handleColor={handleColor} handlePin={handlePin} handleArchived={handleArchived}></IconsEditAndNewForms>
               </div>
             </div>
           </>
         )
 }
+
+// const alert =<MdAddAlert/>;
+// const person =<MdPersonAdd/>;
+// const palette =<MdPalette/>;
+// const insertPhoto =<MdInsertPhoto/>;
+// const archiveIcon  =<MdArchive/>;
+// const more =<MdMoreVert/>;
+// const undo =<MdUndo/>;
+// const redo =<MdRedo/>;
+
+// const NewNote = ()=>{
+//   const context = useContext(NotaContext);
+//   const isClicked = context.state.isClicked
+//   const [newNote, setNewNote] = useState({
+//     // id: Number(),
+//     title: '',
+//     content: '',
+//     is_pinned: false,
+//     is_archived: false,
+//     background_color: '#fff'
+//   });
+
+//   const [isMoreSettings, setIsMoreSettings] = useState(false)
+//   const [hover, setHover] = useState(false)
+
+//     const hoverIn = ()=>{setHover(true)}
+//     const hoverOut = ()=>{setHover(false)}
+//     const handleMoreSettings = ()=>{setIsMoreSettings(!isMoreSettings)}
+
+//   const bgColorChange = {
+//     backgroundColor: newNote.background_color,
+//     // backgroundColor: newNoteColors,
+//   }
+
+//   const handleColor = (theColor)=>{
+  
+//     // setNewNoteColors(theColor)
+//     setNewNote({background_color: theColor})
+//   }
+
+
+//   const clickForm =(event)=>{
+//     const id = event.currentTarget.id
+//     if(id !== "NoteForm"){
+//       context.handleFormVisibilityOutside();
+//     }
+//     context.handleFormVisibilityInside()
+//   }
+
+//   const handleChangeInput = event =>{
+//     const {name, value, type, checked} = event.target
+//     // console.log(event.target)
+//     type === 'checkbox' ? setNewNote({...newNote, [name]: checked}) : setNewNote({...newNote, [name]: value})
+
+//   }
+
+//   const handleChangeSubmitInput = event=>{
+//     event.preventDefault();
+//     context.saveNote(newNote);
+//     setNewNote({
+//       // id: Number(),
+//       title: '',
+//       content: '',
+//       is_pinned: false,
+//       is_archived: false,
+//       background_color: '#fff'
+//     }) 
+
+//   }
+
+//         return(
+//           <>
+//           <div style={bgColorChange} id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
+//           <div className={`${isClicked === false ? 'None' : ''}`}>
+//           </div>
+//           <form className="NewNote" onSubmit={handleChangeSubmitInput}>
+
+//                     <input 
+//                       aria-label="title of the note"
+//                       type="text"
+//                       name="title"
+//                       value={newNote.title}
+//                       title="colocar explicações"
+//                       placeholder="Title"
+//                       onChange={handleChangeInput}
+//                       className={`Title ${isClicked === false ? 'None' : ''}`}
+//                   />
+
+//                   <textarea 
+//                       className={`NoteItself ${isClicked === false ? 'HideForm' : ''}`}
+//                       name="content"
+//                       value={newNote.content}
+//                       rows="10"
+//                       cols="10"
+//                       title="colocar explicações"
+//                       placeholder="Take a note..."
+//                       onChange={handleChangeInput}
+//                   />
+//                   <br/>
+
+//                 <div className={`IconsNote FormIconsPadding`}>
+//             <li className="FormIconsItself">{alert}</li>
+//             <li className="FormIconsItself NotShare">{person}</li>
+            
+//             <li className="FormIconsItself" onMouseEnter={hoverIn} onMouseLeave={hoverOut}>{palette}</li>
+//             <li className="FormIconsItself">{insertPhoto}</li>
+           
+//             <label 
+//               // className="material-icons"
+//               className="FormIconsItself"
+//             >            
+//             <input
+//             // aria-label="true"  
+//             type="checkbox"
+//             name="is_archived"
+//             checked={newNote.is_archived}
+//             onChange={handleChangeInput}
+//             />{archiveIcon}
+//           </label> 
+
+//             <button className="FormIconsItself" onClick={handleMoreSettings}>{more}</button>
+//             <li className="FormIconsItself">{undo}</li>
+//             <li className="FormIconsItself">{redo}</li>
+//             {/* mudar conforme se for nota editada ou nova nota? */}
+//             <li className="FormIconsItself CloseBtn" onClick={editingMode}>Close</li>
+
+//                 </div> 
+//         <div className={`MoreColors ColorsEditMode ${hover === false ? 'HideColors' : '' }`} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
+//             <IconsColors handleColor={handleColor}>{palette}</IconsColors>
+//         </div>
+
+//                   <button 
+//                     className={`Send ${isClicked === false ? 'None' : ''}`}
+//                     type="submit">
+//                       Submit
+//                     </button>
+//               </form>
+              
+//               <div className={`${isClicked === false ? 'None' : ''}`}>
+//               </div>
+//             </div>
+//           </>
+//         )
+// }
 
 // class NewNot extends React.Component{
 //     constructor(props){

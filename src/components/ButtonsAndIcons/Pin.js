@@ -1,19 +1,27 @@
 import React, {useState} from 'react';
 
 
-const Pin = ({ handlePin, isPinned}) =>{
-    // const [pinNote, setPinNote] = useState(false)
+const Pin = ({ checkedPin, onChangePinned}) =>{
+    const [isPinned, setIsPinned] = useState(false)
   
-    const handlePinSetting = ()=>{
-        // setPinNote(!pinNote)
-        handlePin()
+    const handlePinIcon = ()=>{
+        setIsPinned(!isPinned)
     }
     return(
         <>
-        {/* <li className="PinBtn" onClick={handlePinSetting}>{pin}</li> */}
-        <li className={`PinBtn ${isPinned === false ? 'material-icons-outlined' : 'material-icons' }`} onClick={handlePinSetting}>push_pin</li>
-        {/* <i className="material-icons">push_pin</i>
-        <i className="material-icons-outlined">push_pin</i> */}
+            <label 
+              className={`PinBtn ${isPinned === false ? 'material-icons-outlined' : 'material-icons' }`}
+              // className="FormIconsItself"
+            >            
+            <input
+            // aria-label="true"  
+            type="checkbox"
+            name="is_pinned"
+            checked={checkedPin}
+            onChange={onChangePinned}
+            onClick={handlePinIcon}
+            />push_pin
+          </label> 
         </>
     )
 }

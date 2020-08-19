@@ -958,3 +958,16 @@ textarea{
   border: 1px solid transparent;
   border-radius: 8px;
 }
+
+input[type="checkbox"]{
+  display: none;
+}
+
+/* input[type="file"]{
+  display: none;
+} */
+
+button{
+  background-color: transparent;
+  border: none;
+}
