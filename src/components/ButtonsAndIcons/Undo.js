@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 
-const Undo = ({undo}) =>{
+const Undo = (undo) =>{
 
     return(
         <>
-        <li className="FormIconsItself">{undo}</li>
+        <li className="material-icons FormIconsItself">undo</li>
         </>
     )
 }

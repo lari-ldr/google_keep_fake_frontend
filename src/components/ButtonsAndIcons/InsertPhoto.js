@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 
-const InsertPhoto = ({InsertPhoto}) =>{
+const InsertPhoto = () =>{
 
     return(
         <>
-        <label className="FormIconsItself">
-            <input type="file" />{InsertPhoto}
-        </label>
-        {/* <li className="FormIconsItself">{InsertPhoto}</li> */}
+        <label for="img" className="material-icons FormIconsItself">insert_photo</label>
+            <input type="file" id="img" name="img" accept="image/*" />
         </>
     )
 }

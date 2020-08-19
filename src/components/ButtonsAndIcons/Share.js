@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 
-const Share = ({person}) =>{
+const Share = () =>{
 
     return(
         <>
-        <button className="FormIconsItself">{person}</button>
+        <label for="share" className="material-icons FormIconsItself">person_add</label>
+        <input id="share" type="button" />
         {/* <li className="FormIconsItself NotShare">{person}</li> */}
         </>
     )

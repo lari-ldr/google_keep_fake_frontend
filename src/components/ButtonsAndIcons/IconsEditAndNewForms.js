@@ -27,7 +27,7 @@ const undo =<MdUndo/>;
 const redo =<MdRedo/>;
 const pin =<FaThumbtack/>
 
-const IconsEditAndNewForms=({onClick, onChange, value, isEditing, editingMode, handleColor, onChangeArchived, checked})=>{
+const IconsEditAndNewForms=({onClick, onChange, value, isEditing, editingMode, handleColor, onChangeArchived, checked, onChangeBgColor})=>{
     const context = useContext(NotaContext);
     const isClicked = context.state.isClicked;
     const [isMoreSettings, setIsMoreSettings] = useState(false)
@@ -40,19 +40,23 @@ const IconsEditAndNewForms=({onClick, onChange, value, isEditing, editingMode, h
     return(
     <>
         <div className={`IconsNote FormIconsPadding`}>
-            <Alert alert={alert}></Alert>
+            <Alert></Alert>
+            <Share></Share>
+
+        <label for="palette" className="material-icons FormIconsItself" onMouseEnter={hoverIn} onMouseLeave={hoverOut}>palette</label>
+        <input id="palette" type="button" />
             
-            <Share person={person}></Share>
-            
-            <li className="FormIconsItself" onMouseEnter={hoverIn} onMouseLeave={hoverOut}>{palette}</li>
-            <InsertPhoto insertPhoto={insertPhoto}></InsertPhoto>
-            
+            <InsertPhoto></InsertPhoto>
             <Archived checked={checked} onChangeArchived={onChangeArchived}></Archived>
+           
             {/* <More more={more}></More> */}
-            <li className="FormIconsItself" onClick={handleMoreSettings}>{more}</li>
+            <label for="moreOptions" className="material-icons FormIconsItself" onClick={handleMoreSettings} >more_vert</label>
+            <input id="moreOptions" type="button" />
+
 
             <Undo undo={undo}></Undo>
             <Redo redo={redo}></Redo>
+            
             {/* mudar conforme se for nota editada ou nova nota? */}
             <li className="FormIconsItself CloseBtn" onClick={editingMode}>Close</li>
             {/* <li className="PinBtn" onClick={handlePinSetting}>{pin}</li> */}
@@ -60,7 +64,7 @@ const IconsEditAndNewForms=({onClick, onChange, value, isEditing, editingMode, h
         </div>
 
         <div className={`MoreColors ColorsEditMode ${hover === false ? 'HideColors' : '' }`} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
-            <IconsColors handleColor={handleColor}>{palette}</IconsColors>
+            <IconsColors onChangeBgColor={onChangeBgColor}></IconsColors>
         </div>
 
         <div className={`MoreOptions OptionsEditMode ${isMoreSettings === false ? 'Hide' : ''}`}>

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 
-const Redo = ({redo}) =>{
+const Redo = () =>{
 
     return(
         <>
-        <li className="FormIconsItself">{redo}</li>
+        <li className="material-icons FormIconsItself">redo</li>
         </>
     )
 }

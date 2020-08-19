@@ -237,7 +237,7 @@
 }
 
 .BoardMain{
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   width: 100%;
   /* height: 100vh; */
   padding-top: 8px;
@@ -488,10 +488,8 @@
   /* color:#202124; */
   color: #5f6368;
   opacity: 1;
-  font-size: 18px;
-  height: 18px;
-  /* flex-grow: 1; */
-  /* align-self: center; */
+  /* font-size: 18px; */
+  /* height: 18px; */
   cursor: pointer;
   padding: 5px;
 }
@@ -631,11 +629,10 @@
   display: none;
 }
 
-.GroupColors{
+/* .GroupColors{
   padding: 0 0 5px 0;
   margin: 0;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   cursor: pointer;
 }
@@ -650,55 +647,79 @@
 
 .GroupColors > li:hover{
   border: 2px solid #202124;
+} */
+
+.GroupColors{
+  padding: 0 0 5px 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.GroupColors > label{
+  border-radius: 50%;
+  height: 26px;
+  width: 26px;
+  font-size: 26px;
+  margin: 0 5px 0 0;
+  cursor: pointer;
+}
+
+.GroupColors > label:hover{
+  border: 2px solid #202124;
+}
+
+input[type="radio"]{
+  display: none;
 }
 
 .DefaultWhite{
-  /* background-color: #fff; */
+  background-color: #fff;
   border: 2px solid #e0e0e0;
 }
 .Red{
-  /* background-color: #f28b82; */
+  background-color: #f28b82;
   border: 2px solid #f28b82;
 }
 .Orange{
-  /* background-color: #fbbc04; */
+  background-color: #fbbc04;
   border: 2px solid #fbbc04;
 }
 .Yellow{
-  /* background-color: #fff475; */
+  background-color: #fff475;
   border: 2px solid #fff475;
 }
 
 .Green{
-  /* background-color: #ccff90; */
+  background-color: #ccff90;
   border: 2px solid #ccff90;
 }
 .Teal{
-  /* background-color: #a7ffeb; */
+  background-color: #a7ffeb;
   border: 2px solid #a7ffeb;
 }
 .Blue{
-  /* background-color: #cbf0f8; */
+  background-color: #cbf0f8;
   border: 2px solid #cbf0f8;
 }
 .DarkBlue{
-  /* background-color: #aecbfa; */
+  background-color: #aecbfa;
   border: 2px solid #aecbfa;
 }
 .Purple{
-  /* background-color: #d7aefb; */
+  background-color: #d7aefb;
   border: 2px solid #d7aefb;
 }
 .Pink{
-  /* background-color: #fdcfe8; */
+  background-color: #fdcfe8;
   border: 2px solid #fdcfe8;
 }
 .Brown{
-  /* background-color: #e6c9a8; */
+  background-color: #e6c9a8;
   border: 2px solid #e6c9a8;
 }
 .Gray{
-  /* background-color: #e8eaed; */
+  background-color: #e8eaed;
   border: 2px solid #e8eaed;
 }
 
@@ -963,11 +984,15 @@ input[type="checkbox"]{
   display: none;
 }
 
-/* input[type="file"]{
+input[type="file"]{
   display: none;
-} */
+}
 
-button{
+input[type="button"]{
+  display: none;
+}
+
+/* button{
   background-color: transparent;
   border: none;
-}
+} */

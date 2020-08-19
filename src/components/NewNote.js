@@ -1,13 +1,7 @@
 import React, {useState, useContext} from 'react';
 import IconsEditAndNewForms from './ButtonsAndIcons/IconsEditAndNewForms.js';
 import Pin from './ButtonsAndIcons/Pin';
-
-// import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdPinDrop} from 'react-icons/md'
 import {NotaContext} from '../contexts/NotaContext';
-
-// import TitleInput from './formInputs/TitleInput.js';
-
-import Archived from './ButtonsAndIcons/Archived.js';
 
 const NewNote = ()=>{
   const context = useContext(NotaContext);
@@ -29,16 +23,15 @@ const NewNote = ()=>{
     context.handleFormVisibilityInside()
   }
 
-  const handleChangeInput = event =>{
+  const handleChangeInput = (event) =>{
     const {name, value, type, checked} = event.target
-    // console.log(event.target)
     type === 'checkbox' ? setNewNote({...newNote, [name]: checked}) : setNewNote({...newNote, [name]: value})
-
   }
 
   const handleChangeSubmitInput = event=>{
     event.preventDefault();
     context.saveNote(newNote);
+    context.saveNotesettings(newNote)
     setNewNote({
       // id: Number(),
       title: '',
@@ -47,13 +40,17 @@ const NewNote = ()=>{
       is_archived: false,
       background_color: '#fff'
     }) 
+  }
 
+  const bgColorChange = {
+    backgroundColor: newNote.background_color,
+    // backgroundColor: newNoteColors,
   }
 
         return(
           <>
           <div 
-            // style={bgColorChange} 
+            style={bgColorChange} 
             id="NoteForm" className={`FormInput ${isClicked === false ? 'ChangeFormHeight' : ''}`} onClick={clickForm} >
           <div className={`${isClicked === false ? 'None' : ''}`}>
           </div>
@@ -82,7 +79,7 @@ const NewNote = ()=>{
                   />
 
            {/* <Archived checked={newNote.is_archived} onChangeArchived={handleChangeInput}></Archived> */}
-           <IconsEditAndNewForms checked={newNote.is_archived} onChangeArchived={handleChangeInput}></IconsEditAndNewForms>
+           <IconsEditAndNewForms checked={newNote.is_archived} onChangeArchived={handleChangeInput} onChangeBgColor={handleChangeInput}></IconsEditAndNewForms>
                   <button 
                     className={`Send ${isClicked === false ? 'None' : ''}`}
                     type="submit">

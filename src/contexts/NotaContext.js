@@ -34,68 +34,71 @@ class NotaProvider extends React.Component{
         })
     }
 
-    saveNote = (newNote, isPinned, isArchived, newNoteColors)=>{
-        // saveNote = (newNote)=>{
+    saveNote = (newNote)=>{
 
         const id = this.state.data.length + 1
         // const CancelToken = axios.CancelToken;
         // const source = CancelToken.source();
         // const isEmptyCancel = this.state.isEmpty ? source.token : '';
 
-        // axios.post(`http://localhost:9000/index/${id}`, {
-        //   id: this.state.data.length + 1,
-        //   title: newNote.title,
-        //   content: newNote.content
-        // } 
-        // // {CancelToken: isEmptyCancel}
-        // )
-        // .then( response=>{
-        //   response.data = {
-        //     id: this.state.data.length + 1,
-        //     title: newNote.title,
-        //     content: newNote.content
-        //   }
-        // })
-    //     this.setState({
-    //         data: [
-    //             ...this.state.data,
-    //             newNote
-    //         ]
-    // })
+        axios.post(`http://localhost:9000/index/${id}`, {
+          id: this.state.data.length + 1,
+          title: newNote.title,
+          content: newNote.content
+        } 
+        // {CancelToken: isEmptyCancel}
+        )
+        .then( response=>{
+          response.data = {
+            id: this.state.data.length + 1,
+            title: newNote.title,
+            content: newNote.content
+          }
+        })
 
     // axios.post(`http://localhost:9000/settings/${id}`, {
     //     note_id: this.state.data.length + 1,
-    //     background_color: newNoteColors,
-    //     is_archived: isArchived,
-    //     is_pinned: isPinned
+    //     background_color: newNote.background_color,
+    //     is_archived: newNote.is_archived,
+    //     is_pinned: newNote.is_pinned
     // })
     // .then( response => {
     //     response.data ={
     //         note_id: this.state.data.length + 1,
-    //         background_color: newNoteColors,
-    //         is_archived: isArchived,
-    //         is_pinned: isPinned
+    //         background_color: newNote.background_color,
+    //         is_archived: newNote.is_archived,
+    //         is_pinned: newNote.is_pinned
     //     }
     // })
-    const objSettings = {
-    // note_id: this.state.data.length + 1,
-    background_color: newNoteColors,
-    is_archived: isArchived,
-    is_pinned: isPinned
-}
-    this.setState({ data: [ ...this.state.data, newNote]})
-// this.setState({data: [ ...this.state.data, newNote]}, {noteSettings: [...this.state.noteSettings, objSettings]})
-// this.setState({ data: [ ...this.state.data, newNote, objSettings]})
-// this.setState({noteSettings: [...this.state.noteSettings, objSettings]})
-// console.log(newNoteColors)
 
-// isPinned,  
-// isArchived,
-// newNoteColors
+    this.setState({ data: [ ...this.state.data, newNote]})
+
 
         // source.cancel('Operation canceled by the user')
         // this.state.isEmpty ? console.log("Operation canceled") : console.log("item added frontend")
+}
+
+saveNotesettings = (newNote)=>{
+    const id = this.state.data.length + 1
+
+axios.post(`http://localhost:9000/settings/${id}`, {
+    note_id: this.state.data.length + 1,
+    background_color: newNote.background_color,
+    is_archived: newNote.is_archived,
+    is_pinned: newNote.is_pinned
+})
+.then( response => {
+    response.data ={
+        note_id: this.state.data.length + 1,
+        background_color: newNote.background_color,
+        is_archived: newNote.is_archived,
+        is_pinned: newNote.is_pinned
     }
+})
+
+this.setState({ data: [ ...this.state.data, newNote]})
+
+}
 
     editNote = (noteEdited)=>{
         const id = noteEdited.id
@@ -159,6 +162,7 @@ class NotaProvider extends React.Component{
             handleFormVisibilityOutside: this.handleFormVisibilityOutside,
             handleFormVisibilityInside: this.handleFormVisibilityInside,
             saveNote: this.saveNote,
+            saveNotesettings: this.saveNotesettings,
             editNote: this.editNote,
             deleteNote: this.deleteNote,
             editingModeTeste: this.editingModeTeste,
