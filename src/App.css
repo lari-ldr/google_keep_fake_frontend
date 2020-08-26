@@ -219,6 +219,23 @@
   color: #828282;
 }
 
+.CloseSearchBtn{
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  font-family: Google Sans,Roboto,RobotoDraft,Helvetica,Arial,sans-serif; 
+  font-size: 20px;
+  color: #828282;
+  cursor: pointer;
+}
+
+.CloseSearchBtn:hover{
+  color: #202124;
+  opacity: .87;
+  background-color: rgba(95,99,104,0.157);
+  outline: none;
+}
+
 .BtnSearch{
   background-color: transparent;
   border: none;

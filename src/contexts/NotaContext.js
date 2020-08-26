@@ -10,10 +10,12 @@ class NotaProvider extends React.Component{
         this.state = ({
             data: [],
             noteSettings: [],
+            notesSearch: [],
             isLoaded: false,
             isClicked: false,
             isEmpty: true,
-            isEditing: false
+            isEditing: false,
+            isSearchInputClicked: false
         });
     }
 
@@ -55,25 +57,7 @@ class NotaProvider extends React.Component{
             content: newNote.content
           }
         })
-
-    // axios.post(`http://localhost:9000/settings/${id}`, {
-    //     note_id: this.state.data.length + 1,
-    //     background_color: newNote.background_color,
-    //     is_archived: newNote.is_archived,
-    //     is_pinned: newNote.is_pinned
-    // })
-    // .then( response => {
-    //     response.data ={
-    //         note_id: this.state.data.length + 1,
-    //         background_color: newNote.background_color,
-    //         is_archived: newNote.is_archived,
-    //         is_pinned: newNote.is_pinned
-    //     }
-    // })
-
     this.setState({ data: [ ...this.state.data, newNote]})
-
-
         // source.cancel('Operation canceled by the user')
         // this.state.isEmpty ? console.log("Operation canceled") : console.log("item added frontend")
 }
@@ -141,6 +125,17 @@ this.setState({ data: [ ...this.state.data, newNote]})
         console.log(removedItem)
     }
 
+    searchNote = (search_query)=>{
+        const CancelToken = axios.CancelToken;
+        const source = CancelToken.source();
+        axios.get(`http://localhost:9000/search`, {params: {search_query: search_query}}, {CancelToken: source.token})
+        .then(response => response.data.length !== 0 ? this.setState({ notesSearch: response.data}) : null)
+        .catch(err =>{
+            console.log(err)
+        })
+        source.cancel('Operation canceled by the user')
+    }
+
     handleFormVisibilityOutside =()=>{
         this.setState({isClicked: false})
       }
@@ -151,6 +146,15 @@ this.setState({ data: [ ...this.state.data, newNote]})
 
     handleEditMode =()=>{
         this.setState({isEditing: false})
+    }
+
+    handleClickSearch=()=>{
+        // setIsSearchInputClicked(!isSearchInputClicked)
+        this.setState({isSearchInputClicked: true})
+    }
+
+    handleCloseSearch=()=>{
+        this.setState({isSearchInputClicked: false})
     }
 
     render(){
@@ -165,115 +169,16 @@ this.setState({ data: [ ...this.state.data, newNote]})
             saveNotesettings: this.saveNotesettings,
             editNote: this.editNote,
             deleteNote: this.deleteNote,
+            searchNote: this.searchNote,
             editingModeTeste: this.editingModeTeste,
-            handleEditMode: this.handleEditMode
+            handleEditMode: this.handleEditMode,
+            handleClickSearch: this.handleClickSearch,
+            handleCloseSearch: this.handleCloseSearch
         }} >
             {this.props.children}
         </NotaContext.Provider>
         )
     }
 }
-
-// const NotaProvider = ({children})=>{
-//     // console.log(children) //retorna as components em app que estão entre <NotaProvider></NotaProvider>
-//     const [data, setData] = useState([]); // esse estado agora esta disponivel de uma forma global
-//     const [isClicked, setIsClicked] = useState(false);
-//     const [isEmpty, setIsEmpty] = useState(true);
-//     const [isLoaded, setIsLoaded] = useState(false);
-
-// // loads all the information to display
-//     useEffect(()=>{
-//         const fetchData = async () =>{
-//             const result = await axios(
-//                 `http://localhost:9000/index`,
-//             );
-//             setData(result.data);
-//             setIsLoaded(true)
-//         };    
-//         fetchData();
-//     }, [data]); // salientar isso no tutorial
-
-
-// // save a new note (post request) & update the state | impedir de enviar notas sem nada escrito
-// const saveNote = (newNote)=>{
-//     // console.log(newNote) // retorna um obj
-//     const id = newNote.id
-//     const CancelToken = axios.CancelToken;
-//     const source = CancelToken.source();
-//     const isEmptyCancel = isEmpty ? source.token : '';
-//     axios.post(`http://localhost:9000/index/${id}`, {
-//       id: newNote.length + 1,
-//       title: newNote.title,
-//       content: newNote.content
-//     }, {CancelToken: isEmptyCancel})
-//     .then( response=>{
-//       response.data = {
-//         id: newNote.length + 1,
-//         title: newNote.title,
-//         content: newNote.content
-//       }
-//     })
-//     setData([
-//         ...data,
-//         newNote
-//     ])
-//     source.cancel('Operation canceled by the user')
-//     isEmpty ? console.log("Operation canceled") : console.log("item added frontend")
-// }
-// // edit a note
-// const editNote = (onNoteChanges)=>{
-//     const id = onNoteChanges.id
-//     axios.put(`http://localhost:9000/index/${id}`, {
-//         id: onNoteChanges.id,
-//         title: onNoteChanges.title,
-//         content: onNoteChanges.content
-//     })
-//     .then( response=>{
-//         response.data={
-//             id: onNoteChanges.id,
-//             title: onNoteChanges.title,
-//             content: onNoteChanges.content
-//         }
-//     })
-//     console.log(data)
-//     console.log(onNoteChanges)
-//     setData([
-//         ...data,
-//         onNoteChanges
-//     ])
-
-// }
-// // delete a note
-// const deleteNote = (onNoteChanges)=>{
-//     const id = onNoteChanges.id
-//     axios.delete(`http://localhost:9000/index/${id}`)
-//     .then( response => {
-//       console.log(response)
-//     })
-//     setData([...data, onNoteChanges])
-//     const removedItem = data.filter(deletedItem => {return deletedItem.id !== id})
-//     setData([...data, removedItem])
-// }
-  
-
-// // form clicked
-// const handleFormVisibilityOutside =()=>{
-//     // this.setState({isClicked: false})
-//     setIsClicked(false)
-//   }
-
-// const handleFormVisibilityInside =()=>{
-//     // this.setState({isClicked: true})
-//     setIsClicked(true)
-
-// }
-
-//     return(
-//         <NotaContext.Provider value={{data, saveNote, editNote, deleteNote, isClicked, handleFormVisibilityOutside, handleFormVisibilityInside}}>
-//             {children}
-//         </NotaContext.Provider>
-//     );
-
-// }
 
 export default NotaProvider;

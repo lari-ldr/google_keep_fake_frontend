@@ -50,7 +50,12 @@ class NotPinned extends React.Component{
     const allNotesEdit = this.context.state.data.map((note)=>{
         if(note.id === this.state.editComponent){
             return(
-                <EditNote componentEditModeClose={this.componentEditModeClose} key={note.id} indexID={note.id} note={note}></EditNote>
+                <EditNote
+                    componentEditModeClose={this.componentEditModeClose}
+                    // key={note.id}
+                    indexID={note.id}
+                    note={note}
+                ></EditNote>
             )
         } else{
             if(this.state.editComponent === null){

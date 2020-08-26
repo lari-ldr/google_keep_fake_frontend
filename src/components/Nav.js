@@ -4,8 +4,15 @@ import {NotaContext} from '../contexts/NotaContext';
 
 const Nav = ()=>{
     const context = useContext(NotaContext);
-    // const {handleFormVisibilityOutside} = useContext(NotaContext);
     const isLoaded = context.state.isLoaded
+
+    const [searchNote, setSearchNote] = useState()
+  
+    const handleChangeSearch=(event)=>{
+        const {name, value} = event.target
+        const search_query = value
+        context.searchNote(search_query)
+    }
 
     const menu = <MdMenu/>;
     const search = <MdSearch/>;
@@ -29,10 +36,19 @@ const Nav = ()=>{
             
         </div>
            
-            <form className="Search Flex">
+            <form className="Search Flex" onClick={()=>{context.handleClickSearch()}}>
     <button className="ColorNav BtnSearch">{search}</button>
-                <input className="SearchInput" type="search" placeholder="Search"></input>
+                
+            <input
+                className="SearchInput"
+                type="search"
+                placeholder="Search"
+                name="search_vector"
+                value={searchNote}
+                onChange={handleChangeSearch}
+                ></input>
             </form>
+        <button className="CloseSearchBtn" onClick={()=>{context.handleCloseSearch()}}>x</button>
             <div className="Flex">
             
             {isLoaded ? <p className={`Icons Circle ColorNav`}>{refresh}</p> : <div className={`SpinnerLoading`}></div> }

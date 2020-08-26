@@ -63,50 +63,15 @@ class Note extends React.Component{
     }
 
     render(){
-      
+      console.log(this.props.note.labels)
+      // const labels = this.props.note.labels.maps(i =>{
+      //   return(
+      //     <li>i</li>
+      //   )
+      // })
       return(
         <>
       
-        {/* {this.props.note.is_pinned ?
-        <div>
-        <h4 className="NotesAreaTitle">Pinned</h4>
-        <div
-        id={this.props.note.id}
-        // key={this.state.id}
-        className={`Item`}
-        style={{backgroundColor: this.props.note.background_color}}
-      >
-      <IconsHead pin={this.props.note.is_pinned}></IconsHead>
-      <div onClick={this.editingMode}>
-      
-      <ul className="ItemContent">
-      <li className="ItemTitle Both">{this.props.note.title}</li>
-      <li className="ItemMessage Both">{this.props.note.content}</li>
-      </ul>
-      </div>
-    
-      <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.props.note.id}></IconsBottom>
-      </div>
-        </div> : <div>
-      <h4 className="NotesAreaTitle">Others</h4>
-        <div
-          id={this.props.note.id}
-          // key={this.state.id}
-          className={`Item`}
-          style={{backgroundColor: this.props.note.background_color}}
-        >
-        <IconsHead pin={this.props.note.is_pinned}></IconsHead>
-        <div onClick={this.editingMode}>
-        
-        <ul className="ItemContent">
-        <li className="ItemTitle Both">{this.props.note.title}</li>
-        <li className="ItemMessage Both">{this.props.note.content}</li>
-        </ul>
-        </div>
-      
-        <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.props.note.id}></IconsBottom>
-        </div> 
-        </div>} */}
 
         <div
           id={this.props.note.id}
@@ -120,7 +85,9 @@ class Note extends React.Component{
         <ul className="ItemContent">
         <li className="ItemTitle Both">{this.props.note.title}</li>
         <li className="ItemMessage Both">{this.props.note.content}</li>
+      <li>{this.props.note.labels}</li>
         </ul>
+      {/* <ul>{labels}</ul> */}
         </div>
       
         <IconsBottom onClick={this.handleChangeDeleteSubmit} onChange={this.handleChange} value={this.props.note.id}></IconsBottom>
