@@ -32,7 +32,7 @@ const IconsBottom = ({children, onClick, onChange, value})=>{
         <IconsColors></IconsColors>
       </div>
       <ul className={`MoreOptions ${isMoreSettings === false ? 'Hide' : ''}`}>
-          <DeleteBtn onClick={onClick} onChange={onChange} value={value}></DeleteBtn>
+          <DeleteBtn onClick={onClick} onChange={onChange} value={value} DeleteNote="Delete Note"></DeleteBtn>
           <li>Add label</li>
           <li>Make a copy</li>
           <li>Show checkboxes</li>

@@ -1,11 +1,16 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
+import LabelList from './LabelList';
+import NewLabel from './NewLabel';
 import { MdHighlight, MdNotifications, MdLabelOutline, MdEdit, MdArchive, MdDelete } from 'react-icons/md';
 import {NotaContext} from '../contexts/NotaContext';
 
 
+
 const SideBar = ()=>{
     const context = useContext(NotaContext);
-    
+
+    const [openLabelEdit, setOpenLabelEdit] = useState(false)
+    const handleOpenLabelEdit = ()=>{setOpenLabelEdit(!openLabelEdit)}
     const idea = <MdHighlight/>;
     const reminder = <MdNotifications/>;
     const label = <MdLabelOutline/>;
@@ -13,6 +18,7 @@ const SideBar = ()=>{
     const archive = <MdArchive/>;
     const del = <MdDelete/>;
     return(
+        <>
     <div className="SideBar" onClick={()=>{context.handleFormVisibilityOutside()}}>
         <div className="OptionsContainer">
             <p className="OptionsIcon">{idea}</p>
@@ -22,13 +28,14 @@ const SideBar = ()=>{
             <p className="OptionsIcon">{reminder}</p>
             <span className="OptionsText">Reminders</span>
         </div>
-        <div className="OptionsContainer">
+        {/* <div className="OptionsContainer">
             <p className="OptionsIcon">{label}</p>
             <span className="OptionsText">Some Label</span>
-        </div>
+        </div> */}
+        <LabelList labelIconOutlined="material-icons-outlined" ></LabelList>
         <div className="OptionsContainer">
             <p className="OptionsIcon">{editLabel}</p>
-            <span className="OptionsText">Edit Label</span>
+            <span className="OptionsText" onClick={handleOpenLabelEdit}>Edit Label</span>
         </div>
         <div className="OptionsContainer">
             <p className="OptionsIcon">{archive}</p>
@@ -45,6 +52,8 @@ const SideBar = ()=>{
                 <li>Open-source licenses</li>
             </ul> */}
         </div>
+        {openLabelEdit ? <NewLabel handleOpenLabelEdit={handleOpenLabelEdit}></NewLabel> : null }
+        </>
     );
 }
 

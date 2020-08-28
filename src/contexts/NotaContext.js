@@ -11,6 +11,8 @@ class NotaProvider extends React.Component{
             data: [],
             noteSettings: [],
             notesSearch: [],
+            labels: [],
+            // notesLabels: [],
             isLoaded: false,
             isClicked: false,
             isEmpty: true,
@@ -31,6 +33,13 @@ class NotaProvider extends React.Component{
         .then(response => {
             this.setState({
                 noteSettings: response.data,
+                isLoaded: true
+            })
+        })
+        axios.get(`http://localhost:9000/labels`)
+        .then(response => {
+            this.setState({
+                labels: response.data,
                 isLoaded: true
             })
         })
@@ -136,6 +145,58 @@ this.setState({ data: [ ...this.state.data, newNote]})
         source.cancel('Operation canceled by the user')
     }
 
+    saveNewLabel = (newLabel)=>{
+        const id = this.state.labels.length + 1
+    
+    axios.post(`http://localhost:9000/labels/${id}`, {
+        id: this.state.labels.length + 1,
+        labels: newLabel.labels
+    })
+    .then( response => {
+        response.data ={
+            id: this.state.labels.length + 1,
+            labels: newLabel.labels
+        }
+    })
+    this.setState({ labels: [ ...this.state.labels, newLabel]})
+}
+
+putEditLabel=(edLabel)=>{
+    const id = edLabel.id
+    axios.put(`http://localhost:9000/labels/${id}`, {
+        id: edLabel.id,
+        labels: edLabel.labels
+    })
+    .then( response=>{
+        response.data={
+            id: edLabel.id,
+            labels: edLabel.labels
+        }
+    })
+    this.setState({labels: [...this.state.labels]})
+    const teste = this.state.labels.map(el => (el.id === id ? Object.assign({}, el, edLabel) : el))
+    console.log(teste)
+    this.setState({
+        labels: teste
+      }, ()=>{
+          console.log(this.state.labels)
+      });
+
+}
+
+deleteLabel = (labelDeleted)=>{
+    const id = labelDeleted.id
+    axios.delete(`http://localhost:9000/labels/${id}`)
+    .then(response =>{
+        console.log(response)
+    })
+
+    this.setState({labels: [...this.state.labels]})
+
+    const removedLabel = this.state.labels.filter(delLabel => {return delLabel.id !== id})
+    this.setState({labels: removedLabel})
+}
+
     handleFormVisibilityOutside =()=>{
         this.setState({isClicked: false})
       }
@@ -158,7 +219,6 @@ this.setState({ data: [ ...this.state.data, newNote]})
     }
 
     render(){
-        console.log(this.state.data)
         return(
             // <></>
         <NotaContext.Provider value={{
@@ -170,6 +230,9 @@ this.setState({ data: [ ...this.state.data, newNote]})
             editNote: this.editNote,
             deleteNote: this.deleteNote,
             searchNote: this.searchNote,
+            saveNewLabel: this.saveNewLabel,
+            putEditLabel: this.putEditLabel,
+            deleteLabel: this.deleteLabel,
             editingModeTeste: this.editingModeTeste,
             handleEditMode: this.handleEditMode,
             handleClickSearch: this.handleClickSearch,

@@ -275,6 +275,53 @@
   z-index: 2;
 }
 
+.LabelEdit{
+  color: #202124;
+  letter-spacing: .00625em;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  height: 25px;
+}
+.LabelContainerModal{
+  /* width: 20%; */
+  /* height: 60%; */
+  border: none;
+  padding: 16px;
+  position: fixed;
+  background-color: #fff;
+  /* box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149); */
+ border: 1px solid #e0e0e0;
+  /* border-radius: 8px; */
+} 
+
+.LabelDesign{
+  background-color: #fff;
+  /* box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149); */
+  /* border-color: #e0e0e0; */
+  /* border: 1px solid transparent; */
+  /* border: 1px solid transparent; */
+  /* border-radius: 8px; */
+}
+
+.LabelForm{
+  display: flex;
+}
+
+.LabelInput{
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid #dadce0;
+  color: #3c4043;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 0 15px;
+  padding-bottom: 3px;
+}
+
 .OptionsContainer{
   padding-left: 12px;
   box-sizing: border-box;
@@ -308,7 +355,9 @@
   font-size: 24px;
   padding: 0 12px;
   flex-shrink: 0;
+  color: #5f6368;
 }
+
 
 .OptionsText{
   overflow: hidden;
@@ -425,6 +474,20 @@
 	outline: none;
 	/* white-space: pre-wrap; */
 	word-wrap: break-word;
+}
+
+.ItemLabels{
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.ItemLabels > li{
+  margin-left: 10px;
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 45%;
+  background-color: #5f636869;
 }
 
 .NotesIconsHead{
@@ -1009,7 +1072,7 @@ input[type="button"]{
   display: none;
 }
 
-/* button{
+button{
   background-color: transparent;
   border: none;
-} */
+}
