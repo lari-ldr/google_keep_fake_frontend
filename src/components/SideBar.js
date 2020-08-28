@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import LabelList from './LabelList';
 import NewLabel from './NewLabel';
-import { MdHighlight, MdNotifications, MdLabelOutline, MdEdit, MdArchive, MdDelete } from 'react-icons/md';
+import { MdHighlight, MdNotifications, MdEdit, MdArchive, MdDelete } from 'react-icons/md';
 import {NotaContext} from '../contexts/NotaContext';
 
 
@@ -13,7 +13,6 @@ const SideBar = ()=>{
     const handleOpenLabelEdit = ()=>{setOpenLabelEdit(!openLabelEdit)}
     const idea = <MdHighlight/>;
     const reminder = <MdNotifications/>;
-    const label = <MdLabelOutline/>;
     const editLabel = <MdEdit/>;
     const archive = <MdArchive/>;
     const del = <MdDelete/>;

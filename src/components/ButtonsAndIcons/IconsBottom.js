@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import DeleteBtn from './DeleteBtn.js';
 import IconsColors from './IconsColors.js';
-import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdCheck} from 'react-icons/md'
-// import { FaThumbtack } from 'react-icons/fa';
+import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert } from 'react-icons/md'
 
 const IconsBottom = ({children, onClick, onChange, value})=>{
     const [isMoreSettings, setIsMoreSettings] = useState(false)
@@ -13,10 +12,6 @@ const IconsBottom = ({children, onClick, onChange, value})=>{
     const insertPhoto =<MdInsertPhoto/>;
     const archive  =<MdArchive/>;
     const more =<MdMoreVert/>;
-    // const check =<MdCheck/>;
-    // const pin =<FaThumbtack/>;
-    // const undo = <MdUndo/>;
-    // const redo = <MdRedo/>;
 
     return(
         <>

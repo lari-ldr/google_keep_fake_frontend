@@ -13,19 +13,11 @@ import Redo from './Redo';
 import More from './More';
 import MakeACopy from './MakeACopy';
 import CopyToGoogleDocs from './CopyToGoogleDocs';
-import { MdAddAlert, MdPersonAdd, MdPalette, MdInsertPhoto, MdArchive, MdMoreVert, MdUndo, MdRedo, MdPinDrop} from 'react-icons/md'
-import { FaThumbtack } from 'react-icons/fa';
+import { MdUndo, MdRedo } from 'react-icons/md'
 import {NotaContext} from '../../contexts/NotaContext';
 
-const alert =<MdAddAlert/>;
-const person =<MdPersonAdd/>;
-const palette =<MdPalette/>;
-const insertPhoto =<MdInsertPhoto/>;
-const archiveIcon  =<MdArchive/>;
-const more =<MdMoreVert/>;
 const undo =<MdUndo/>;
 const redo =<MdRedo/>;
-const pin =<FaThumbtack/>
 
 const IconsEditAndNewForms=({onClick, onChange, value, isEditing, editingMode, handleColor, onChangeArchived, checked, onChangeBgColor})=>{
     const context = useContext(NotaContext);
