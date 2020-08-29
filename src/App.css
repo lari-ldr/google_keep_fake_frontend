@@ -1,20 +1,20 @@
 /* MODAL TEST */
 /* vai ocupar toda a tela com o fundo preto transparente */
-.modal{
+.modal {
   width: 100%;
   height: 100vh; /* vh altura da tela*/
   position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 /* vai ser onde o modal aparece, a coisa por cima da tela preta transparente */
-.containerModal{
+.containerModal {
   background-color: white;
   color: black;
   width: 60%;
@@ -22,7 +22,7 @@
   border-radius: 20px;
 }
 
-.closeModal{
+.closeModal {
   background-color: transparent;
   border: none;
   outline: none;
@@ -36,12 +36,12 @@
   align-items: center;
 }
 
-.closeModal::before{
+.closeModal::before {
   transform: rotate(0);
 }
 
-.closeModal::after{
-  content: ' ';
+.closeModal::after {
+  content: " ";
   position: absolute;
   width: 2.5px;
   height: 24px;
@@ -49,7 +49,7 @@
   transform: rotate(45deg);
 }
 
-.closeModal::before{
+.closeModal::before {
   transform: rotate(45deg);
 }
 
@@ -57,17 +57,17 @@
 
 } */
 /* ================ */
-.TestBranch{
+.TestBranch {
   color: red;
 }
 
-.Flex{
+.Flex {
   display: flex;
   /* justify-content: space-between; */
-  align-items: center; 
+  align-items: center;
 }
-.Header{
-  background-color: rgba(255,255,255,1);
+.Header {
+  background-color: rgba(255, 255, 255, 1);
   box-shadow: inset 0 -1px 0 0 #dadce0;
   display: block;
   position: fixed;
@@ -76,7 +76,7 @@
   height: 10%;
   z-index: 2;
 }
-.Nav{
+.Nav {
   box-sizing: border-box;
   position: relative;
   width: 100%;
@@ -87,16 +87,16 @@
   padding: 8px;
   height: 100%;
 }
-.ColorNav{
+.ColorNav {
   color: #5f6368;
   opacity: 1;
   cursor: pointer;
 }
 
-.Fake{
+.Fake {
   padding-left: 4px;
   display: inline-block;
-  font-family: 'Product Sans',Arial,sans-serif;
+  font-family: "Product Sans", Arial, sans-serif;
   font-size: 22px;
   line-height: 24px;
   position: relative;
@@ -105,7 +105,7 @@
   text-rendering: optimizeLegibility;
 }
 
-.SpinnerLoading{
+.SpinnerLoading {
   border-radius: 50%;
   border: 2px solid #5f6368;
   height: 18px;
@@ -118,16 +118,16 @@
   animation: sipinnerLoader 1s linear infinite;
 }
 
-@keyframes sipinnerLoader{
-  from{
+@keyframes sipinnerLoader {
+  from {
     transform: rotate(0);
   }
-  to{
-    transform: rotate(360deg);    
+  to {
+    transform: rotate(360deg);
   }
 }
 
-.Icons{
+.Icons {
   font-size: 24px;
   margin: 0 4px;
   padding: 12px;
@@ -135,7 +135,7 @@
   width: 24px;
 }
 
-.Circle{
+.Circle {
   background-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -147,10 +147,10 @@
   width: 24px;
 }
 
-.Circle:hover{
+.Circle:hover {
   color: #202124;
-  opacity: .87;
-  background-color: rgba(95,99,104,0.157);
+  opacity: 0.87;
+  background-color: rgba(95, 99, 104, 0.157);
   outline: none;
 }
 /* .Menu{
@@ -161,16 +161,15 @@
   flex: 0 0 auto;
 } */
 
-.Logo{
-  width:40px;
-  height:40px;
+.Logo {
+  width: 40px;
+  height: 40px;
   padding-right: 4px;
   border: 0;
   vertical-align: middle;
-
 }
 
-.Profile{
+.Profile {
   display: inline-block;
   margin: 0 4px;
   overflow: hidden;
@@ -180,20 +179,20 @@
   border-radius: 50%;
 }
 
-.ProfileImg{
+.ProfileImg {
   background-size: 32px 32px;
   border: 3px solid transparent;
   border-radius: 50%;
   width: 32px;
 }
 
-.ProfileImg:hover{
-  opacity: .87;
-  border: 3px solid rgba(95,99,104,0.157);
+.ProfileImg:hover {
+  opacity: 0.87;
+  border: 3px solid rgba(95, 99, 104, 0.157);
   outline: none;
 }
 
-.Search{
+.Search {
   background-color: #f1f3f4;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -203,7 +202,7 @@
   height: 100%;
 }
 
-.SearchInput{
+.SearchInput {
   box-sizing: border-box;
   background-color: transparent;
   border-radius: 8px;
@@ -214,29 +213,29 @@
   height: 100%;
   font-style: normal;
   font-size: 14px;
-  font-family: Google Sans,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+  font-family: Google Sans, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
   padding: 11px 0;
   color: #828282;
 }
 
-.CloseSearchBtn{
+.CloseSearchBtn {
   border: none;
   border-radius: 50%;
   background-color: transparent;
-  font-family: Google Sans,Roboto,RobotoDraft,Helvetica,Arial,sans-serif; 
+  font-family: Google Sans, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
   font-size: 20px;
   color: #828282;
   cursor: pointer;
 }
 
-.CloseSearchBtn:hover{
+.CloseSearchBtn:hover {
   color: #202124;
-  opacity: .87;
-  background-color: rgba(95,99,104,0.157);
+  opacity: 0.87;
+  background-color: rgba(95, 99, 104, 0.157);
   outline: none;
 }
 
-.BtnSearch{
+.BtnSearch {
   background-color: transparent;
   border: none;
   position: absolute;
@@ -247,13 +246,13 @@
   height: 52px;
 }
 
-.Board{
+.Board {
   display: flex;
   flex-direction: column;
   height: calc(100% - 64px);
 }
 
-.BoardMain{
+.BoardMain {
   /* background-color: lightgreen; */
   width: 100%;
   /* height: 100vh; */
@@ -262,7 +261,7 @@
   /* z-index: -1; */
 }
 
-.SideBar{
+.SideBar {
   background-color: #fff;
   box-sizing: border-box;
   display: flex;
@@ -275,16 +274,16 @@
   z-index: 2;
 }
 
-.LabelEdit{
+.LabelEdit {
   color: #202124;
-  letter-spacing: .00625em;
-  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
   height: 25px;
 }
-.LabelContainerModal{
+.LabelContainerModal {
   /* width: 20%; */
   /* height: 60%; */
   border: none;
@@ -292,11 +291,11 @@
   position: fixed;
   background-color: #fff;
   /* box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149); */
- border: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0;
   /* border-radius: 8px; */
-} 
+}
 
-.LabelDesign{
+.LabelDesign {
   background-color: #fff;
   /* box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149); */
   /* border-color: #e0e0e0; */
@@ -305,24 +304,24 @@
   /* border-radius: 8px; */
 }
 
-.LabelForm{
+.LabelForm {
   display: flex;
 }
 
-.LabelInput{
+.LabelInput {
   border-top: none;
   border-right: none;
   border-left: none;
   border-bottom: 1px solid #dadce0;
   color: #3c4043;
-  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-weight: 500;
   font-size: 14px;
   margin: 0 15px;
   padding-bottom: 3px;
 }
 
-.OptionsContainer{
+.OptionsContainer {
   padding-left: 12px;
   box-sizing: border-box;
   border: 1px solid transparent;
@@ -334,8 +333,8 @@
   align-items: center;
   /* letter-spacing: 0.1785714rem; */
   letter-spacing: 0.02em;
-  font-family: 'Google Sans',Roboto,Arial,sans-serif;
-  font-size: .875rem;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
   height: 48px;
@@ -349,7 +348,7 @@
   background-color: #feefc3;
 } */
 
-.OptionsIcon{
+.OptionsIcon {
   /* width: 24px;
   height: 24px; */
   font-size: 24px;
@@ -358,15 +357,14 @@
   color: #5f6368;
 }
 
-
-.OptionsText{
+.OptionsText {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-left: 20px;
 }
 
-.ContainerItems{
+.ContainerItems {
   background-color: lightcoral;
   /* margin-top: 10vh; */
   padding-top: 25vh;
@@ -377,7 +375,7 @@
 }
 
 /* ======================= MASORY LAYOYT TEST ========================= */
-.ContainerNotes{
+.ContainerNotes {
   /* orignal */
   display: flex;
   flex-wrap: wrap;
@@ -397,7 +395,7 @@
   break-inside: avoid;
 } */
 
-.Item{
+.Item {
   /* orignal */
   /* background-color: #eee; */
   /* display: inline-block; */
@@ -418,15 +416,19 @@
   border: 2px solid hsla(0, 0%, 0%, 0.5);
 }
 
-.grid-item--width2 { width: 160px; }
-.grid-item--height2 { height: 140px; }
+.grid-item--width2 {
+  width: 160px;
+}
+.grid-item--height2 {
+  height: 140px;
+}
 
 /* ======================= MASORY LAYOYT TEST ========================= */
-.NotesAreaTitle{
+.NotesAreaTitle {
   color: #5f6368;
-  letter-spacing: .07272727em;
-  font-family: Roboto,Arial,sans-serif;
-  font-size: .6875rem;
+  letter-spacing: 0.07272727em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.6875rem;
   font-weight: 500;
   line-height: 1rem;
   text-transform: uppercase;
@@ -435,30 +437,30 @@
   width: max-content;
 }
 
-.ItemContent{
+.ItemContent {
   padding: 0;
   margin: 0;
 }
 
-.ItemTitle{
+.ItemTitle {
   color: #202124;
-  letter-spacing: .00625em;
-	font-family: 'Google Sans', Roboto, Arial, sans-serif;
-	font-size: 1rem;
-	font-weight: 500;
-	line-height: 1.5rem;
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
   padding: 16px 16px 0 16px;
   /* padding: 0px 16px 0 16px; */
 }
 
-.ItemMessage{
+.ItemMessage {
   color: #202124;
-  letter-spacing: .01428571em;
-	font-family: Roboto, Arial, sans-serif;
-	font-size: .875rem;
-	font-weight: 400;
-	line-height: 1.25rem;
-	padding: 4px 16px 12px 16px;
+  letter-spacing: 0.01428571em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  padding: 4px 16px 12px 16px;
 }
 
 /* .ItemMessage{
@@ -469,20 +471,20 @@
 	line-height: 1.5rem;
 } */ /* pra quando for pouca coisa escrita até a lenght que eu determinar???*/
 
-.Both{
+.Both {
   font-variant-ligatures: none;
-	outline: none;
-	/* white-space: pre-wrap; */
-	word-wrap: break-word;
+  outline: none;
+  /* white-space: pre-wrap; */
+  word-wrap: break-word;
 }
 
-.ItemLabels{
+.ItemLabels {
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-.ItemLabels > li{
+.ItemLabels > li {
   margin-left: 10px;
   font-size: 13px;
   padding: 5px;
@@ -490,7 +492,7 @@
   background-color: #5f636869;
 }
 
-.NotesIconsHead{
+.NotesIconsHead {
   margin: 0;
   padding: 0;
   /* display: inline; */
@@ -498,7 +500,7 @@
   /* display: none; */
 }
 
-.NoteIconHeadCheck{
+.NoteIconHeadCheck {
   background-color: black;
   color: white;
   font-weight: 500;
@@ -512,7 +514,7 @@
   font-size: 16px;
 }
 
-.NoteIconHeadPin{
+.NoteIconHeadPin {
   position: absolute;
   top: 0;
   right: 0;
@@ -522,9 +524,9 @@
   padding: 10px;
 }
 
-.NoteIconHeadPin:hover{
+.NoteIconHeadPin:hover {
   color: #202124;
-  background-color: rgba(95,99,104,0.157);
+  background-color: rgba(95, 99, 104, 0.157);
   border-radius: 50%;
 }
 
@@ -532,7 +534,7 @@
   color: #61dafb;
 }
 
-.FormInput{
+.FormInput {
   /* background-color: #fff; */
   border: #e0e0e0;
   border-radius: 8px;
@@ -545,18 +547,19 @@
   margin: 32px auto 16px auto;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
   z-index: 1;
 }
 
-.IconsNote{
+.IconsNote {
   display: flex;
   justify-content: space-between;
   /* line-height: 26px; */
   margin: 10px 0 6px 0;
   padding: 0 16px;
 }
-.FormIconsPadding{
+.FormIconsPadding {
   /* display: flex; */
   /* justify-content: space-between; */
   /* line-height: 26px; */
@@ -564,7 +567,7 @@
   padding: 0 90px 0 16px;
 }
 
-.FormIconsItself{
+.FormIconsItself {
   /* color:#202124; */
   color: #5f6368;
   opacity: 1;
@@ -574,18 +577,18 @@
   padding: 5px;
 }
 
-.FormIconsItself:hover{
+.FormIconsItself:hover {
   color: #202124;
-  background-color: rgba(95,99,104,0.157);
+  background-color: rgba(95, 99, 104, 0.157);
   border-radius: 50%;
 }
 
-.NotShare{
-  opacity: .25;
+.NotShare {
+  opacity: 0.25;
   cursor: not-allowed;
 }
 
-.PinBtn{
+.PinBtn {
   color: #5f6368;
   opacity: 1;
   /* font-size: 20px; */
@@ -596,7 +599,7 @@
   cursor: pointer;
   padding: 8px;
 }
-.FormIconsItself{
+.FormIconsItself {
   /* color:#202124; */
   color: #5f6368;
   opacity: 1;
@@ -608,14 +611,13 @@
   padding: 5px;
 }
 
-
-.PinBtn:hover{
+.PinBtn:hover {
   color: #202124;
-  background-color: rgba(95,99,104,0.157);
+  background-color: rgba(95, 99, 104, 0.157);
   border-radius: 50%;
 }
 
-.PinBtnEdit{
+.PinBtnEdit {
   color: #5f6368;
   opacity: 1;
   font-size: 20px;
@@ -627,16 +629,16 @@
   padding: 8px;
 }
 
-.PinBtnEdit:hover{
+.PinBtnEdit:hover {
   color: #202124;
-  background-color: rgba(95,99,104,0.157);
+  background-color: rgba(95, 99, 104, 0.157);
   border-radius: 50%;
 }
 
-.Hide{
+.Hide {
   display: none;
 }
-.MoreOptions{
+.MoreOptions {
   padding: 10px 10px 5px 10px;
   margin: 0;
   max-width: max-content;
@@ -647,39 +649,40 @@
   background-color: #fff;
   border-width: 0;
   border-radius: 4px;
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
 }
 
-.MoreOptions > li{
+.MoreOptions > li {
   padding-bottom: 5px;
   color: #333;
   cursor: pointer;
-  letter-spacing: .01428571em;
-  font-family: Roboto,Arial,sans-serif;
-  font-size: .875rem;
+  letter-spacing: 0.01428571em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.25rem;
 }
 
-.MoreOptions > li:hover{
-  background-color: rgba(95,99,104,0.157);
+.MoreOptions > li:hover {
+  background-color: rgba(95, 99, 104, 0.157);
 }
 
-.DeleteBtn{
+.DeleteBtn {
   padding-bottom: 5px;
   color: #333;
   cursor: pointer;
-  letter-spacing: .01428571em;
-  font-family: Roboto,Arial,sans-serif;
-  font-size: .875rem;
+  letter-spacing: 0.01428571em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.25rem;
 }
-.DeleteBtn:hover{
-  background-color: rgba(95,99,104,0.157);
+.DeleteBtn:hover {
+  background-color: rgba(95, 99, 104, 0.157);
 }
 
-.MoreColors{
+.MoreColors {
   padding: 10px 10px 5px 10px;
   margin: 0;
   max-width: max-content;
@@ -690,22 +693,23 @@
   background-color: #fff;
   border-width: 0;
   border-radius: 4px;
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.OptionsEditMode{
+.OptionsEditMode {
   bottom: 20px;
   left: 270px;
 }
-.ColorsEditMode{
+.ColorsEditMode {
   bottom: 20px;
   left: 120px;
 }
 
-.HideColors{
+.HideColors {
   display: none;
 }
 
@@ -729,14 +733,14 @@
   border: 2px solid #202124;
 } */
 
-.GroupColors{
+.GroupColors {
   padding: 0 0 5px 0;
   margin: 0;
   display: flex;
   justify-content: center;
 }
 
-.GroupColors > label{
+.GroupColors > label {
   border-radius: 50%;
   height: 26px;
   width: 26px;
@@ -745,101 +749,101 @@
   cursor: pointer;
 }
 
-.GroupColors > label:hover{
+.GroupColors > label:hover {
   border: 2px solid #202124;
 }
 
-input[type="radio"]{
+input[type="radio"] {
   display: none;
 }
 
-.DefaultWhite{
+.DefaultWhite {
   background-color: #fff;
   border: 2px solid #e0e0e0;
 }
-.Red{
+.Red {
   background-color: #f28b82;
   border: 2px solid #f28b82;
 }
-.Orange{
+.Orange {
   background-color: #fbbc04;
   border: 2px solid #fbbc04;
 }
-.Yellow{
+.Yellow {
   background-color: #fff475;
   border: 2px solid #fff475;
 }
 
-.Green{
+.Green {
   background-color: #ccff90;
   border: 2px solid #ccff90;
 }
-.Teal{
+.Teal {
   background-color: #a7ffeb;
   border: 2px solid #a7ffeb;
 }
-.Blue{
+.Blue {
   background-color: #cbf0f8;
   border: 2px solid #cbf0f8;
 }
-.DarkBlue{
+.DarkBlue {
   background-color: #aecbfa;
   border: 2px solid #aecbfa;
 }
-.Purple{
+.Purple {
   background-color: #d7aefb;
   border: 2px solid #d7aefb;
 }
-.Pink{
+.Pink {
   background-color: #fdcfe8;
   border: 2px solid #fdcfe8;
 }
-.Brown{
+.Brown {
   background-color: #e6c9a8;
   border: 2px solid #e6c9a8;
 }
-.Gray{
+.Gray {
   background-color: #e8eaed;
   border: 2px solid #e8eaed;
 }
 
-.NewNote{
+.NewNote {
   display: flex;
   flex-direction: column;
 }
 
-.FormLabel{
+.FormLabel {
   background-color: lightcoral;
 }
 
-.Title{
+.Title {
   background-color: transparent;
   color: #202124;
   /* color: #80868b; */
   border: transparent;
   padding: 10px 15px 10px 15px;
-  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
-  letter-spacing: .00625em;
+  letter-spacing: 0.00625em;
 }
 
-.NoteItself{
+.NoteItself {
   background-color: transparent;
   border: none;
   height: 22px;
   padding: 12px 16px 12px 16px;
   margin: 0;
   color: #202124;
-  font-family: Roboto,Arial,sans-serif;
-  font-size: .875rem;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
-  letter-spacing: .01428571em;
+  letter-spacing: 0.01428571em;
 }
 
-.CloseBtn{
+.CloseBtn {
   /* color: rgba(0,0,0,0.87); */
   font-size: 1rem;
   font-weight: 500;
@@ -849,9 +853,9 @@ input[type="radio"]{
   /* text-align: end; */
 }
 
-.CloseBtn:hover{
+.CloseBtn:hover {
   color: #202124;
-  background-color: rgba(95,99,104,0.157);
+  background-color: rgba(95, 99, 104, 0.157);
   border-radius: 4px;
 }
 /* [contenteditable=true]{
@@ -866,16 +870,16 @@ input[type="radio"]{
   content: attr(placeholder);
 } */
 
-.ChangeFormHeight{
+.ChangeFormHeight {
   height: 50px;
 }
 
-.Send{
+.Send {
   border: none;
   background-color: transparent;
   color: #5f6368;
   opacity: 1;
-  font-family: Roboto,Arial,sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   font-size: 18px;
   height: 18px;
   cursor: pointer;
@@ -889,12 +893,12 @@ input[type="radio"]{
   right: 10px;
 }
 
-.SendEdit{
+.SendEdit {
   border: none;
   background-color: transparent;
   color: #5f6368;
   opacity: 1;
-  font-family: Roboto,Arial,sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   font-size: 18px;
   height: 18px;
   cursor: pointer;
@@ -908,7 +912,7 @@ input[type="radio"]{
   right: 30px;
 }
 
-.Side-nav{
+.Side-nav {
   height: 100%;
   width: 300px;
   position: fixed;
@@ -919,19 +923,19 @@ input[type="radio"]{
   background-color: #252931;
 }
 
-h1{
+h1 {
   color: white;
 }
 
-.None{
+.None {
   display: none;
 }
 
-.Block{
+.Block {
   display: block;
 }
 
-.More{
+.More {
   cursor: pointer;
   color: white;
   font-size: 15px;
@@ -942,7 +946,7 @@ h1{
   margin-bottom: 8px;
 }
 
-.Edit{
+.Edit {
   cursor: pointer;
   color: gray;
   font-size: 15px;
@@ -952,7 +956,7 @@ h1{
   display: inline;
 }
 
-.Save{
+.Save {
   display: inline;
   cursor: pointer;
   border: transparent;
@@ -961,24 +965,23 @@ h1{
   color: gray;
 }
 
-
-.ShowMessage{
+.ShowMessage {
   margin-left: 5px;
 }
 
-textarea{
+textarea {
   resize: none;
 }
 
-.EditTextInputTitle{
+.EditTextInputTitle {
   color: #202124;
   background-color: transparent;
   letter-spacing: 0;
-	font-family: 'Google Sans', Roboto, Arial, sans-serif;
-	font-size: 1.375rem;
-	font-weight: 400;
-	/* font-weight: bold; */
-	line-height: 1.75rem;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  /* font-weight: bold; */
+  line-height: 1.75rem;
   /* background-color: lightcoral; */
   border: none;
   padding-top: 16px;
@@ -990,15 +993,14 @@ textarea{
   /* width: 100%; */
 }
 
-
-.EditTextInputMessage{
+.EditTextInputMessage {
   color: #202124;
   background-color: transparent;
-  letter-spacing: .00625em;
-	font-family: Roboto, Arial, sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5rem;
+  letter-spacing: 0.00625em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
   /* background-color: lightgreen; */
   border: none;
   /* padding-top: 4px; */
@@ -1009,24 +1011,24 @@ textarea{
   padding: 4px 16px 12px 16px;
 }
 
-.NoteModal{
+.NoteModal {
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
-  background-color: rgba(0,0,0,0.8); /*mudar para um esbranquiçado depois*/
+  background-color: rgba(0, 0, 0, 0.8); /*mudar para um esbranquiçado depois*/
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.Nothing{
+.Nothing {
   display: none;
 }
 
-.NoteContainerModal{
+.NoteContainerModal {
   width: 40%;
   height: 60%;
   border: none;
@@ -1038,7 +1040,7 @@ textarea{
   border-radius: 8px; */
 } /* mexer mais aqui, ver flex-shrink etc*/
 
-.NoteContentModal{
+.NoteContentModal {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -1051,28 +1053,29 @@ textarea{
   overflow: hidden;
 }
 
-.NoteDesign{
+.NoteDesign {
   /* background-color: #fff; */
-  box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+    0 4px 8px 3px rgba(60, 64, 67, 0.149);
   /* border-color: #e0e0e0; */
   /* border: 1px solid transparent; */
   border: 1px solid transparent;
   border-radius: 8px;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
   display: none;
 }
 
-input[type="file"]{
+input[type="file"] {
   display: none;
 }
 
-input[type="button"]{
+input[type="button"] {
   display: none;
 }
 
-button{
+button {
   background-color: transparent;
   border: none;
 }
