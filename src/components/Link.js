@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { NotaContext, history } from "../contexts/NotaContext";
+import React, { useContext } from 'react';
+import { RouterContext, history } from '../contexts/RouterContext';
 
 const Link = (props) => {
   // const context = useContext(NotaContext);
 
   const { to, onClick, children } = props;
-  const { route } = useContext(NotaContext);
+  const { route } = useContext(RouterContext);
 
   const handleClick = (event) => {
     event.preventDefault();

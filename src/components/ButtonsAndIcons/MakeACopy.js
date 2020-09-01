@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const MakeACopy = () =>{
-
-    return(
-        <>
-        <li>Make a copy</li>
-        </>
-    )
-}
+const MakeACopy = () => {
+  return (
+    <>
+      <li>Make a copy</li>
+    </>
+  );
+};
 
 export default MakeACopy;

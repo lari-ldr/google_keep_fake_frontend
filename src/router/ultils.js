@@ -1,4 +1,4 @@
-import qs from "querystringify";
+import qs from 'querystringify';
 
 export function locationToRoute(location) {
   // location comes from the history package

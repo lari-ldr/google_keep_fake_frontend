@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const CopyToGoogleDocs = () =>{
-
-    return(
-        <>
-        <li>Make a copy</li>
-        </>
-    )
-}
+const CopyToGoogleDocs = () => {
+  return (
+    <>
+      <li>Make a copy</li>
+    </>
+  );
+};
 
 export default CopyToGoogleDocs;
