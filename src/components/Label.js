@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { NotaContext } from '../contexts/NotaContext';
 import DeleteBtn from './ButtonsAndIcons/DeleteBtn';
 
-const Label = ({ label, labelIconOutlined, labelIcon }) => {
+const Label = ({ label, labelIcon }) => {
   const context = useContext(NotaContext);
   const [labelEditing, setLabelEditing] = useState(false);
   const [edLabel, setEdLabel] = useState({
@@ -31,22 +31,22 @@ const Label = ({ label, labelIconOutlined, labelIcon }) => {
     setLabelEditing(!labelEditing);
   };
 
+  const handleALabelBoard = () => {
+    setLabelEditing(!labelEditing);
+  };
+
   return (
     <>
       <div className='OptionsContainer' id={edLabel.id}>
-        {labelIcon ? (
-          <p className={`${labelIcon} IconHover OptionsIcon`}>label</p>
-        ) : (
-          <p className={`${labelIconOutlined} OptionsIcon`}>label</p>
-        )}
-        {labelIcon ? (
-          <DeleteBtn
-            labelId={label.id}
-            handleChangeLabel={handleChangeLabel}
-            handleSubmitLabel={handleSubmitLabel}
-            materialIcon='material-icons OptionsIcon'
-          ></DeleteBtn>
-        ) : null}
+        <p className={`${labelIcon} IconHover OptionsIcon`}>label</p>
+
+        <DeleteBtn
+          labelId={label.id}
+          handleChangeLabel={handleChangeLabel}
+          handleSubmitLabel={handleSubmitLabel}
+          materialIcon='material-icons OptionsIcon'
+        ></DeleteBtn>
+
         {labelEditing === true ? (
           <form className='LabelForm' onSubmit={handleSubmitEditedLabel}>
             <input
@@ -54,7 +54,6 @@ const Label = ({ label, labelIconOutlined, labelIcon }) => {
               className='LabelInput'
               type='text'
               name='labels'
-              // value={label.labels}
               defaultValue={edLabel.labels}
               onChange={handleChangeLabel}
             ></input>
@@ -63,13 +62,10 @@ const Label = ({ label, labelIconOutlined, labelIcon }) => {
         ) : (
           <span className='OptionsText'>{label.labels}</span>
         )}
-        {labelIcon ? (
-          <button className='material-icons' onClick={labelEdit}>
-            checked
-          </button>
-        ) : (
-          ''
-        )}
+
+        <button className='material-icons' onClick={labelEdit}>
+          checked
+        </button>
       </div>
     </>
   );

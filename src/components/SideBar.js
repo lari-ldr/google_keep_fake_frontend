@@ -1,60 +1,79 @@
-import React, {useContext, useState} from 'react';
-import LabelList from './LabelList';
+import React, { useContext, useState } from 'react';
+import { Link } from 'wouter';
 import NewLabel from './NewLabel';
-import { MdHighlight, MdNotifications, MdEdit, MdArchive, MdDelete } from 'react-icons/md';
-import {NotaContext} from '../contexts/NotaContext';
+import { NotaContext } from '../contexts/NotaContext';
 
+const SideBar = () => {
+  const context = useContext(NotaContext);
+  const labelsLinks = context.state.labels.map((label) => {
+    return (
+      <>
+        <div className='OptionsContainer'>
+          <p className={`material-icons-outlined OptionsIcon`}>label</p>
+          <Link href={`${label.labels}`}>
+            <a className='OptionsText'>{label.labels}</a>
+          </Link>
+        </div>
+      </>
+    );
+  });
 
+  const [openLabelEdit, setOpenLabelEdit] = useState(false);
+  const handleOpenLabelEdit = () => {
+    setOpenLabelEdit(!openLabelEdit);
+  };
 
-const SideBar = ()=>{
-    const context = useContext(NotaContext);
+  return (
+    <>
+      <div
+        className='SideBar'
+        onClick={() => {
+          context.handleFormVisibilityOutside();
+        }}
+      >
+        <div className='OptionsContainer'>
+          <p className='material-icons-outlined OptionsIcon'>emoji_objects</p>
+          <Link href='/home'>
+            <a className='OptionsText'>Notes</a>
+          </Link>
+        </div>
+        <div className='OptionsContainer'>
+          <p className='material-icons-outlined OptionsIcon'>notifications</p>
+          <Link href='/reminders'>
+            <a className='OptionsText'>Reminders</a>
+          </Link>
+        </div>
+        {labelsLinks}
+        <div className='OptionsContainer'>
+          <p className='material-icons-outlined OptionsIcon'>edit</p>
+          <span className='OptionsText' onClick={handleOpenLabelEdit}>
+            Edit Label
+          </span>
+        </div>
+        <div className='OptionsContainer'>
+          <p className='material-icons-outlined OptionsIcon'>archive</p>
+          <Link href='/archived'>
+            <a className='OptionsText'>Archive</a>
+          </Link>
+        </div>
+        <div className='OptionsContainer'>
+          <p className='material-icons-outlined OptionsIcon'>delete</p>
+          <Link href='/trash'>
+            <a className='OptionsText'>Trash</a>
+          </Link>
+        </div>
 
-    const [openLabelEdit, setOpenLabelEdit] = useState(false)
-    const handleOpenLabelEdit = ()=>{setOpenLabelEdit(!openLabelEdit)}
-    const idea = <MdHighlight/>;
-    const reminder = <MdNotifications/>;
-    const editLabel = <MdEdit/>;
-    const archive = <MdArchive/>;
-    const del = <MdDelete/>;
-    return(
-        <>
-    <div className="SideBar" onClick={()=>{context.handleFormVisibilityOutside()}}>
-        <div className="OptionsContainer">
-            <p className="OptionsIcon">{idea}</p>
-            <span className="OptionsText">Notes</span>
-        </div>
-        <div className="OptionsContainer">
-            <p className="OptionsIcon">{reminder}</p>
-            <span className="OptionsText">Reminders</span>
-        </div>
-        {/* <div className="OptionsContainer">
-            <p className="OptionsIcon">{label}</p>
-            <span className="OptionsText">Some Label</span>
-        </div> */}
-        <LabelList labelIconOutlined="material-icons-outlined" ></LabelList>
-        <div className="OptionsContainer">
-            <p className="OptionsIcon">{editLabel}</p>
-            <span className="OptionsText" onClick={handleOpenLabelEdit}>Edit Label</span>
-        </div>
-        <div className="OptionsContainer">
-            <p className="OptionsIcon">{archive}</p>
-            <span className="OptionsText">Archive</span>
-        </div>
-        <div className="OptionsContainer">
-            <p className="OptionsIcon">{del}</p>
-            <span className="OptionsText">Trash</span>
-        </div>
-        
-            {/* <ul>
+        {/* <ul>
                 <li>Privacy</li>
                 <li>Terms</li>
                 <li>Open-source licenses</li>
             </ul> */}
-        </div>
-        {openLabelEdit ? <NewLabel handleOpenLabelEdit={handleOpenLabelEdit}></NewLabel> : null }
-        </>
-    );
-}
-
+      </div>
+      {openLabelEdit ? (
+        <NewLabel handleOpenLabelEdit={handleOpenLabelEdit}></NewLabel>
+      ) : null}
+    </>
+  );
+};
 
 export default SideBar;
